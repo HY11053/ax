@@ -29,6 +29,10 @@ class CreateBrandarticlesTable extends Migration
             $table->text('body')->nullable();
             $table->integer('tzid')->nullable();
             $table->string('brandname')->nullable();//品牌名称
+            $table->string('brandorigin')->nullable();//成立时间
+            $table->string('brandmoshi')->nullable();//加盟模式
+            $table->string('branddevelop')->nullable();//发展模式
+            $table->string('production')->nullable();//发展模式
             $table->string('brandtime')->nullable();//成立时间
             $table->string('brandnum')->nullable();//门店总数
             $table->string('brandpay')->nullable();//加盟费用

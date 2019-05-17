@@ -148,11 +148,12 @@ Route::group(['prefix' => 'admin'],function ()
     Route::post('acreage/edit/{id}','AcreageMentController@postAcreageMentEdit');
     Route::get('/captcha/{config?}','CaptchasController@Captchas');
     //u88数据内容导入
-    Route::get('articletranslate/acrtype','ArticleTraslateController@getarctypes');
     Route::get('articletranslate/brandacrtype','ArticleTraslateController@getBrandarctypes');
+    Route::get('articletranslate/brandsonacrtype','ArticleTraslateController@getSonTypes');
     Route::get('articletranslate/getadmins','ArticleTraslateController@getAdmins');
-    Route::get('articletranslate/getarticles','ArticleTraslateController@getArticles');
     Route::get('articletranslate/getbrandarticles','ArticleTraslateController@getBrandArticles');
+    Route::get('articletranslate/acrtype','ArticleTraslateController@getarctypes');
+    Route::get('articletranslate/getarticles','ArticleTraslateController@getArticles');
     Route::get('articletranslate/getareas','ArticleTraslateController@getAreas');
     Route::get('articletranslate/getflinks','ArticleTraslateController@getFlinks');
     Route::get('articletranslate/createInverment','ArticleTraslateController@createInverment');

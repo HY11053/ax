@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('U88加盟网', 'U88加盟网'),
+    'name' => env('安心加盟网', '安心加盟网'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://www.u88.com'),
+    'url' => env('APP_URL', 'https://www.anxjm.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -132,13 +132,13 @@ return [
     | Site home page key words and description and record information
     | and other related settings
     */
-    'webname'=>'U88加盟网_连锁加盟开店创业好项目_最新致富商机尽在U88.com',
-    'indexname'=>'U88加盟网',
-    'keywords'=>'U88,加盟,创业,加盟网,项目,致富,创业好项目',
-    'description'=>'U88加盟网，连锁加盟网，创业网，商机网，致富网，汇集各地招商加盟连锁代理好品牌，致富经，创业好项目，加盟店，连锁店，开店指导，打造中国最权威的创业加盟网。',
-    'api'=>'http://data.zz.baidu.com/urls?site=https://www.u88.com&token=UleBrGP1036QHkAr',
-    'mip_api'=>'http://data.zz.baidu.com/urls?appid=1614445926892231&token=bhPC7m6tEzuApIRl&type=realtime',
-    'mip_history'=>'http://data.zz.baidu.com/urls?appid=1614445926892231&token=bhPC7m6tEzuApIRl&type=batch',
+    'webname'=>'安心加盟网-真实性连锁招商加盟项目综合服务平台',
+    'indexname'=>'安心加盟网',
+    'keywords'=>'安心加盟网，招商加盟网，加盟网',
+    'description'=>'安心加盟网站审核真实性连锁加盟好项目加盟网站,提供好的加盟项目加盟店,最新加盟项目,创业加盟项目加盟店,免费项目加盟网站承诺加盟店加盟真实项目加盟网站',
+    'api'=>'',
+    'mip_api'=>'',
+    'mip_history'=>'',
     'cachetime'=>30*24*60,
     /*
 

@@ -26,6 +26,7 @@ class CategoryController extends Controller
         $recursivestypeinfos = Cache::get('recursivestypeinfos_');
         Cache::remember('recursivestypeinfos_', 60*24, function() use($topnavs)
         {
+            $recursivestypeinfos=[];
             foreach ($topnavs as $key=>$topnav)
             {
                 if(!empty(Arctype::where('reid',$key)->pluck('typename','id')->toArray()))
