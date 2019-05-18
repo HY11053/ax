@@ -132,17 +132,17 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa  fa-wechat"></i> <span>微信公众平台</span>
+                    <i class="fa  fa-cubes"></i> <span>美食二级域名</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li @if(Request::getRequestUri()=='/admin/admin/useraut')class="active"@endif><a href="#"><i class="fa fa-circle-o"></i> 自定义菜单管理</a></li>
-                    <li @if(Request::getRequestUri()=='/admin/admin/useraut')class="active"@endif><a href="#"><i class="fa fa-circle-o"></i> 单图文消息</a></li>
-                    <li @if(Request::getRequestUri()=='/admin/admin/useraut')class="active"@endif><a href="#"><i class="fa fa-circle-o"></i> 多图文消息</a></li>
-                    <li @if(Request::getRequestUri()=='/admin/weichatusers')class="active"@endif><a href="/admin/weichatusers"><i class="fa fa-circle-o"></i>用户管理</a></li>
-                    <li @if(Request::getRequestUri()=='/admin/weichatusercheck')class="active"@endif><a href="/admin/weichatusercheck"><i class="fa fa-circle-o"></i>用户监测更新</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/mscategory')class="active"@endif><a href="/admin/mscategory"><i class="fa fa-circle-o"></i> 美食栏目管理</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/admin/useraut')class="active"@endif><a href="#"><i class="fa fa-circle-o"></i> 美食文档列表</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/admin/useraut')class="active"@endif><a href="#"><i class="fa fa-circle-o"></i> 我发布的美食</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/weichatusers')class="active"@endif><a href="/admin/weichatusers"><i class="fa fa-circle-o"></i> 待审核的美食</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/weichatusercheck')class="active"@endif><a href="/admin/weichatusercheck"><i class="fa fa-circle-o"></i> 待发布的美食</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -159,7 +159,7 @@
             </li>
             <li>
                 <a href="/admin/Atlas">
-                    <i class="fa fa-photo"></i> <span>图集内容管理</span>
+                    <i class="fa fa-link"></i> <span>美食友情链接</span>
                     <span class="pull-right-container">
               <small class="label pull-right bg-red">3</small>
               <small class="label pull-right bg-blue">17</small>

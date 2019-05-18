@@ -29,8 +29,13 @@ Route::group(['prefix' => 'admin'],function ()
     Route::put('category/edit/{id}','CategoryController@PostEdit')->name('category_edit');
     Route::post('category/delete/{id}','CategoryController@DeleteCategory');
     Route::post('getsontypes','CategoryController@GetSontypes');
+    Route::get('mscategory','MsCategotyController@Index');
+    Route::get('mscategory/create/{id?}','MsCategotyController@Create');
+    Route::get('mscategory/edit/{id}','MsCategotyController@Edit');
+    Route::post('mscategory/create','MsCategotyController@PostCreate')->name('mscategory_create');
+    Route::put('mscategory/edit/{id}','MsCategotyController@PostEdit')->name('mscategory_edit');
     Route::post('getareas','ArticleController@GetAreas');
-    Route::post('/getbdname','ArticleController@GetBdnames');
+    Route::post('getbdname','ArticleController@GetBdnames');
     Route::get('article','ArticleController@Index');
     Route::get('article/ownership','ArticleController@OwnerShip');
     Route::get('brandarticle/ownership','ArticleController@BrandArticleOwnerShip');
@@ -151,11 +156,18 @@ Route::group(['prefix' => 'admin'],function ()
     Route::get('articletranslate/brandacrtype','ArticleTraslateController@getBrandarctypes');
     Route::get('articletranslate/brandsonacrtype','ArticleTraslateController@getSonTypes');
     Route::get('articletranslate/getadmins','ArticleTraslateController@getAdmins');
-    Route::get('articletranslate/getbrandarticles','ArticleTraslateController@getBrandArticles');
     Route::get('articletranslate/acrtype','ArticleTraslateController@getarctypes');
+    Route::get('articletranslate/getbrandarticles','ArticleTraslateController@getBrandArticles');
     Route::get('articletranslate/getarticles','ArticleTraslateController@getArticles');
-    Route::get('articletranslate/getareas','ArticleTraslateController@getAreas');
     Route::get('articletranslate/getflinks','ArticleTraslateController@getFlinks');
+    Route::get('articletranslate/getmsarctype','ArticleTraslateController@getMsarctype');
+    Route::get('articletranslate/getmsarticles','ArticleTraslateController@getMsarticles');
+
+
+
+
+    Route::get('articletranslate/getareas','ArticleTraslateController@getAreas');
+
     Route::get('articletranslate/createInverment','ArticleTraslateController@createInverment');
     Route::get('articletranslate/processarctype','ArticleTraslateController@processArctypes');
     Route::get('articletranslate/processbdname','ArticleTraslateController@processBdname');

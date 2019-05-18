@@ -175,6 +175,10 @@ class ArticleController extends Controller
         $pics=explode(',',trim(Brandarticle::withoutGlobalScope(PublishedScope::class)->where('id',$id)->value('imagepics'),','));
         $provinces=Area::where('parentid','0')->pluck('name_cn','id');
         $articleinfos=Brandarticle::withoutGlobalScope(PublishedScope::class)->where('id',$id)->first();
+        if (empty($articleinfos))
+        {
+            abort(404);
+        }
         /**
          * if ($articleinfos->dutyadmin==1 && $articleinfos->editor_id==0 &&  Admin::where('id',auth('admin')->id())->value('type')==0)
         {

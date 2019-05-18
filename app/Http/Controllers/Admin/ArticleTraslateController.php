@@ -8,6 +8,8 @@ use App\AdminModel\Area;
 use App\AdminModel\Brandarticle;
 use App\AdminModel\flink;
 use App\AdminModel\InvestmentType;
+use App\AdminModel\Msarticle;
+use App\AdminModel\Mscategory;
 use App\AdminModel\Production;
 use App\Scopes\PublishedScope;
 use Carbon\Carbon;
@@ -18,35 +20,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ArticleTraslateController extends Controller
 {
-
-    /**
-     * 普通文档栏目迁移导入
-     */
-    public function getarctypes()
-    {
-        $arctypes=DB::connection('u88')->select('SELECT * FROM category  WHERE id>?',[0]);
-        foreach ($arctypes as $arctype)
-        {
-            $insertarctypes=[];
-            $insertarctypes['id']=$arctype->id;
-            $insertarctypes['reid']=0;
-            $insertarctypes['topid']=0;
-            $insertarctypes['typename']=$arctype->name;
-            $insertarctypes['title']=$arctype->title;
-            $insertarctypes['keywords']=$arctype->keywords;
-            $insertarctypes['description']=$arctype->description;
-            $insertarctypes['typedir']=$arctype->realm;
-            $insertarctypes['real_path']=$arctype->realm;
-            $insertarctypes['mid']=1;
-            $insertarctypes['is_write']=1;
-            $insertarctypes['dirposition']=1;
-            $insertarctypes['updated_at']=Carbon::now();
-            $insertarctypes['created_at']=Carbon::now();
-            Arctype::create($insertarctypes);
-        }
-        echo '导入成功';
-
-    }
 
     /**
      * 品牌栏目迁移导入
@@ -99,136 +72,31 @@ class ArticleTraslateController extends Controller
         }
         echo '子品牌栏目导入成功';
     }
-
-    public function processArctypes()
-    {
-        set_time_limit(0);
-
-    }
     /**
-     * 普通文档迁移导入
+     * 普通文档栏目迁移导入
      */
-    public function getArticles()
+    public function getarctypes()
     {
-        set_time_limit(0);
-        DB::connection('u88')->table('articles')->where('article_id','>',0)->orderBy('article_id','asc')->chunk(100, function($articles) {
-            foreach ($articles as $article)
-            {
-                $inserarticle=[];
-                $inserarticle['id']=$article->article_id;
-                $inserarticle['typeid']=$article->cid;
-                $inserarticle['brandid']=$article->project_id;
-                $inserarticle['title']=json_decode($article->seo)->title;
-                $inserarticle['body']=$article->content;
-                $inserarticle['oldurl']=$article->inner_uri;
-                $inserarticle['click']=$article->pv_num;
-                $inserarticle['keywords']=json_decode($article->seo)->keywords;
-                $inserarticle['description']=json_decode($article->seo)->description;
-                $inserarticle['ismake']=$article->status;
-                $inserarticle['mid']=0;
-                $inserarticle['write']=Admin::where('id',$article->last_editor)->value('name')?:'梁李良';
-                $inserarticle['dutyadmin']=$article->last_editor <29 ? $article->last_editor :1;
-                $inserarticle['brandcid']=$article->pro_cid;
-                $inserarticle['brandtypeid']=$article->type_id;
-                $inserarticle['created_at']=$article->created_at;
-                $inserarticle['updated_at']=$article->updated_at;
-                $inserarticle['published_at']=$inserarticle['created_at'];
-                if(!Archive::withoutGlobalScope(PublishedScope::class)->where('id',$inserarticle['id'])->value('id') && empty($article->deleted_at))
-                {
-                    Archive::create($inserarticle);
-                }
-            }
-        });
-        echo '普通文档导入成功！';
-    }
-
-
-    /**
-     * 普通文档品牌关联处理
-     */
-    public function processBdname()
-    {
-        set_time_limit(0);
-        Archive::where('brandid','<>','')->chunkById(10, function($articles) {
-            foreach ($articles as $article)
-            {
-                Archive::where('id',$article->id)->update([
-                    'bdname'=>Brandarticle::where('id',$article->brandid)->value('brandname'),
-                    'brandtypeid'=>Brandarticle::where('id',$article->brandid)->value('typeid'),
-                    'brandcid'=>Arctype::where('id',Brandarticle::where('id',$article->brandid)->value('typeid'))->value('reid'),
-                ]);
-            }
-        });
-        echo '普通相关品牌写入成功';
-    }
-    /**
-     * 品牌文档迁移导入
-     */
-    public function getBrandArticles()
-    {
-        set_time_limit(0);
-        DB::connection('anxjm')->table('company_basicinfo')->where('id','>',0)->orderBy('id','desc')->chunk(100, function($articles) {
-            foreach ($articles as $article) {
-                $inserarticle = [];
-                $inserarticle['id'] = $article->id;
-                $inserarticle['brandgroup'] = $article->companyName;
-                $inserarticle['brandorigin'] = $article->birthLand;
-                $inserarticle['genre'] = $article->property;
-                $inserarticle['topid'] = $article->categoryId;
-                $inserarticle['typeid'] = $article->xcategoryId;
-                $inserarticle['brandaddr'] = $article->address;
-                $inserarticle['tzid'] = $article->invest;
-                $inserarticle['brandnum'] = $article->shopNum;
-                $inserarticle['brandarea'] = $article->joinArea;
-                $inserarticle['brandmoshi'] = $article->managementMode;
-                $inserarticle['branddevelop'] = $article->developMode;
-                $inserarticle['created_at']=$article->created_at;
-                $inserarticle['published_at']=$article->created_at;
-                $inserarticle['updated_at']=$article->updated_at;
-                $inserarticle['brandname']=$article->brandName;
-                $inserarticle['brandpsp']=$article->slogan;
-                $inserarticle['click']=$article->hits;
-                $inserarticle['indexpic']=$article->logo;
-                $inserarticle['brandperson']=$article->crowd;
-                $inserarticle['registeredcapital']=$article->registeredCapital;
-                $inserarticle['dutyadmin']=$article->author_id;
-                $inserarticle['title']=$article->seo_title;
-                $inserarticle['keywords']=$article->seo_keywords;
-                $inserarticle['description']=$article->seo_description;
-                $inserarticle['ismake'] = 1;
-                $inserarticle['write']=Admin::where('id',$article->author_id)->value('name')?:'梁李良';
-                $inserarticle['mid'] = 1;
-                $articles2=DB::connection('anxjm')->table('company_detailsinfo')->where('companyId',$article->id)->first();
-                if (!empty($articles2))
-                {
-                    $inserarticle['body'] ='';
-                    if (!empty($articles2->intro_title)){
-                        $inserarticle['body'] .='<h2>'.$articles2->intro_title.'</h2>'.$articles2->intro;
-                    }
-                    if (!empty($articles2->joinProcess_title)){
-                        $inserarticle['body'] .= '<h2>'.$articles2->joinProcess_title.'</h2>'.$articles2->joinProcess;
-                    }
-                    if (!empty($articles2->joinAdvantage_title))
-                    {
-                        $inserarticle['body'] .= '<h2>'.$articles2->joinAdvantage_title.'</h2>'.$articles2->joinAdvantage;
-                    }
-                    if (!empty($articles2->joinCost_title))
-                    {
-                        $inserarticle['body'] .= '<h2>'.$articles2->joinCost_title.'</h2>'.$articles2->joinCost;
-                    }
-                    if (!empty($articles2->joinCondition_title))
-                    {
-                        $inserarticle['body'] .= '<h2>'.$articles2->joinCondition_title.'</h2>'.$articles2->joinCondition;
-                    }
-                }
-
-                if(!Brandarticle::withoutGlobalScope(PublishedScope::class)->where('id',$inserarticle['id'])->value('id') && empty($article->deleted_at))
-                {
-                    Brandarticle::create($inserarticle);
-                }
-            }
-        });
-        echo '品牌数据导入成功！！！';
+        $arctypes=DB::connection('anxjm')->select('SELECT * FROM news_kind  WHERE id>?',[0]);
+        foreach ($arctypes as $arctype)
+        {
+            $insertarctypes=[];
+            $insertarctypes['reid']=0;
+            $insertarctypes['topid']=0;
+            $insertarctypes['typename']=$arctype->name;
+            $insertarctypes['title']=$arctype->seo_title;
+            $insertarctypes['keywords']=$arctype->seo_keywords;
+            $insertarctypes['description']=$arctype->seo_description;
+            $insertarctypes['typedir']='160'.$arctype->id;
+            $insertarctypes['real_path']='160'.$arctype->id;
+            $insertarctypes['mid']=0;
+            $insertarctypes['is_write']=1;
+            $insertarctypes['dirposition']=1;
+            $insertarctypes['updated_at']=Carbon::now();
+            $insertarctypes['created_at']=Carbon::now();
+            Arctype::create($insertarctypes);
+        }
+        echo '普通栏目导入成功';
     }
 
     /**
@@ -248,6 +116,131 @@ class ArticleTraslateController extends Controller
 
         }
         echo '后台用户导入成功！';
+    }
+
+    /**
+     * 品牌文档迁移导入
+     */
+    public function getBrandArticles()
+    {
+        set_time_limit(0);
+        DB::connection('anxjm')->table('company_basicinfo')->where('id','>',0)->orderBy('id','desc')->chunk(100, function($articles) {
+            foreach ($articles as $article) {
+                $inserarticle = [];
+                $inserarticle['id'] = $article->id;
+                $inserarticle['brandgroup'] = $article->companyName;
+                $inserarticle['brandorigin'] = $article->birthLand;
+                $inserarticle['genre'] = $article->property;
+                $inserarticle['topid'] = $article->categoryId;
+                $inserarticle['typeid'] = intval(19)+$article->xcategoryId;
+                $inserarticle['brandaddr'] = $article->address;
+                $inserarticle['tzid'] = $article->invest;
+                $inserarticle['brandnum'] = $article->shopNum;
+                $inserarticle['brandarea'] = $article->joinArea;
+                $inserarticle['brandmoshi'] = $article->managementMode;
+                $inserarticle['branddevelop'] = $article->developMode;
+                $inserarticle['created_at']=$article->created_at;
+                $inserarticle['published_at']=$article->created_at;
+                $inserarticle['updated_at']=$article->updated_at;
+                $inserarticle['brandname']=$article->brandName;
+                $inserarticle['brandpsp']=$article->slogan;
+                $inserarticle['imagepics']='';
+                if (count(DB::connection('anxjm')->table('company_photo')->where('companyId',$article->id)->pluck('pictureName')))
+                {
+                    foreach (DB::connection('anxjm')->table('company_photo')->where('companyId',$article->id)->pluck('pictureName') as $pic)
+                    $inserarticle['imagepics'].=$pic.',';
+                }
+                $inserarticle['imagepics']=trim($inserarticle['imagepics'],',');
+                $inserarticle['click']=$article->hits;
+                $inserarticle['indexpic']=$article->logo;
+                $inserarticle['litpic']=$article->logo;
+                $inserarticle['brandperson']=$article->crowd;
+                $inserarticle['registeredcapital']=$article->registeredCapital;
+                $inserarticle['dutyadmin']=$article->author_id?:1;
+                $inserarticle['title']=$article->seo_title;
+                $inserarticle['keywords']=$article->seo_keywords;
+                $inserarticle['description']=$article->seo_description;
+                $inserarticle['ismake'] = 1;
+                $inserarticle['write']=Admin::where('id',$article->author_id)->value('name')?:'梁李良';
+                $inserarticle['mid'] = 1;
+                $articles2=DB::connection('anxjm')->table('company_detailsinfo')->where('companyId',$article->id)->first();
+                if (!empty($articles2))
+                {
+                    $inserarticle['body'] ='';
+                    if (!empty($articles2->intro_title)){
+                        $inserarticle['body'] .='<h2>'.$articles2->intro_title.'</h2>'.$articles2->intro;
+                    }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->intro)))) >5 || stripos($articles2->intro,'img')){
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟品牌介绍'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->intro);
+                    }
+                    if (!empty($articles2->joinCost_title))
+                    {
+                        $inserarticle['body'] .= '<h2>'.$articles2->joinCost_title.'</h2>'.$articles2->joinCost;
+                    }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->joinCost)))) >5  || stripos($articles2->joinCost,'img')){
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟费用'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->joinCost);
+                    }
+                    if (!empty($articles2->joinCondition_title))
+                    {
+                        $inserarticle['body'] .= '<h2>'.$articles2->joinCondition_title.'</h2>'.$articles2->joinCondition;
+                    }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->joinCondition)))) >5  || stripos($articles2->joinCondition,'img')){
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟条件'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->joinCondition);
+                    }
+                    if (!empty($articles2->joinAdvantage_title))
+                    {
+                        $inserarticle['body'] .= '<h2>'.$articles2->joinAdvantage_title.'</h2>'.$articles2->joinAdvantage;
+                    }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->joinAdvantage)))) >5   || stripos($articles2->joinAdvantage,'img')){
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟优势'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->joinAdvantage);
+                    }
+                    if (!empty($articles2->joinProcess_title)){
+                        $inserarticle['body'] .= '<h2>'.$articles2->joinProcess_title.'</h2>'.$articles2->joinProcess;
+                    }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->joinProcess)))) >5  || stripos($articles2->joinProcess,'img')){
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟流程'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->joinProcess);
+                    }
+
+                }
+
+                if(!Brandarticle::withoutGlobalScope(PublishedScope::class)->where('id',$inserarticle['id'])->value('id') && empty($article->deleted_at))
+                {
+                    Brandarticle::create($inserarticle);
+                }
+            }
+        });
+        echo '品牌数据导入成功！！！';
+    }
+
+    /**
+     * 普通文档迁移导入
+     */
+    public function getArticles()
+    {
+        set_time_limit(0);
+        DB::connection('anxjm')->table('news')->orderBy('id','desc')->chunk(100, function($articles) {
+            foreach ($articles as $article)
+            {
+                $inserarticle=[];
+                $inserarticle['id']=$article->id;
+                $inserarticle['typeid']=209+$article->newsKindId;
+                $inserarticle['brandcid']=$article->categoryId;
+                $inserarticle['brandtypeid']=19+$article->xcategoryId;
+                $inserarticle['brandid']=$article->companyId;
+                $inserarticle['title']=$article->title;
+                $inserarticle['body']=$article->content;
+                $inserarticle['click']=$article->hits;
+                $inserarticle['keywords']=$article->seo_keywords;
+                $inserarticle['description']=$article->seo_description;
+                $inserarticle['dutyadmin']=$article->admin_id ? $article->admin_id :1;
+                $inserarticle['ismake']=$article->status_at?:0;
+                $inserarticle['mid']=0;
+                $inserarticle['write']=Admin::where('id',$article->admin_id)->value('name')?:'梁李良';
+                $inserarticle['created_at']=$article->created_at;
+                $inserarticle['updated_at']=$article->updated_at;
+                $inserarticle['published_at']=$inserarticle['created_at'];
+                if(!Archive::withoutGlobalScope(PublishedScope::class)->where('id',$inserarticle['id'])->value('id') && empty($article->deleted_at))
+                {
+                    Archive::create($inserarticle);
+                }
+            }
+        });
+        echo '普通文档导入成功！';
     }
 
     /**
@@ -281,20 +274,13 @@ class ArticleTraslateController extends Controller
      */
     public function getFlinks()
     {
-        DB::connection('u88')->table('frilink')->where('status','>',0)->orderBy('id','asc')->chunk(1000, function($flinks) {
+        DB::connection('anxjm')->table('frilink')->where('status_at','>',0)->orderBy('id','asc')->chunk(1000, function($flinks) {
             foreach ($flinks as $flink)
             {
                 $flinkinsert=[];
                 $flinkinsert['id']=$flink->id;
-                $flinkinsert['cid']=$flink->cid;
                 $flinkinsert['webname']=$flink->title;
                 $flinkinsert['weburl']=$flink->url;
-                if ($flink->type=='project')
-                {
-                    $flinkinsert['type']=0;
-                }else{
-                    $flinkinsert['type']=1;
-                }
                 $flinkinsert['created_at']=$flink->created_at;
                 $flinkinsert['updated_at']=$flink->updated_at;
                 if(!flink::where('id',$flinkinsert['id'])->value('id') && !flink::where('weburl',$flinkinsert['weburl'])->value('weburl') ) {
@@ -318,6 +304,111 @@ class ArticleTraslateController extends Controller
         InvestmentType::create(['id'=>7,'type'=>'50-100万','url'=>'50_100','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
         InvestmentType::create(['id'=>8,'type'=>'100万以上','url'=>'100','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
         echo '投资分类生成成功！';
+    }
+
+    public function getmsarctype()
+    {
+        DB::connection('anxjm')->table('zz_news_type')->where('id','>',3)->orderBy('id','asc')->chunk(1000, function($mscategorys) {
+            foreach ($mscategorys as $index=>$mscategory)
+            {
+                $cateinsert=[];
+                $cateinsert['typename']=$mscategory->name;
+                $cateinsert['typedir']=$mscategory->sname;
+                $cateinsert['title']=$mscategory->seo_title;
+                $cateinsert['keywords']=$mscategory->seo_keywords;
+                $cateinsert['sortrank']=$index+1;
+                $cateinsert['mid']=0;
+                $cateinsert['description']=$mscategory->seo_description;
+                $cateinsert['created_at']=$mscategory->created_at;
+                $cateinsert['updated_at']=$mscategory->updated_at;
+                if(!Mscategory::where('id',$mscategory->id)->value('id') ) {
+                    Mscategory::create($cateinsert);
+                }
+            }
+        });
+
+        /**
+         * 美食品牌信息栏目分类导入
+         */
+        DB::connection('anxjm')->table('zz_type')->where('id','>',3)->orderBy('id','asc')->chunk(1000, function($mscategory2s) {
+            foreach ($mscategory2s as $index=>$mscategory2)
+            {
+                if ($mscategory2->id==4 || $mscategory2->pid==4)
+                {
+                    $cateinsert=[];
+                    $cateinsert['typename']=$mscategory2->name;
+                    $cateinsert['typedir']=$mscategory2->realm;
+                    $cateinsert['title']=$mscategory2->seo_title;
+                    $cateinsert['keywords']=$mscategory2->seo_keywords;
+                    $cateinsert['sortrank']=$index+1;
+                    if ($mscategory2->id==4)
+                    {
+                        $cateinsert['reid']=0;
+                        $cateinsert['topid']=0;
+                    }else{
+                        $cateinsert['reid']=8;
+                        $cateinsert['topid']=8;
+                    }
+                    $cateinsert['is_write']=0;
+                    $cateinsert['mid']=1;
+                    $cateinsert['description']=$mscategory2->seo_description;
+                    $cateinsert['created_at']=$mscategory2->created_at;
+                    $cateinsert['updated_at']=$mscategory2->updated_at;
+                    if(!$mscategory2->deleted_at) {
+                        Mscategory::create($cateinsert);
+                    }
+                }
+
+            }
+        });
+        echo '美食栏目导入成功';
+    }
+
+    public function getMsarticles()
+    {
+        set_time_limit(0);
+        DB::connection('anxjm')->table('zz_news')->orderBy('id','desc')->chunk(100, function($articles) {
+            foreach ($articles as $article)
+            {
+                $inserarticle=[];
+                $inserarticle['id']=$article->id;
+                $inserarticle['typeid']=$article->news_type;
+                $inserarticle['title']=$article->title;
+                $proid=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('id');
+                if ($proid)
+                {
+                    $inserarticle['brandname']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('title');
+                    $inserarticle['brandcid']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('categoryId');
+                    $inserarticle['brandtypeid']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('xcategoryId');
+                    $inserarticle['litpic']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('logo');
+                    $inserarticle['production']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('product');
+                    $inserarticle['brandpay']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('invest');
+                    $inserarticle['brandnum']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('league');
+                    $inserarticle['branddev']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('crowd');
+                }
+                $cmpid=DB::connection('anxjm')->table('zz_company')->where('id',$article->companyId)->value('id');
+                if ($cmpid)
+                {
+                    $inserarticle['brandcompany']=DB::connection('anxjm')->table('zz_company')->where('id',$article->companyId)->value('companyName');
+                    $inserarticle['brandaddress']=DB::connection('anxjm')->table('zz_company')->where('id',$article->companyId)->value('address');
+                }
+                $inserarticle['body']=$article->content;
+                $inserarticle['click']=rand(1000,3000);
+                $inserarticle['keywords']=$article->seo_keywords;
+                $inserarticle['description']=$article->seo_description;
+                $inserarticle['dutyadmin']=$article->admin_id ? $article->admin_id :1;
+                $inserarticle['ismake']=$article->status_at?:0;
+                $inserarticle['write']=Admin::where('id',$article->admin_id)->value('name')?:'梁李良';
+                $inserarticle['created_at']=$article->created_at;
+                $inserarticle['updated_at']=$article->updated_at;
+                $inserarticle['published_at']=$inserarticle['created_at'];
+                if(!Msarticle::withoutGlobalScope(PublishedScope::class)->where('id',$inserarticle['id'])->value('id') && empty($article->deleted_at))
+                {
+                    Msarticle::create($inserarticle);
+                }
+            }
+        });
+        echo '普通文档导入成功！';
     }
 
     /**

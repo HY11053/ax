@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class flink extends Model
 {
     //
-    protected $fillable=['weburl','webname','address','note','type','cid'];
+    protected $fillable=['weburl','webname','address','note'];
 }

@@ -17,13 +17,9 @@ class CreateFlinksTable extends Migration
             $table->increments('id');
             $table->string('weburl')->unique();
             $table->string('webname');
-            $table->integer('cid');
-            $table->integer('type')->default(1);
             $table->string('note')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
-            $table->index('type');
-            $table->index('cid');
         });
     }
 
