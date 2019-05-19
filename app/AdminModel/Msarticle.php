@@ -3,6 +3,7 @@
 namespace App\AdminModel;
 
 use App\Scopes\PublishedScope;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Msarticle extends Model

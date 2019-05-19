@@ -10,6 +10,7 @@ use App\AdminModel\flink;
 use App\AdminModel\InvestmentType;
 use App\AdminModel\Msarticle;
 use App\AdminModel\Mscategory;
+use App\AdminModel\Msflink;
 use App\AdminModel\Production;
 use App\Scopes\PublishedScope;
 use Carbon\Carbon;
@@ -372,14 +373,89 @@ class ArticleTraslateController extends Controller
             {
                 $inserarticle=[];
                 $inserarticle['id']=$article->id;
-                $inserarticle['typeid']=$article->news_type;
+                $inserarticle['typeid']=intval($article->news_type)-3;
                 $inserarticle['title']=$article->title;
                 $proid=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('id');
                 if ($proid)
                 {
                     $inserarticle['brandname']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('title');
-                    $inserarticle['brandcid']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('categoryId');
+                    $inserarticle['brandcid']=8;
                     $inserarticle['brandtypeid']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('xcategoryId');
+                    switch ($inserarticle['brandtypeid'])
+                    {
+                        case 5:
+                            $inserarticle['brandtypeid']= 9;
+                            break;
+                        case 6:
+                            $inserarticle['brandtypeid']= 10;
+                            break;
+                        case 7:
+                            $inserarticle['brandtypeid']= 11;
+                            break;
+                        case 8:
+                            $inserarticle['brandtypeid']= 12;
+                            break;
+                        case 9:
+                            $inserarticle['brandtypeid']= 13;
+                            break;
+                        case 10:
+                            $inserarticle['brandtypeid']= 14;
+                            break;
+                        case 11:
+                            $inserarticle['brandtypeid']= 15;
+                            break;
+                        case 12:
+                            $inserarticle['brandtypeid']= 16;
+                            break;
+                        case 13:
+                            $inserarticle['brandtypeid']= 17;
+                            break;
+                        case 14:
+                            $inserarticle['brandtypeid']= 18;
+                            break;
+                        case 15:
+                            $inserarticle['brandtypeid']= 19;
+                            break;
+                        case 16:
+                            $inserarticle['brandtypeid']= 20;
+                            break;
+                        case 17:
+                            $inserarticle['brandtypeid']= 21;
+                            break;
+                        case 18:
+                            $inserarticle['brandtypeid']= 22;
+                            break;
+                        case 19:
+                            $inserarticle['brandtypeid']= 23;
+                            break;
+                        case 20:
+                            $inserarticle['brandtypeid']= 24;
+                            break;
+                        case 21:
+                            $inserarticle['brandtypeid']= 25;
+                            break;
+                        case 22:
+                            $inserarticle['brandtypeid']= 26;
+                            break;
+                        case 23:
+                            $inserarticle['brandtypeid']= 27;
+                            break;
+                        case 24:
+                            $inserarticle['brandtypeid']= 28;
+                            break;
+                        case 173:
+                            $inserarticle['brandtypeid']= 29;
+                            break;
+                        case 174:
+                            $inserarticle['brandtypeid']= 30;
+                            break;
+                        case 175:
+                            $inserarticle['brandtypeid']= 31;
+                            break;
+                        case 186:
+                            $inserarticle['brandtypeid']= 32;
+                            break;
+                    }
                     $inserarticle['litpic']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('logo');
                     $inserarticle['production']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('product');
                     $inserarticle['brandpay']=DB::connection('anxjm')->table('zz_project')->where('id',$article->projectId)->value('invest');
@@ -410,6 +486,27 @@ class ArticleTraslateController extends Controller
         });
         echo '普通文档导入成功！';
     }
+
+    public function getMsflinks()
+    {
+        DB::connection('anxjm')->table('zz_frilink')->where('id','>',0)->orderBy('id','asc')->chunk(1000, function($msflink2) {
+            foreach ($msflink2 as $index=>$msflink)
+            {
+                $msflinks=[];
+                $msflinks['id']=$msflink->id;
+                $msflinks['webname']=$msflink->title;
+                $msflinks['weburl']=$msflink->url;
+                $msflinks['created_at']=$msflink->created_at;
+                $msflinks['updated_at']=$msflink->updated_at;
+                if(!Msflink::where('id',$msflinks['id'])->value('id'))
+                {
+                    Msflink::create($msflinks);
+                }
+            }
+        });
+    }
+
+
 
     /**
      * 普通文档缩略图提取

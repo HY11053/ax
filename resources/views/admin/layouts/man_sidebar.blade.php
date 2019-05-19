@@ -139,10 +139,10 @@
                 </a>
                 <ul class="treeview-menu">
                     <li @if(Request::getRequestUri()=='/admin/mscategory')class="active"@endif><a href="/admin/mscategory"><i class="fa fa-circle-o"></i> 美食栏目管理</a></li>
-                    <li @if(Request::getRequestUri()=='/admin/admin/useraut')class="active"@endif><a href="#"><i class="fa fa-circle-o"></i> 美食文档列表</a></li>
-                    <li @if(Request::getRequestUri()=='/admin/admin/useraut')class="active"@endif><a href="#"><i class="fa fa-circle-o"></i> 我发布的美食</a></li>
-                    <li @if(Request::getRequestUri()=='/admin/weichatusers')class="active"@endif><a href="/admin/weichatusers"><i class="fa fa-circle-o"></i> 待审核的美食</a></li>
-                    <li @if(Request::getRequestUri()=='/admin/weichatusercheck')class="active"@endif><a href="/admin/weichatusercheck"><i class="fa fa-circle-o"></i> 待发布的美食</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/msarticle')class="active"@endif><a href="/admin/msarticle"><i class="fa fa-circle-o"></i> 美食文档列表</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/msarticle/ownership')class="active"@endif><a href="/admin/msarticle/ownership"><i class="fa fa-circle-o"></i> 我发布的美食</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/msarticle/pendingaudit')class="active"@endif><a href="/admin/msarticle/pendingaudit"><i class="fa fa-circle-o"></i> 待审核的美食</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/msarticle/pedingpublished')class="active"@endif><a href="/admin/msarticle/pedingpublished"><i class="fa fa-circle-o"></i> 待发布的美食</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -158,15 +158,17 @@
                 </ul>
             </li>
             <li>
-                <a href="/admin/Atlas">
-                    <i class="fa fa-link"></i> <span>美食友情链接</span>
+                <a href="pages/widgets.html">
+                    <i class="fa fa-external-link"></i> <span>美食友情链接</span>
                     <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li @if(Request::getRequestUri()=='/admin/msflink')class="active"@endif><a href="/admin/msflink"><i class="fa fa-circle-o"></i> 美食友情链接列表</a></li>
+                    <li @if(Request::getRequestUri()=='/admin/msflink/create')class="active"@endif><a href="/admin/msflink/create"><i class="fa fa-circle-o"></i> 美食添加友情链接</a></li>
+                </ul>
             </li>
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-angellist"></i> <span>SEO工具</span>
