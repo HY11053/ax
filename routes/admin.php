@@ -29,20 +29,15 @@ Route::group(['prefix' => 'admin'],function ()
     Route::put('category/edit/{id}','CategoryController@PostEdit')->name('category_edit');
     Route::post('category/delete/{id}','CategoryController@DeleteCategory');
     Route::post('getsontypes','CategoryController@GetSontypes');
-    Route::get('mscategory','MsCategotyController@Index');
-    Route::get('mscategory/create/{id?}','MsCategotyController@Create');
-    Route::get('mscategory/edit/{id}','MsCategotyController@Edit');
-    Route::post('mscategory/create','MsCategotyController@PostCreate')->name('mscategory_create');
-    Route::put('mscategory/edit/{id}','MsCategotyController@PostEdit')->name('mscategory_edit');
     Route::post('getareas','ArticleController@GetAreas');
     Route::post('getbdname','ArticleController@GetBdnames');
     Route::get('article','ArticleController@Index');
-    Route::get('msarticle','MsArticleController@Index');
+
     Route::get('article/ownership','ArticleController@OwnerShip');
-    Route::get('msarticle/ownership','MsArticleController@OwnerShip');
+
     Route::get('brandarticle/ownership','ArticleController@BrandArticleOwnerShip');
     Route::get('article/pendingaudit','ArticleController@PendingAudit');
-    Route::get('msarticle/pendingaudit','MsArticleController@PendingAudit');
+
     Route::get('brandarticle/pendingaudit','ArticleController@PendingAuditBrandarticle');
     Route::get('brandarticle/receive','ArticleController@BrandarticlesReceive');
     Route::Post('article/updatereceive/{id}','ArticleController@UpdateBrabdReceive');
@@ -51,7 +46,7 @@ Route::group(['prefix' => 'admin'],function ()
     Route::get('article/receivednomod','ArticleController@BrandReceivednoMod');
     Route::get('article/modednomake','ArticleController@BrandReceivedModedNomake');
     Route::get('article/pedingpublished','ArticleController@PedingPublished');
-    Route::get('msarticle/pedingpublished','MsArticleController@PedingPublished');
+
     Route::get('article/brands','ArticleController@Brands');
     Route::get('article/pedingbrands','ArticleController@PedingBrands');
     Route::post('brand_search','ArticleController@PostArticleBrandSearch')->name('brandarticle_search');
@@ -60,33 +55,33 @@ Route::group(['prefix' => 'admin'],function ()
     Route::post('article/branddelete/{id}','ArticleController@DeleteBrandArticle');
     Route::post('article/uploads','ArticleController@UploadImages');
     Route::get('article/create','ArticleController@Create');
-    Route::get('msarticle/create','MsArticleController@Create');
+
     Route::get('article/brandcreate','ArticleController@BrandCreate');
     Route::get('article/edit/{id}','ArticleController@Edit');
-    Route::get('msarticle/edit/{id}','MsArticleController@Edit');
+
     Route::post('article/titlecheck','ArticleController@ArticletitleCheck');
     Route::get('article/brandedit/{id}','ArticleController@BrandEdit');
     Route::get('article/type/{id}','ArticleController@Type');
     Route::post('article/create','ArticleController@PostCreate')->name('article_create');
-    Route::post('msarticle/create','MsArticleController@PostCreate')->name('msarticle_create');
+
     Route::post('article/brand/create','ArticleController@PostBrandArticle')->name('article_brand_create');
     Route::any('article/search','ArticleController@PostArticleSearch')->name('article_search');
-    Route::any('msarticle/search','MsArticleController@PostArticleSearch')->name('msrticle_search');
+
     Route::put('article/edit/{id}','ArticleController@PostEdit')->name('article_edit');
-    Route::put('msarticle/edit/{id}','MsArticleController@PostEdit')->name('msarticle_edit');
+
     Route::put('brandarticle/edit/{id}','ArticleController@PostBrandArticleEditor')->name('brand_article_edit');
     Route::get('flink','FlinkController@Index');
-    Route::get('msflink','MsFlinkController@Index');
+
     Route::get('flink/create','FlinkController@CreateFlink');
-    Route::get('msflink/create','MsFlinkController@CreateFlink');
+
     Route::get('flink/edit/{id}','FlinkController@EditFlink');
-    Route::get('msflink/edit/{id}','MsFlinkController@EditFlink');
+
     Route::get('flink/delete/{id}','FlinkController@DeleteFlink');
-    Route::get('msflink/delete/{id}','MsFlinkController@DeleteFlink');
+
     Route::put('flink/edit/{id}','FlinkController@PostEditFlink');
-    Route::put('msflink/edit/{id}','MsFlinkController@PostEditFlink');
+
     Route::post('flink/create','FlinkController@PostCreateFlink');
-    Route::post('msflink/create','MsFlinkController@PostCreateFlink');
+
     Route::get('admin/list','AdminController@Index');
     Route::get('admin/regsiter','AdminController@Register');
     Route::post('admin/regsiter','AdminController@PostRegister');
@@ -167,6 +162,27 @@ Route::group(['prefix' => 'admin'],function ()
     Route::get('checktool/brandnamecr','CheckToolsController@BrandnameCr');
     Route::post('acreage/edit/{id}','AcreageMentController@postAcreageMentEdit');
     Route::get('/captcha/{config?}','CaptchasController@Captchas');
+    //二级域名
+    Route::get('mscategory','MsCategotyController@Index');
+    Route::get('mscategory/create/{id?}','MsCategotyController@Create');
+    Route::get('mscategory/edit/{id}','MsCategotyController@Edit');
+    Route::post('mscategory/create','MsCategotyController@PostCreate')->name('mscategory_create');
+    Route::put('mscategory/edit/{id}','MsCategotyController@PostEdit')->name('mscategory_edit');
+    Route::get('msarticle','MsArticleController@Index');
+    Route::get('msarticle/ownership','MsArticleController@OwnerShip');
+    Route::get('msarticle/pendingaudit','MsArticleController@PendingAudit');
+    Route::get('msarticle/pedingpublished','MsArticleController@PedingPublished');
+    Route::get('msarticle/create','MsArticleController@Create');
+    Route::get('msarticle/edit/{id}','MsArticleController@Edit');
+    Route::post('msarticle/create','MsArticleController@PostCreate')->name('msarticle_create');
+    Route::any('msarticle/search','MsArticleController@PostArticleSearch')->name('msrticle_search');
+    Route::put('msarticle/edit/{id}','MsArticleController@PostEdit')->name('msarticle_edit');
+    Route::get('msflink','MsFlinkController@Index');
+    Route::get('msflink/create','MsFlinkController@CreateFlink');
+    Route::get('msflink/edit/{id}','MsFlinkController@EditFlink');
+    Route::get('msflink/delete/{id}','MsFlinkController@DeleteFlink');
+    Route::put('msflink/edit/{id}','MsFlinkController@PostEditFlink');
+    Route::post('msflink/create','MsFlinkController@PostCreateFlink');
     //u88数据内容导入
     Route::get('articletranslate/brandacrtype','ArticleTraslateController@getBrandarctypes');
     Route::get('articletranslate/brandsonacrtype','ArticleTraslateController@getSonTypes');
