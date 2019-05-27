@@ -184,10 +184,6 @@ class ArticleController extends Controller
             return $latesttypenews;
         });
 
-        //当前栏目所属分类最新入驻品牌
-        $latestcbrands=Cache::remember('thisarticleinfos_latestcbrands'.$thisarticleinfos->typeid,  config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
-            return Brandarticle::where('typeid',$thisarticleinfos->typeid)->latest()->take(12)->orderBy('click','desc')->get(['id','brandname','tzid','litpic']);
-        });
         $latestbrands=Cache::remember('thisarticleinfos_latestbrands'.$thisarticleinfos->typeid,  config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
             return Brandarticle::where('typeid',$thisarticleinfos->typeid)->latest()->take(5)->orderBy('id','desc')->get(['id','brandname','tzid','litpic']);
         });
