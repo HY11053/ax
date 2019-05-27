@@ -15,216 +15,177 @@
     <meta property="og:image" content="{{config('app.url')}}{{str_replace(config('app.url'),'',$thisarticleinfos->litpic)}}"/>
 @stop
 @section('main_content')
-    <!--主体开始-->
-    <div class="main">
-        <!--当前位置 开始-->
-        <div class="path">当前位置：<a href="/">首页</a>&gt;&nbsp;<a href="/article/">资讯</a>&gt;<a href="/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>&gt;&nbsp;{{$thisarticleinfos->title}} </div>
-        <!--当前位置 结束-->
-        <div class="center_list">
-
-            <!--左边模块 开始-->
-            <div class="new_left">
-                <div class="list_info">
+    <!--top 开始-->
+    <div class="nav_top">
+        <ul>
+            <li><a href="https://www.anxjm.com/newsPage/1601/">安心网说</a></li>
+            <li><a href="https://www.anxjm.com/newsPage/1602/">加盟费用</a></li>
+            <li><a href="https://www.anxjm.com/newsPage/1603/">安心创业</a></li>
+            <li><a href="https://www.anxjm.com/newsPage/1604/">选址筹备</a></li>
+            <li><a href="https://www.anxjm.com/newsPage/1605/">经营之道</a></li>
+            <li><a href="https://www.anxjm.com/newsPage/1606/">加盟资讯</a></li>
+            <li><a href="https://www.anxjm.com/newsPage/1607/">加盟优势</a></li>
+            <li><a href="https://www.anxjm.com/newsPage/1608/">加盟条件</a></li>
+            <li><a href="https://www.anxjm.com/newsPage/1609/">加盟流程</a></li>
+            <li><a href="https://www.anxjm.com/newsPage/1610/">品牌动态</a></li>
+        </ul>
+    </div>
+    <!--top 结束-->
+    <!--广告位 开始-->
+    <!--轮播广告结束-->
+    <div class="brannd_1200x60">
+        <a href="https://www.anxjm.com/busInfo/5703.html"><img src="/uploads/picture/5c/5f/ad_8f06a3313b6eef62d336c8e901fd.gif" width="1200" height="60" alt="ucc国际洗衣" /></a>
+    </div>
+    <!--广告位 结束-->
+    <!--当前位置 开始-->
+    <div class="path">当前位置<a href="/">首页</a> > <a href="https://www.anxjm.com/newsPage/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>> {{$thisarticleinfos->title}}</div>
+    <!--当前位置 结束-->
+    <!--文章头部 开始-->
+    @if(isset($thisarticlebrandinfos))
+    <div class="article_top">
+        <div class="img">
+            <a href="/busInfo/{{$thisarticlebrandinfos->id}}.html"><img src="{{$thisarticlebrandinfos->litpic}}" width="130" height="98" alt="{{$thisarticlebrandinfos->brandname}}" /></a>
+        </div>
+        <div class="info">
+            <p class="t_tit"><a href="/busInfo/{{$thisarticlebrandinfos->id}}.html">{{$thisarticlebrandinfos->brandname}}</a></p>
+            <p class="t_info">
+                <span>加盟品牌：<em class="e_m">{{$thisarticlebrandinfos->brandname}}</em></span>
+                <span>所属行业：<em class="e_m">{{$thisbrandtypecidinfo->typeanem}}</em><em  class="e_m">{{$thisbrandtypeinfo->typename}}</em></span>
+            </p>
+            <p class="t_info"><span>投资金额：<em>{{$thisarticlebrandinfos->brandpay}}</em></span><span>意向加盟： <em>{{$thisarticlebrandinfos->brandattch}}</em></span></p>
+        </div>
+        <div class="btn"><a href="/busInfo/{{$thisarticlebrandinfos->id}}.html">免费索要资料</a></div>
+    </div>
+    @endif
+    <!--文章头部 结束-->
+    <div class="center_list">
+        <!--左边模块 开始-->
+        <div class="new_left">
+            <div class="list_info">
+                <div class="list_box">
+                    <!--标题 开始-->
                     <div class="content_tit">
                         <h1>{{$thisarticleinfos->title}}</h1>
-                        <div class="time_source">
-                            <span>{{$thisarticleinfos->created_at}}</span>
-                            <span>来源：U88加盟网</span>
-                            <span>浏览：{{$thisarticleinfos->click}}</span>
-                        </div>
+                        <div class="time_source"><span>{{$thisarticleinfos->created_at}}</span><span>来源：安心加盟网</span></div>
                     </div>
-                    @if(isset($thisarticlebrandinfos->id))
-                    <div class="content_item">
-                        <div class="item_logo">
-                            <a href="{{config('app.url')}}/xiangmu/{{$thisarticlebrandinfos->id}}.html">
-                                <img src="{{$thisarticlebrandinfos->litpic}}" width="128" height="96" alt="{{$thisarticlebrandinfos->brandname}}" />
-                            </a>
-                        </div>
-                            <div class="bd">
-                                <table cellspacing="0">
-                                    <tbody>
-                                    <tr>
-                                        <td class="td_color">项目名称</td>
-                                        <td>
-                                            <a href="{{config('app.url')}}/xiangmu/{{$thisarticlebrandinfos->id}}.html">{{$thisarticlebrandinfos->brandname}}</a>
-                                        </td>
-                                        <td class="td_color">所在地区</td>
-                                        <td>{{$thisarticlebradarea->name_cn}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td_color">所属行业</td>
-                                        <td>
-                                            <a href="{{config('app.url')}}/{{$thisbrandtypecidinfo->real_path}}/">{{$thisbrandtypecidinfo->typename}}</a>&gt;<a href="{{config('app.url')}}/{{$thisbrandtypeinfo->real_path}}/">{{$thisbrandtypeinfo->typename}}</a>
-                                        </td>
-                                        <td class="td_color">招商区域</td>
-                                        <td> {{$thisarticlebrandinfos->brandarea}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td_color">门店总数</td>
-                                        <td>{{$thisarticlebrandinfos->brandnum}}</td>
-                                        <td class="td_color">意向加盟</td>
-                                        <td>{{$thisarticlebrandinfos->brandattach}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td_color td_border">投资金额</td>
-                                        <td class="td_border">{{$investment_types[$thisarticlebrandinfos->tzid]}}</td>
-                                        <td class="td_color td_border">申请加盟</td>
-                                        <td class="td_border">
-                                            <p class="btn">
-                                                <a style="color:#f60;font-weight:bold;" href="{{config('app.url')}}/xiangmu/{{$thisarticlebrandinfos->id}}.html#msg">立即咨询</a>
-                                            </p>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                    </div>
-                    @endif
+                    <!--标题 结束-->
+                    <!--文章内容 开始-->
                     <div class="body_tit clearfix">
-        　               @php
-                            $content=preg_replace(["/style=.+?['|\"]/i","/width=.+?['|\"]/i","/height=.+?['|\"]/i"],'',$thisarticleinfos->body);
-                           $content=str_replace(PHP_EOL,'',$content);
-                           $content=str_replace(['<p >','<strong >','<br >','<br />'],['<p>','<strong>','<br>','<br/>'],$content);
-                           $content=str_replace(
-                           [
-                           '<p><strong><br/></strong></p>',
-                           '<p><strong><br></strong></p>',
-                           '<p><br></p>',
-                           '<p><br/></p>',
-                           '　　'
-                           ],'',$content
-                           );
-                            $content=str_replace(["\r","\t",'<span >　　</span>','&nbsp;','　','bgcolor="#FFFFFF"'],'',$content);
-                            $content=str_replace(["<br  /><br  />"],'<br/>',$content);
-                            $content=str_replace(["<br/><br/>"],'<br/>',$content);
-                            $content=str_replace(["<br/> <br/>"],'<br/>',$content);
-                            $content=str_replace(["<br />　　<br />"],'<br/>',$content);
-                            $content=str_replace(["<br/>　　<br/>"],'<br/>',$content);
-                            $content=str_replace(["<br /><br />"],'<br/>',$content);
-                           $pattens=array(
-                           "#<p>[\s| |　]?<strong>[\s| |　]?</strong></p>#",
-                           "#<p>[\s| |　]?<strong>[\s| |　]+</strong></p>#",
-                           "#<p>[\s| |　]+<strong>[\s| |　]+</strong></p>#",
-                           "#<p>[\s| |　]?</p>#",
-                           "#<p>[\s| |　]+</p>#"
-                           );
-                           $content=preg_replace($pattens,'',$content);
-                           echo $content;
-                        @endphp
+                        　{!! $thisarticleinfos->body !!}
                     </div>
+                    <!--文章内容 结束-->
+                    <!--上一篇 开始-->
                     <div class="shangxiapian">
-                        <p>@if(isset($prev_article)) <span>上一篇：<a href="{{config('app.url')}}/article/{{key($prev_article)}}.html" title="{{reset($prev_article)}}">{{reset($prev_article)}}</a></span> @else 没有了 @endif </p>
-                        <p>@if(isset($next_article))  <span class="right">下一篇：<a href="{{config('app.url')}}/article/{{key($next_article)}}.html" title="{{reset($next_article)}}">{{reset($next_article)}}</a></span> @else 没有了 @endif  </p>
-                        </p>
+                        <p>上一篇：@if(isset($prev_article->id)) <span>上一篇：<a href="{{config('app.url')}}/news/{{$prev_article->id}}.html" title="{{$prev_article->title}}">{{str_limit($prev_article->title,40,'')}}</a></span> @else 没有了 @endif</p>
+                        <p>下一篇：@if(isset($next_article->id))  <span class="right">下一篇：<a href="{{config('app.url')}}/news/{{$next_article->id}}.shtml" title="{{$next_article->title}}">{{str_limit($next_article->title,40,'')}}</a></span> @else 没有了 @endif </p>
                         <div class="fenxiang">
                             <div class="fenxiangdao">分享到：</div>
-                            <div class="bdsharebuttonbox bdshare-button-style0-24" data-tag="share_1" data-bd-bind="1494836021222">
+                            <div class="bdsharebuttonbox bdshare-button-style1-16" data-tag="share_1" data-bd-bind="1497947902715">
                                 <a class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪</a>
                                 <a class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
                                 <a class="popup_weixin" data-cmd="weixin" onclick="return false;" title="分享到微信">微信</a>
                             </div>
                         </div>
+                        <script>
+                            window._bd_share_config = {
+                                "common": {
+                                    "bdSnsKey": {},
+                                    "bdText": "",
+                                    "bdMini": "2",
+                                    "bdMiniList": false,
+                                    "bdPic": "",
+                                    "bdStyle": "1",
+                                    "bdSize": "16"
+                                },
+                                "share": {}
+                            };
+                            with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                        </script>
                     </div>
-                    <div class="xg_news">
-                        <div class="common_tit">
-                            相关资讯
-                            <div class="top_924"></div>
-                        </div>
-                        <div class="xw">
-                            <ul class="clearfix">
-                                @foreach($latestbrandnews as $brandid=>$latestbrandnew)
-                                    <li><em>{{date('Y-m-d',strtotime($latestbrandnew->created_at))}}</em><a href="/article/{{$latestbrandnew->id}}.html">{{$latestbrandnew->title}}</a></li>
+                    <!--上一篇 结束-->
+                </div>
+              @include('frontend.liuyan')
+                <!--相关文章 开始-->
+                <div class="xg_news">
+                    <div class="common_tit">
+                        <h2>@if(isset($thisarticlebrandinfos)) {{$thisarticlebrandinfos->brandname}}@endif相关文章</h2>
+                        <div class="top_924"></div>
+                    </div>
+                    <div class="xw">
+                        <ul class="clearfix">
+                            @foreach($latestbrandnews as $latestbrandnew)
+                            <li><em>{{date('Y-m-d',strtotime($latestbrandnew->created_at))}}</em><a href="https://www.anxjm.com/news/{{$latestbrandnew->id}}/">{{$latestbrandnew->title}}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <!--相关文章 结束-->
+                <div class="tujian_brand">
+                    <div class="common_tit">
+                        <h2>@if(isset($thisarticlebrandinfos)) {{$thisarticlebrandinfos->brandname}}@endif推荐品牌</h2></div>
+                        <div class="bd_cont">
+                            <ul>
+                                @foreach($brandarticles as $brandarticle)
+                                <li>
+                                    <a href="https://www.anxjm.com/busInfo/{{$brandarticle->id}}.html" target="_blank">
+                                        <div class="img"><img src="{{$brandarticle->litpic}}" width="120" height="90" alt="{{$brandarticle->beandname}}"></div><span>{{$brandarticle->brandname}}</span></a>
+                                </li>
                                 @endforeach
                             </ul>
                         </div>
-                    </div>
                 </div>
-                @include('frontend.liuyan')
             </div>
-            <!--左边模块 结束-->
-            <!--右边模块 开始-->
-            <div class="new_right">
-
-                <!--加盟排行榜 开始-->
-                <div class="hot_message hot_fl">
-                    <div class="common_hd fl_tit">
-                        @if(isset($thisarticlebrandinfos->id)) <h2>{{$thisbrandtypeinfo->typename}}排行榜</h2> @else<h2>加盟排行榜</h2>@endif
-                    </div>
-                    <div class="boutique_list">
-                        <ul>
-                            @foreach($paihangbangs as $index=>$paihangbang)
-                            <li class=" @if($index<3)top @else num @endif @if($index==0) hover @endif">
-                                <i class="num">{{$index+1}}</i>
-                                <span class="name">
-								<a href="{{config('app.url')}}/xiangmu/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a>
-							</span>
-                                <div class="cts">
-                                    <div class="img">
-                                        <img src="{{$paihangbang->litpic}}" alt="{{$paihangbang->brandname}}">
-                                    </div>
-                                    <div class="center">
-                                        <p class="info">投资额：
-                                            <em>{{$investment_types[$paihangbang->tzid]}}</em>
-                                        </p>
-                                        <p class="info">门店数：{{$paihangbang->brandnum}}</p>
-                                        <p class="btn">
-                                            <a href="{{config('app.url')}}/xiangmu/{{$paihangbang->id}}.html#msg">立即咨询</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-
-                </div>
-                <!--加盟排行榜 结束-->
-
-                <!--热门文章 开始-->
-                <div class="bd_commit ">
-                    <div class="common_hd">
-                        @if(isset($thisarticlebrandinfos->id)) <h2>{{$thisbrandtypeinfo->typename}}相关资讯</h2> @else<h2>相关资讯</h2>@endif
-                    </div>
-                    <div class="bd">
-                        <ul>
-                            @foreach($latesttypenews as $latesttypenew)
-                            <li>
-                                <a href="/article/{{$latesttypenew->id}}.html" target="_blank" title="{{$latesttypenew->title}}">{{$latesttypenew->title}}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <!--热门文章 结束-->
-                <div class="bd_commit">
-                    <div class="common_hd">
-                        <h2>{{$thistypeinfo->typename}}最新入驻品牌</h2>
-                    </div>
-                    <div class="bd_list">
-                        @foreach($latestbrands as $latestbrand)
-                            <dl>
-                                <dt>
-                                    <a href="{{config('app.url')}}/xiangmu/{{$latestbrand->id}}.html" target="_blank">
-                                        <img src="{{$latestbrand->litpic}}" alt="{{$latestbrand->brandname}}" title="{{$latestbrand->brandname}}">
-                                    </a>
-                                </dt>
-                                <dd class="tit">
-                                    <a href="{{config('app.url')}}/xiangmu/{{$latestbrand->id}}.html" target="_blank" title="{{$latestbrand->brandname}}">{{$latestbrand->brandname}}</a>
-                                </dd>
-                                <dd>投资额度：
-                                    <em>{{$investment_types[$latestbrand->tzid]}}</em>
-                                </dd>
-                                <p>
-                                    <a href="{{config('app.url')}}/xiangmu/{{$latestbrand->id}}.html">立即咨询</a>
-                                </p>
-                            </dl>
+        </div>
+        <!--左边模块 结束-->
+        <div class="new_right">
+            <div class="right_img">
+                <a href="https://www.anxjm.com/busInfo/5703.html"><img src="/uploads/picture/15/08/ad_116cd3d859c58669c5cb790607aa.jpg" width="300" height="275" alt="ucc干洗加盟"/></a>
+            </div>
+            <!--热点资讯 开始-->
+            <div class="bd_commit ">
+                <div class="common_hd">
+                    <h2 class="hd_tit">热点资讯</h2></div>
+                <div class="bd">
+                    <ul>
+                        @foreach($latesttypenews as $latesttypenew)
+                        <li><a href="https://www.anxjm.com/news/{{$latesttypenew->id}}.html" target="_blank" title="{{$latesttypenew->title}}">{{$latesttypenew->title}}</a></li>
                         @endforeach
-                    </div>
+                    </ul>
                 </div>
             </div>
-            @include('frontend.footer')
+            <!--热点资讯 结束-->
+            <!--最新资讯 开始-->
+            <div class="bd_commit ">
+                <div class="common_hd">
+                    <h2 class="hd_tit">排行榜</h2></div>
+                <div class="bd">
+                    <ul>
+                        <li><a href="https://www.anxjm.com/news/212232.html" target="_blank" title="朴大叔烤肉加盟多少钱?创业投资仅需几万元">朴大叔烤肉加盟多少钱?创业投资仅需几万元</a></li>
+                        <li><a href="https://www.anxjm.com/news/212231.html" target="_blank" title="朴大叔烤肉如何加盟?无需操作经验，轻松便可开店">朴大叔烤肉如何加盟?无需操作经验，轻松便可开店</a></li>
+                        <li><a href="https://www.anxjm.com/news/212230.html" target="_blank" title="好玩伴炭火烧烤加盟多少钱?投资创业只需几万元">好玩伴炭火烧烤加盟多少钱?投资创业只需几万元</a></li>
+                        <li><a href="https://www.anxjm.com/news/212229.html" target="_blank" title="好玩伴炭火烧烤怎么加盟?无需操作经验，轻松加盟">好玩伴炭火烧烤怎么加盟?无需操作经验，轻松加盟</a></li>
+                        <li><a href="https://www.anxjm.com/news/212228.html" target="_blank" title="串遇音乐烧烤串吧加盟条件是什么?条件少，满足就能加盟">串遇音乐烧烤串吧加盟条件是什么?条件少，满足就能加盟</a></li>
+                        <li><a href="https://www.anxjm.com/news/212227.html" target="_blank" title="串遇音乐烧烤串吧如何加盟?流程简单项目好">串遇音乐烧烤串吧如何加盟?流程简单项目好</a></li>
+                        <li><a href="https://www.anxjm.com/news/212226.html" target="_blank" title="库尔班大叔烤肉串加盟条件是什么?条件少，满足就可加盟">库尔班大叔烤肉串加盟条件是什么?条件少，满足就可加盟</a></li>
+                        <li><a href="https://www.anxjm.com/news/212225.html" target="_blank" title="库尔班大叔烤肉串如何加盟?操作简单，开店快">库尔班大叔烤肉串如何加盟?操作简单，开店快</a></li>
+                        <li><a href="https://www.anxjm.com/news/212224.html" target="_blank" title="宫门口烤肉加盟多少钱?几万元便可投资加盟">宫门口烤肉加盟多少钱?几万元便可投资加盟</a></li>
+                        <li><a href="https://www.anxjm.com/news/212223.html" target="_blank" title="宫门口烤肉怎么加盟?无需操作经验，轻松便可开店">宫门口烤肉怎么加盟?无需操作经验，轻松便可开店</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--最新资讯 结束-->
+            <div class="bd_commit ">
+                <div class="common_hd">
+                    <h2 class="hd_tit">最新项目</h2></div>
+                <div class="bd_cont">
+                    <ul>
+                        @foreach($latestbrands as $latestbrand)
+                        <li><a href="/busInfo/{{$latestbrand->id}}.html" target="_blank" ><div class="img"><img src="{{$latestbrand->litpic}}" width="120" height="90" alt="{{$latestbrand->brandname}}"/></div><span>{{$latestbrand->brandname}}</span></a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    <!--主体开始-->
 
 @stop
