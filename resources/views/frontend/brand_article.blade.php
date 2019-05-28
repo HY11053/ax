@@ -17,283 +17,302 @@
     <meta property="article:published_first" content="{{config('app.name')}}, {{config('app.url')}}{{Request::getrequesturi()}}" />
 @stop
 @section('main_content')
-    <!--主体开始-->
-    <div class="main2" style="position: relative;">
-        <!--当前位置 开始-->
-        <div class="path">当前位置：<a href="/">首页</a>&gt;&nbsp;<a href="/{{$thisbrandtypecidinfo->real_path}}/">{{$thisbrandtypecidinfo->typename}}</a>&gt;<a href="/{{$thisbrandtypeinfo->real_path}}/">{{$thisbrandtypeinfo->typename}}</a>&gt;&nbsp;{{$thisarticleinfos->brandname}}
+    <!--当前位置 开始-->
+    <div class="path">当前位置：<a href="/">首页</a> > <a href="/{{$thisbrandtypecidinfo->real_path}}/">{{$thisbrandtypecidinfo->typename}}</a> > <a href="https://www.anxjm.com/{{$thisbrandtypeinfo->real_path}}/">{{$thisbrandtypeinfo->typename}}</a> > {{$thisarticleinfos->brandname}}</div>
+    <!--当前位置 结束-->
+    <!--main_strat-->
+    <div class="c_bar_wrap">
+        <div class="c_bar">
+            <ul>
+                <li class="cur">项目总览</li>
+                <li class="js_join_1">
+                    <a href="javaScript:void(0)">加盟费用</a>
+                </li>
+                <li class="js_join_2">
+                    <a href="javaScript:void(0)">加盟条件</a>
+                </li>
+                <li class="js_join_3">
+                    <a href="javaScript:void(0)">加盟优势</a>
+                </li>
+                <li class="js_join_4">
+                    <a href="javaScript:void(0)">加盟流程</a>
+                </li>
+                <li class="js_join_6">
+                    <a href="javaScript:void(0)">索要资料</a>
+                </li>
+                <li class="js_join_6">
+                    <a href="javaScript:void(0)">立即咨询</a>
+                </li>
+                <li class="js_join_5">
+                    <a href="javaScript:void(0)">资质认证</a>
+                </li>
+                <li class="js_join_6">
+                    <a class="red" href="javaScript:void(0)">申请加盟</a>
+                </li>
+            </ul>
         </div>
-        <!--当前位置 结束-->
+    </div>
 
-        <!--公司详情头部介绍 开始-->
-        <div class="item_top">
-            <div class="pic_img">
-                <ul class="bigImg">
+    <div class="basic">
+        <div class="show_img smallslider">
+            <div class="hd">
+                <ul>
+                    <li  class="on" >1</li>
+                    <li >2</li>
+                    <li >3</li>
+                </ul>
+            </div>
+            <div class="bd">
+                <ul>
                     @foreach(explode(',',trim($thisarticleinfos->imagepics,',')) as $imagepic)
-                    <li><img src="{{$imagepic}}" alt="{{$thisarticleinfos->brandname}}"/></li>
+                     <li><img src="{{$imagepic}}" title="{{$thisarticleinfos->brandname}}" alt="{{$thisarticleinfos->brandname}}"></li>
                     @endforeach
                 </ul>
-                <div class="smallScroll">
-                    <a class="sPrev" href="javascript:void(0)">←</a>
-                    <div class="smallImg">
-                        <ul>
-                            @foreach(explode(',',trim($thisarticleinfos->imagepics,',')) as $imagepic)
-                                <li @if($loop->first)  class="on" @endif><img src="{{$imagepic}}" alt="{{$thisarticleinfos->brandname}}"/></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <a class="sNext" href="javascript:void(0)">→</a>
+            </div>
+
+        </div>
+        <div class="c_basic">
+            <div class="context_title">
+                <h1>{{$thisarticleinfos->brandname}}</h1>
+                <div class="c_line">
+                    <div class="cl"></div>
                 </div>
             </div>
-            <div class="pic_info">
-                <h1>{{str_replace('加盟','',$thisarticleinfos->brandname)}}加盟</h1>
-                <div class="detail">
-                    <ul>
-                        <li>投资金额<span class="price">{{$investment_types[$thisarticleinfos->tzid]}}</span></li>
-                        <li>所属行业<span class="hy"> <a href="/{{$thisbrandtypeinfo->real_path}}/">{{$thisbrandtypeinfo->typename}}</a></span></li>
-                    </ul>
-                </div>
-                <div class="tit_pice">
-                    <ul>
-                        <li>所在地区 <span class="date">{{$thisarticlebradarea->name_cn}}</span></li>
-                        <li>门店总数<span class="shop">{{$thisarticleinfos->brandnum}}</span></li>
-                        <li>加盟区域<span class="area"> {{$thisarticleinfos->brandarea}}</span></li>
-                        <li>经营范围<span class="area">{{$thisarticleinfos->brandmap}}</span></li>
-                    </ul>
-                </div>
-                <div class="jiem">
-                    <ul>
-                        <li>意向加盟<span class="count">{{$thisarticleinfos->brandattch}}</span></li>
-                        <li>申请加盟<span class="count">{{$thisarticleinfos->brandapply}}</span></li>
-                        <li class="pub_date">更新时间<span class="count">{{$thisarticleinfos->created_at}}</span></li>
-                    </ul>
-                </div>
-                <div class="tel">联系电话
-                    <span> 400-885-8878 </span>
-                </div>
-                <div class="btn_area">
-                    <a id="chatNowButton" href="#msg" class="zixun_btn" rel="nofollow">立即咨询</a>
-                    <a href="#msg" class="suoyao_btn" rel="nofollow">免费获取资料</a>
-                </div>
+            <div class="c_info">
+                <ul>
+                    <li>
+                        <b>投资金额：</b>
+                        <a href="/search?invest=3" target="_blank">
+                            <span class="money">{{$thisarticleinfos->brandpay}}</span>
+                        </a>
+                    </li>
+                    <li class="ls">
+                        <b>所属行业：</b>
+                        <span class="fl"><a href="/{{$thisbrandtypecidinfo->real_path}}/" target="_blank">{{$thisbrandtypecidinfo->typename}}</a> &gt;<a href="/{{$thisbrandtypeinfo->real_path}}/" target="_blank">{{$thisbrandtypeinfo->typename}}</a></span>
+                    </li>
+                    <li>
+                        <b>企业名称：</b>
+                        <span>{{$thisarticleinfos->brandgroup}}</span>
+                    </li>
+                    <li>
+                        <b>官方网址：</b>
+                        <span>
+								<a href="javaScript:void(0)" class="js_join_6">[索取加盟官方网址]</a>
+							</span>
+                    </li>
+                    <li>
+                        <b>总部地址：</b>
+                        <strong>{{$thisarticleinfos->brandaddr}}</strong>
+                    </li>
+                    <li class="btn">
+                        <a href="javaScript:void(0)" class="js_join_6 btn_ly" title="留言咨询">留言咨询</a>
+                        <a href="javaScript:void(0)" class="js_join_6 btn_zl" title="获取资料">获取资料</a>
+                    </li>
+                </ul>
             </div>
-            <div class=" pic_right">
-                <div class="bd">
-                    <h2>公司信息</h2>
-                    <div class="pic_logo">
-                        @if($thisarticleinfos->indexpic)
-                        <img width="154" height="116" src="{{$thisarticleinfos->indexpic}}" alt="{{$thisarticleinfos->brandname}}">
-                        @else
-                            <img width="154" height="116" src="{{$thisarticleinfos->litpic}}" alt="{{$thisarticleinfos->brandname}}">
-                        @endif
-                    </div>
-                    <div class="pic_com">
-                        <div class="tit" title="{{$thisarticleinfos->brandgroup}}">{{$thisarticleinfos->brandgroup}}</div>
-                        <ul>
-                            <li>
-                                <span>注册资金</span>
-                                <em>{{$thisarticleinfos->registeredcapital}}</em>
-                            </li>
-                            <li>
-                                <span>经营状态</span>
-                                <em>开业</em>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="comp_fenx">
-                    <div class="renZ_info">
-                        <ul>
-                            <li class="mr15">
-                                <span class="beian1"></span>
-                                <em>备案企业</em>
-                            </li>
-                            <li class="mr15">
-                                <span class="renzheng1"></span>
-                                <em>企业认证</em>
-                            </li>
-                            <li>
-                                <span class="baozhang1"></span>
-                                <em>投资保障</em>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="tel">
+                <p>项目咨询热线</p>
+                <p class="num">400-885-8878</p>
             </div>
         </div>
-        <!--公司详情头部介绍 结束-->
-        <div class="center_list">
-                <!--左边模块 开始-->
-                <div class="new_left">
-                    <div class="fixed_nav">
-                        <div class="cont_tab">
-                            <ul>
-                                <li class="js_join_1 cur">
-                                    <a href="javascript:void(0)">品牌详情</a>
-                                </li>
-                                <li class="js_join_2">
-                                    <a href="javascript:void(0)">品牌资讯</a>
-                                </li>
-                                <li class="js_join_3">
-                                    <a href="javascript:void(0)">品牌推荐</a>
-                                </li>
-                                <li class="js_join_4">
-                                    <a href="javascript:void(0)">项目咨询</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="join_cont">
-                        {!! $content !!}
-                    </div>
-                    @include('frontend.liuyan')
-                    <div class="xg_news" id="js_join_2">
-                        <div class="common_tit">{{$thisarticleinfos->brandname}}品牌新闻<div class="top_924"></div>
-                        </div>
-                        <div class="xw">
-                            <ul class="clearfix">
-                                @foreach($latestbrandnews as $latestbrandnew)
-                                <li><em>{{date('Y-m-d',strtotime($latestbrandnew->created_at))}}</em><a href="/article/{{$latestbrandnew->id}}.html">{{$latestbrandnew->title}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="xg_news" id="js_join_3">
-                        <div class="common_tit">{{$thisarticleinfos->brandname}}同类品牌推荐<div class="top_924"></div>
-                        </div>
-                        <div class="rec_brand_list">
-                            <ul>
-                                @foreach($latestcbrands as $latestcbrand)
-                                    <li><a href="/xiangmu/{{$latestcbrand->id}}.html" target="_blank" title="{{$latestcbrand->brandname}}" class="pic"><img src="{{$latestcbrand->litpic}}" alt="{{$latestcbrand->brandname}}" style="border-radius: 5px;"></a><strong><a class="brand-title" href="/xiangmu/{{$latestcbrand->id}}.html">{{$latestcbrand->brandname}}</a></strong></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--左边模块 结束-->
-
-                <!--右边模块 开始-->
-                <div class="new_right">
-
-                    <!--加盟排行榜 开始-->
-                    <div class="hot_message hot_fl">
-                        <div class="common_hd fl_tit">
-                            <span class="more"><a href="/paihang/hanbao/" target="_blank">更多&gt;&gt;</a></span>
-                            <h2>{{$thisbrandtypeinfo->typename}}排行榜</h2>
-                        </div>
-                        <div class="boutique_list">
-                            <ul>
-                                @foreach($paihangbangs as $paihangbang)
-                                    <li class=" top    @if($loop->first) hover @endif ">
-                                        <i class="num">{{$loop->iteration}}</i>
-                                        <span class="name">
-								<a href="/xiangmu/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a>
-							</span>
-                                        <div class="cts">
-                                            <div class="img">
-                                                <img src="{{$paihangbang->litpic}}" alt="{{$paihangbang->brandname}}">
-                                            </div>
-                                            <div class="center">
-                                                <p class="info">投资额：
-                                                    <em>{{$investment_types[$paihangbang->tzid]}}</em>
-                                                </p>
-                                                <p class="info">门店数：{{$paihangbang->brandnum}}</p>
-                                                <p class="btn">
-                                                    <a href="/xiangmu/{{$paihangbang->id}}.html#msg">立即咨询</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <!--加盟排行榜 结束-->
-
-                    <!--热门文章 开始-->
-                    <div class="bd_commit">
-                        <div class="common_hd">
-                            <h2>{{$thisbrandtypeinfo->typename}}热门文章</h2>
-                        </div>
-                        <div class="bd">
-                            <ul>
-                                @foreach($latesttypenews as $latesttypenew)
-                                    <li>
-                                        <a href="/article/{{$latesttypenew->id}}.html" target="_blank" title="{{$latesttypenew->title}}">{{$latesttypenew->title}}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <!--热门文章 结束-->
-                    <div class="bd_commit">
-                        <div class="common_hd">
-                            <h2>{{$thisbrandtypeinfo->typename}}最新入驻品牌</h2>
-                        </div>
-                        <div class="bd_list">
-                            @foreach($latestbrands as $latestbrand)
-                                <dl>
-                                    <dt>
-                                        <a href="/xiangmu/{{$latestbrand->id}}.html" target="_blank">
-                                            <img src="{{$latestbrand->litpic}}" alt="{{$latestbrand->brandname}}" title="{{$latestbrand->brandname}}">
-                                        </a>
-                                    </dt>
-                                    <dd class="tit">
-                                        <a href="/xiangmu/{{$latestbrand->id}}.html" target="_blank" title="{{$latestbrand->brandname}}">{{$latestbrand->brandname}}</a>
-                                    </dd>
-                                    <dd>投资额度：
-                                        <em>{{$investment_types[$latestbrand->tzid]}}</em>
-                                    </dd>
-                                    <p>
-                                        <a href="/xiangmu/{{$latestbrand->id}}.html">立即咨询</a>
-                                    </p>
-                                </dl>
-                            @endforeach
-
-                        </div>
-                    </div>
-
-
-                    <div class="bd_commit ">
-                        <div class="common_hd">
-                            <h2>最新上榜</h2>
-                        </div>
-                        <div class="bd">
-                            <ul>
-                                @foreach($newbrands as $newbrand)
-                                    <li>
-                                        <a href="/xiangmu/{{$newbrand->id}}.html">{{$newbrand->brandname}}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="bd_commit">
-                        <div class="common_hd">
-                            <h2>热门行业商机快速查询</h2>
-                        </div>
-                        <div class="hot_tag_bd">
-                            @foreach($brandtypeids as $brandtypeid)
-                                <a href="/{{$brandtypeid->real_path}}/" target="_blank" title="{{$brandtypeid->typename}}">{{$brandtypeid->typename}}</a>
-                            @endforeach
-                        </div>
-                    </div>
-                    <!--热门行业 结束-->
-                </div>
-                <!--右边模块 结束-->
-                @include('frontend.footer')
+        <div class="c_logo">
+            <div class="bd">
+                <img src="{{$thisarticleinfos->litpic}}" title="{{$thisarticleinfos->brandname}}" alt="{{$thisarticleinfos->brandname}}" class="cl_logo" />
+                <ul>
+                    <li>意向加盟
+                        <span>{{$thisarticleinfos->brandattch}}</span>
+                    </li>
+                    <li>申请加盟
+                        <span>{{$thisarticleinfos->brandapply}}</span>
+                    </li>
+                    <li>
+                        <a onclick="AddFavorite(window.location,document.title)" href="javascript:void(0)">收藏该项目</a>
+                        <span>{{$thisarticleinfos->brandclick}}</span>
+                    </li>
+                </ul>
             </div>
-        @if(!empty($navlists))
-           <ul class="section table-of-contents" id="filexed" style="position: absolute; left: -105px;" >
-               @foreach($navlists as $index=>$navlist)
-                   @if(!$loop->last)
-                    <li  class="active"><em class="num">{{$index+1}}</em><span>{{$navlist}}</span></li>
-                   @else
-                   <li  class="noactive"><em class="num">{{$index+1}}</em><a href="#msg" rel="nofollow">在线留言</a></li>
-                   @endif
-               @endforeach
+            <div class="renZ_info">
+                <ul>
+                    <li>
+                        <span class="beian1"></span>
+                        <em>开店指导</em>
+                    </li>
+                    <li>
+
+                        <span class="renzheng1"></span>
+                        <em>店铺选址</em>
+                    </li>
+                    <li>
+                        <span class="baozhang1"></span>
+                        <em>经营技巧</em>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="company_context">
+        <!-- 左侧 start -->
+
+        <div class="context_left">
+            {!! $thisarticleinfos->body !!}
+            <!-- 资质认证 start -->
+            <div class="context_title" id="js_join_5">
+                <div style="font-weight:bold;font-size: 20px; height: 40px;line-height: 40px;color: #D71318;">百格汉斯烤肉资质认证</div>
+                <div class="c_line">
+                    <div class="cl"></div>
+                </div>
+            </div>
+            <div class="company_contact">
+                <div class="company_ok">
+                    <img src="/public/images/renzhen.jpg" />
+                </div>
+            </div>
+            <div class="c_line2"></div>
+
+            <!-- 资质认证 end -->
+
+            <!-- 相关文章 start -->
+
+            <div class="context_title">
+                <div style="font-weight:bold;font-size: 20px; height: 40px;line-height: 40px;color: #D71318;">百格汉斯烤肉相关文章</div>
+                <div class="c_line">
+                    <div class="cl"></div>
+                </div>
+            </div>
+            <div class="company_contact">
+                <div class="rela_news nb">
+                    <ul>
+                        @foreach($latestbrandnews as $latestbrandnew)
+                        <li><a href="/news/{{$latestbrandnew->id}}.html" target="_blank" title="{{$latestbrandnew->title}}">{{$latestbrandnew->title}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="c_line2"></div>
+            <!-- 相关文章 end -->
+            <!-- 留言列表 start -->
+            <div class="context_title">
+                <div style="font-weight:bold;font-size: 20px; height: 40px;line-height: 40px;color: #D71318;">百格汉斯烤肉最新留言</div>
+                <div class="c_line">
+                    <div class="cl"></div>
+                </div>
+            </div>
+            <div class="company_contact">
+                <!--用户留言开始-->
+                <div class="msg_list">
+                    <div class="tit">客户留言</div>
+                    <div class="msg_cont" id="js_msg">
+                        <div class="bd">
+                            <ul>
+                                <li><span class="data">05-25 10:18</span><span class="red">唐女士&nbsp;&nbsp;189******97</span>对该项目产生意向：我想加盟，请联系我。</li>
+                                <li><span class="data">05-26 03:05</span><span class="red">王女士&nbsp;&nbsp;134******67</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
+                                <li><span class="data">05-26 07:28</span><span class="red">周女士&nbsp;&nbsp;131******92</span>对该项目产生意向：初步打算加入贵公司，请寄资料。</li>
+                                <li><span class="data">05-26 11:39</span><span class="red">赵女士&nbsp;&nbsp;131******19</span>对该项目产生意向：你好！我想加盟代理你们的品牌，请联系我。</li>
+                                <li><span class="data">05-26 04:31</span><span class="red">孙先生&nbsp;&nbsp;180******94</span>对该项目产生意向：你们的总部在哪里部在哪里？</li>
+                                <li><span class="data">05-26 09:00</span><span class="red">郭先生&nbsp;&nbsp;138******59</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
+                                <li><span class="data">05-27 01:27</span><span class="red">刘先生&nbsp;&nbsp;189******74</span>对该项目产生意向：初步打算加入贵公司，请寄资料。</li>
+                                <li><span class="data">05-27 05:57</span><span class="red">赵女士&nbsp;&nbsp;136******73</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
+                                <li><span class="data">05-27 09:56</span><span class="red">王女士&nbsp;&nbsp;170******87</span>对该项目产生意向：对该项目产生意向：我想知道加盟费用是多少。谢谢</li>
+                                <li><span class="data">05-27 02:17</span><span class="red">易女士&nbsp;&nbsp;156******66</span>对该项目产生意向：请问店面面积需要多大？</li>
+                                <li><span class="data">05-27 07:05</span><span class="red">孙先生&nbsp;&nbsp;170******63</span>对该项目产生意向：你们的总部在哪里部在哪里？</li>
+                                <li><span class="data">05-27 11:40</span><span class="red">唐女士&nbsp;&nbsp;136******92</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
+                                <li><span class="data">05-28 04:05</span><span class="red">周女士&nbsp;&nbsp;189******14</span>对该项目产生意向：初步打算加入贵公司，请寄资料。</li>
+                                <li><span class="data">05-28 08:06</span><span class="red">吴先生&nbsp;&nbsp;152******58</span>对该项目产生意向：请问店面面积需要多大？</li>
+                                <li><span class="data">05-28 12:47</span><span class="red">赵女士&nbsp;&nbsp;138******67</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--用户留言结束-->
+            </div>
+          @include('frontend.liuyan')
+            <!-- 添加留言 end -->
+        </div>
+
+        <!-- 左侧 end -->
+
+        <!-- 右侧 end -->
+        <div class="context_right">
+            <!-- 同类项目 start -->
+            <div class="context_title">
+					<span>
+						<a href="https://www.anxjm.com/ms/" target="_blank">更多&gt;&gt;</a>
+					</span>
+                <h2>{{$thisarticleinfos->brandname}}同类项目</h2>
+                <div class="c_line">
+                    <div class="cl"></div>
+                </div>
+            </div>
+            <ul class="right_company">
+                @foreach($paihangbangs as $index=>$paihangbang)
+                <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a></span> <span class="invest">[{{--{{$investment_types[$paihangbang->tzid]}}--}}]</span> </li>
+                @endforeach
             </ul>
-        @endif
-       </div>
-    <!--主体结束-->
+            <p class="clr"></p>
+
+            <!-- 同类项目 end -->
+
+            <!-- 同类项目 start -->
+
+            <div class="context_title">
+					<span>
+						<a href="/search?invest=3" target="_blank">更多&gt;&gt;</a>
+					</span>
+                <h2>{{$thisbrandtypeinfo->typename}}热门资讯</h2>
+                <div class="c_line">
+                    <div class="cl"></div>
+                </div>
+            </div>
+            <ul class="right_company">
+                <li> <span class="ico  num ">1</span> <span class="name"><a href="https://www.anxjm.com/busInfo/5.html" target="_blank" title="茶桔便">茶桔便</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico  num ">2</span> <span class="name"><a href="https://www.anxjm.com/busInfo/13.html" target="_blank" title="易道教育">易道教育</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico  num ">3</span> <span class="name"><a href="https://www.anxjm.com/busInfo/15.html" target="_blank" title="洁之圣洗衣">洁之圣洗衣</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">4</span> <span class="name"><a href="https://www.anxjm.com/busInfo/18.html" target="_blank" title="建达IT生活馆">建达IT生活馆</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">5</span> <span class="name"><a href="https://www.anxjm.com/busInfo/19.html" target="_blank" title="玛莉乔思箱包">玛莉乔思箱包</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">6</span> <span class="name"><a href="https://www.anxjm.com/busInfo/33.html" target="_blank" title="七心作文">七心作文</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">7</span> <span class="name"><a href="https://www.anxjm.com/busInfo/37.html" target="_blank" title="贵丽人家纺">贵丽人家纺</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">8</span> <span class="name"><a href="https://www.anxjm.com/busInfo/38.html" target="_blank" title="卓人右脑教育">卓人右脑教育</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">9</span> <span class="name"><a href="https://www.anxjm.com/busInfo/61.html" target="_blank" title="乐好奇汉堡">乐好奇汉堡</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">10</span> <span class="name"><a href="https://www.anxjm.com/busInfo/68.html" target="_blank" title="变态薯薯条">变态薯薯条</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">11</span> <span class="name"><a href="https://www.anxjm.com/busInfo/69.html" target="_blank" title="梦之谷画像">梦之谷画像</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">12</span> <span class="name"><a href="https://www.anxjm.com/busInfo/72.html" target="_blank" title="亮湾湾饰品">亮湾湾饰品</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">13</span> <span class="name"><a href="https://www.anxjm.com/busInfo/79.html" target="_blank" title="赛维干洗店">赛维干洗店</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">14</span> <span class="name"><a href="https://www.anxjm.com/busInfo/88.html" target="_blank" title="ur-lily美包">ur-lily美包</a></span> <span class="invest">[5-10万元]</span> </li>
+                <li> <span class="ico ">15</span> <span class="name"><a href="https://www.anxjm.com/busInfo/96.html" target="_blank" title="依莱斯珠宝">依莱斯珠宝</a></span> <span class="invest">[5-10万元]</span> </li>
+            </ul>
+            <p class="clr"></p>
+
+            <!-- 同类项目 end -->
+
+            <!-- 最新加盟项目 start -->
+
+            <div class="context_title">
+					<span>
+						<a href="/search" target="_blank">更多&gt;&gt;</a>
+					</span>
+                <h2>{{$thisbrandtypeinfo->typename}}最新入驻品牌</h2>
+                <div class="c_line">
+                    <div class="cl"></div>
+                </div>
+            </div>
+            <ul class="right_company">
+                @foreach($latestbrands as $index=>$latestbrand)
+                <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$latestbrand->id}}.html" target="_blank" title="{{$latestbrand->brandname}}">{{$latestbrand->brandname}}</a></span> <span class="invest">[5-10万元]</span> </li>
+                @endforeach
+            </ul>
+            <p class="clr"></p>
+
+            <!-- 最新加盟项目 end -->
+            <div class="right_cywd"> </div>
+        </div>
+
+        <!-- 右侧 end -->
+
+        <p class="clr"></p>
+    </div>
+
+    <!--main_end-->
 @stop
 @section('footlibs')
     <script>

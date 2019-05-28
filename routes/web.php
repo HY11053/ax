@@ -13,7 +13,7 @@
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 //前台界面
-Route::group(['domain' => 'm.u88.com'], function () {
+Route::group(['domain' => 'm.anxjm.net'], function () {
     Route::get('/','Mobile\IndexController@Index');
     Route::get('article','Mobile\ArticleCategorizationController@articleIndex');
     Route::get('article/{id}.html','Mobile\ArticleController@NewsArticle')->where('id', '[0-9]+');
@@ -52,7 +52,7 @@ Route::group(['domain' => 'm.u88.com'], function () {
     Route::get('{path}/{path2}/{tid}_{zid?}/p{page}','Mobile\ArticleCategorizationController@CityInverBrandLists')->where(['path'=>'[a-zA-Z0-9_]+','path2'=>'[a-zA-Z0-9_]+','tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('citypagelist2');
 });
 
-Route::group(['domain' => 'mip.u88.com'], function () {
+Route::group(['domain' => 'mip.anxjm.net'], function () {
     Route::get('/','Mip\IndexController@Index');
     Route::get('article','Mip\ArticleCategorizationController@articleIndex');
     Route::get('article/{id}.html','Mip\ArticleController@NewsArticle')->where('id', '[0-9]+');
@@ -92,10 +92,8 @@ Route::group(['domain' => 'mip.u88.com'], function () {
 });
 Route::get('/','Frontend\IndexController@Index');
 Route::get('article','Frontend\ArticleCategorizationController@articleIndex');
-Route::get('article/{id}.html','Frontend\ArticleController@NewsArticle')->where('id', '[0-9]+');
-Route::get('/article/{date}-{id}.html','Frontend\ArticleController@NewsArticle')->where(['date'=>'[0-9a-zA-Z]+','id'=>'[0-9]+']);
-Route::get('xiangmu/{id}.html','Frontend\ArticleController@BrandArticle')->where('id', '[0-9]+');
-Route::get('xiangmu/{path}-{id}.html','Frontend\ArticleController@BrandArticle')->where(['path'=>'[a-zA-Z0-9_]+','id'=>'[0-9]+']);
+Route::get('news/{id}.html','Frontend\ArticleController@NewsArticle')->where('id', '[0-9]+');
+Route::get('busInfo/{id}.html','Frontend\ArticleController@BrandArticle')->where('id', '[0-9]+');
 Route::get('xiangmu','Frontend\XiangmuProjectController@XiangmuLists')->where('path','[a-zA-Z0-9]+')->name('xiangmulist');
 Route::get('about/about','Frontend\StatementController@about');
 Route::get('shantie.html','Frontend\StatementController@shantie');

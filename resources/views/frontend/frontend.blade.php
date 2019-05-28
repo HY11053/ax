@@ -9,7 +9,6 @@
     <title>@yield('title')</title>
     <meta name="keywords" content="@yield('keywords')"/>
     <meta name="description" content="@yield('description')"/>
-    <link rel="stylesheet" type="text/css" href="/public/css/global.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/css.css" />
     <script type="text/javascript" src="/public/js/jquery.min.js"></script>
     <script type="text/javascript" src="/public/js/jquery.SuperSlide.2.1.1.js"></script>
@@ -24,250 +23,133 @@
         <div class="inner">
             <div class="top_l">
                 <a href="/">网站首页</a>
-                <a href="/xiangmu/">找项目</a>
+                <a href="/search/">找项目</a>
                 <a href="/paihang/">排行榜</a>
-                <a href="/article/">资讯</a>
+                <a href="/newsPage/1601/">资讯</a>
+                <a href="/zt/">专题</a>
             </div>
             <div class="top_r">
-                <a href="https://m.u88.com" class="t_phone">
+                <!-- <a href="/register/" class="t_login">注册</a> -->
+                <!-- <a href="/login/" class="t_login">登录</a> -->
+                <a href="https://m.anxjm.com" class="t_phone">
                     <i></i>手机版</a>
-                <a href="/about/sitemap/">网站导航</a>
-                <a rel="nofollow" href="/about/guestbook/">意见反馈</a>
+
+
             </div>
         </div>
-    </div>
-    <!--网站导航 结束-->
-    <!--logo 开始-->
+    </div>        <!--网站导航 结束-->
+    <!--logo部分 开始-->
     <div class="logo_box">
+        <!--logo-->
         <div class="logo">
-            <a href="/" target="_blank">
-                <img src="https://www.u88.com/public/images/logo.jpg" alt="U88加盟网" />
-            </a>
+            <a href="/" target="_blank"><img src="/public/images/logo.png" alt="安心加盟网" /></a>
         </div>
-        <!--搜索 开始-->
-        <div class="logo_center">
+        <!--搜索-->
+        <div class="logo_search">
             <div class="bd ">
-                <form action="/search/" method="post">
-                    {{csrf_field()}}
-                    <input def="输入你想搜索的关键字" class="search_input" placeholder="输入你想搜索的关键字" name="keywords" type="text">
+                <form action="/so/">
+                    <input def="输入你想搜索的关键字" class="search_input" placeholder="输入你想搜索的关键字" name="keyword" type="text">
+                    <input value="1" name="type" type="hidden">
                     <input class="search_btn" value="搜索" type="submit">
                 </form>
             </div>
-            <ul class="f12">
-                <li>热门搜索：</li>
-                <li>
-                    <a href="https://www.u88.com/huoguo/" title="火锅加盟" target="_blank">火锅加盟</a>
-                </li>
-                <li>
-                    <a href="https://www.u88.com/shaokao/" title="烧烤加盟" target="_blank">烧烤加盟</a>
-                </li>
-                <li>
-                    <a href="https://www.u88.com/malatang/" title="麻辣烫加盟" target="_blank">麻辣烫加盟</a>
-                </li>
-                <li>
-                    <a href="https://www.u88.com/kaoyu/" title="烤鱼加盟" target="_blank">烤鱼加盟</a>
-                </li>
-                <li>
-                    <a href="https://www.u88.com/bingqilin/" title="冰激凌加盟" target="_blank">冰激凌加盟</a>
-                </li>
-                <li>
-                    <a href="https://www.u88.com/jipai/" title="鸡排加盟" target="_blank">鸡排加盟</a>
-                </li>
-                <li>
-                    <a href="https://www.u88.com/xiangmu/2004745.html" title="一扫光零食" target="_blank">一扫光零食</a>
-                </li>
-                <li>
-                    <a href="https://www.u88.com/xiangmu/2005136.html" title="UCC国际洗衣" target="_blank">UCC国际洗衣</a>
-                </li>
-            </ul>
-        </div>
-        <!--搜索 结束-->
-
-        <!--金牌连锁-->
-        <!--幻灯片 开始-->
-        <div id="js_bn" class="bn">
             <div class="hd">
                 <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                </ul>
-            </div>
-            <div class="bd">
-                <ul>
-                    <li>
-                        <a href="https://www.u88.com/xiangmu/2005136.html" target="_blank">
-                            <img src="https://www.u88.com/uploads/picture/f3/c7/cd545b1530a24e40fffeaecc3cb9.jpg" width="220" height="64" alt="UCC国际洗衣" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.u88.com/xiangmu/2004745.html" target="_blank">
-                            <img src="https://www.u88.com/uploads/picture/88/28/0af45c3c254cf8521277c9dceccf.jpg" width="220" height="64" alt="一扫光零食量贩" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.u88.com/xiangmu/7703.html" target="_blank">
-                            <img src="https://www.u88.com/uploads/picture/71/78/0ab27635c36f0c5de96cc0d69214.jpg" width="220" height="64" alt="皇家圣雪洗衣" />
-                        </a>
-                    </li>
+                    <li>热门搜索：</li>
+                    <li><a href="https://www.anxjm.com/busInfo/10960.html" title="奶茶店加盟" target="_blank">奶茶店加盟</a></li>
+                    <li><a href="https://www.anxjm.com/5" title="烧烤店加盟" target="_blank">烧烤店加盟</a></li>
                 </ul>
             </div>
         </div>
-        <!--幻灯片 结束-->
+        <!--搜索-->
+
+        <div class="weix">
+            <div class="img"><img src="/public/images/weix.png" width="64" height="64" alt="" /></div><span>手机找项目</span></div>
     </div>
-    <!--logo 结束-->
+    <!--logo部分 结束-->
     <div class="nav">
-        <div class="inner">
-            <div class="header_nav  show ">
-                <div class="tit">商机项目分类</div>
-                @if(Request::getrequesturi() =='/')
-                    @include('frontend.navs')
-                @endif
-            </div>
-            <ul class="nav_list">
-                <li><a href="/" target="_blank">首页</a></li>
-                <li><a href="https://canyin.u88.com/" target="_blank">餐饮</a></li>
-                <li><a href="https://ganxi.u88.com/" target="_blank">干洗</a></li>
-                <li><a href="https://huoguo.u88.com/" target="_blank">火锅</a></li>
-                <li><a href="https://chayin.u88.com/" target="_blank">茶饮</a></li>
-                <li><a href="https://jiaoyu.u88.com/" target="_blank">教育</a></li>
-                <li><a href="https://meirong.u88.com/" target="_blank">美容</a></li>
-                <li><a href="https://yingyouer.u88.com/" target="_blank">母婴</a></li>
-                <li><a href="https://jiajujiameng.u88.com/" target="_blank">家居</a></li>
-                <li><a href="https://baojian.u88.com/" target="_blank">保健</a></li>
-                <li><a href="https://lingshou.u88.com/" target="_blank">零售</a></li>
-                <li><a href="https://jinronggongsi.u88.com/" target="_blank">金融</a></li>
-                <li><a href="https://qiche.u88.com/" target="_blank">汽车</a></li>
-                <li><a href="https://fuzhuang.u88.com/" target="_blank">服装</a></li>
-                <li><a href="https://shipin.u88.com/" target="_blank">饰品</a></li>
-                <li><a href="https://jiancai.u88.com/" target="_blank">建材</a></li>
-                <li><a href="https://huanbao.u88.com/" target="_blank">环保</a></li>
-                <li><a href="https://jiudian.u88.com/" target="_blank">酒店</a></li>
-                <li><a href="https://tesejiameng.u88.com/" target="_blank">新奇特</a></li>
+        <div class="nav_list">
+            <ul>
+                <li class="cur"><a href="/" target="_blank">首页</a></li>
+                <li><a href="/ms/" target="_blank">美食</a></li>
+                <li><a href="/fz/" target="_blank">服装</a></li>
+                <li><a href="/sj/" target="_blank">内衣</a></li>
+                <li><a href="/jf/" target="_blank">家纺</a></li>
+                <li><a href="/jj/" target="_blank">家居</a></li>
+                <li><a href="/jc/" target="_blank">建材</a></li>
+                <li><a href="/zb/" target="_blank">珠宝</a></li>
+                <li><a href="/jy/" target="_blank">教育</a></li>
+                <li><a href="/mr/" target="_blank">美容</a></li>
+                <li><a href="/sp/" target="_blank">饰品</a></li>
+                <li><a href="/gx/" target="_blank">干洗</a></li>
+                <li><a href="/ye/" target="_blank">幼儿</a></li>
+                <li><a href="/fw/" target="_blank">服务</a></li>
+                <li><a href="/qc/" target="_blank">汽车</a></li>
+                <li><a href="/ls/" target="_blank">零售</a></li>
+                <li><a href="/hb/" target="_blank">环保</a></li>
+                <li><a href="/sp/" target="_blank">饰品</a></li>
+                <li><a href="/cl/" target="_blank">潮流</a></li>
+                <li><a href="/xm/" target="_blank">农业</a></li>
+                <i class="hot"></i>
             </ul>
         </div>
     </div>
 </div>
 <!--header 开始-->
-<!--第一部分 开始-->
-@yield('main_content')
-<div class="box_bottm">
-    <div class="bd_box">
-        <div class="bd_1">
-            <ul>
-                <li>
-                    <div class="ico ico_1"></div>
-                    <div class="tit_info">
-                        <p class="t">登录u88加盟网</p>
-                        <p class="txt">输入www.u88.com
-                            <br>进入网站</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="ico ico_2"></div>
-                    <div class="tit_info">
-                        <p class="t">寻找意向</p>
-                        <p class="txt">页面浏览，搜索查询
-                            <br>发布加盟需求</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="ico ico_3"></div>
-                    <div class="tit_info">
-                        <p class="t">留言咨询</p>
-                        <p class="txt">页面留言，电话访问在
-                            <br>线咨询</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="ico ico_4"></div>
-                    <div class="tit_info">
-                        <p class="t">等待回访</p>
-                        <p class="txt">招商厂家主动联系您了
-                            <br>解公司更多信息</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="ico ico_5"></div>
-                    <div class="tit_info">
-                        <p class="t">成功合作</p>
-                        <p class="txt">签订合作合同
-                            <br>执行合同</p>
-                    </div>
-                </li>
-            </ul>
 
-        </div>
-        <div class="bd_2">
-            <ul>
-                <li>
-                    <div class="t">关于我们</div>
-                    <div class="txt">
-                        <a href="/about/about/" target="_blank">关于我们</a>
-                        <br>
-                        <a href="/about/contact/" target="_blank">友情链接</a>
-                        <br>
-                        <a href="/about/youshi/" target="_blank">合作优势</a>
-                        <br>
-                        <a href="/about/hezuo/" target="_blank">商务合作</a>
-                    </div>
-                </li>
-                <li class="liaxi">
-                    <div class="t">联系我们</div>
-                    <div class="txt">
-                        <p>广告热线：17091425988（伍经理）</p>
-                        <p>加盟热线：400-885-8878</p>
-                        <p>在线客服：2853525083</p>
-                        <p>企业邮箱：2853525083@qq.com</p>
-
-                    </div>
-                </li>
-                <li class="bangzhu">
-                    <div class="t">帮助中心</div>
-                    <div class="txt">
-                        <a href="/about/disclaimer/" target="_blank">免责声明</a>
-                        <br>
-                        <a href="/about/flgw/" target="_blank">法律顾问</a>
-                        <br>
-                        <a href="/shantie.html" target="_blank">投诉删帖</a>
-                        <br>
-                        <a href="/about/sitemap/" target="_blank">网站地图</a>
-                    </div>
-                </li>
-                <li>
-
-                </li>
-            </ul>
-        </div>
-    </div>
+<div class=" main ">
+    @yield('main_content')
 </div>
-<!--footer 开始-->
-<div class="footer">
+<div class="brannd_1200x60">
+    <img src="/public/images/temp/brand1200x60_14.jpg" width="1200" height="60" alt="" />
+</div>
+<!--底部 开始-->
+<!--底部 start-->
 
-    <div class="cert">
-        <img src="https://www.u88.com/public/images/index07.jpg" alt="信用保障">
+<div class="footer">
+    <div class="footer_nav">
+        <a href="https://www.anxjm.com/news/1601209" target="_blank">关于我们</a> |
+        <a href="https://www.anxjm.com/news/1601210" target="_blank">公司简介</a> |
+        <a href="https://www.anxjm.com/news/69463.html" target="_blank">投诉/删除</a> |
+        <a href="https://www.anxjm.com/news/1601212" target="_blank">客户合作</a> |
+        <a href="https://www.anxjm.com/news/1601213" target="_blank">服务内容</a> |
+        <a href="https://www.anxjm.com/news/1601214" target="_blank">法律声明</a> |
+        <a href="https://www.anxjm.com/sitemap" target="_blank">网站地图</a> |
+        <a href="https://www.anxjm.com/news/1601215" target="_blank">联系我们</a>
     </div>
     <div class="copyright">
-        <p>U88加盟网友情提示：多打电话、多咨询、实地考察，可降低投资风险！</p>
-        <p>Copyright © 2015-2017 www.u88.com Corporation, All Rights Reserved 上海哆瑞咪网络科技有限公司 版权所有</p>
-        <p><a href="http://www.miitbeian.gov.cn/">沪ICP备17021897号-2</a></p>
-        <p>投资有风险，选择需谨慎！</p>
-        <div style="width:300px;margin:0 auto; padding:20px 0;">
-            <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011302003993" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="https://www.u88.com/public/images/ba.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#000;">沪公网安备 31011302003993号</p></a>
-        </div>
+        <p>广告刊登：400-885-8878 防骗咨询电话：400-885-8878 安心加盟网 友情提示：决定投资之前，请与我们的投资客服联系!</p>
+        <p>Copyright © 2010 Anxjm.Com. All Rights Reserved 上海莫卡网络科技有限公司 版权所有 </p>
+        <p>法律顾问：曹憬律师</p>
+        <p><img src="/public/images/beian.jpg" class="icon_beian"><a rel="nofollow" href="http://www.miibeian.gov.cn">沪ICP备16055116号-16</a></p>
     </div>
 </div>
-<!--百度统计代码-->
+
+<!--底部 end-->    <script type="text/javascript">
+    if((typeof(logo) == "undefined")){
+        var logo = '/public/images/default.png';
+    }
+    if((typeof(project_name) == "undefined")){
+        var project_name = '加盟金牌顾问';
+    }
+    if((typeof(pid) == "undefined")){
+        var pid = 0;
+    }
+    if((typeof(count_msg) == "undefined")){
+        var count_msg = '已为27348位客户完成加盟服务。';
+    }
+</script>
+
 <script>
     var _hmt = _hmt || [];
     (function() {
         var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?d73e6da7782916c6fbac1ac9f64c5cf1";
+        hm.src = "https://hm.baidu.com/hm.js?0b298ac0c70bdb0556a3ec49851cb059";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
 </script>
-<!--footer 结束-->
+
 @yield('footlibs')
 </body>
 </html>
