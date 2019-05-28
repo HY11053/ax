@@ -12,14 +12,8 @@
     <link rel="canonical" href="{{config('app.url')}}{{Request::getrequesturi()}}"/>
 @stop
 @section('main_content')
-        <!--轮播广告结束-->
-        <div class="brannd_1200x60">
-            <a href="https://www.anxjm.com/busInfo/5703.html"><img src="https://www.anxjm.com/uploads/picture/5c/5f/ad_8f06a3313b6eef62d336c8e901fd.gif" width="1200" height="60" alt="ucc国际洗衣"></a>
-        </div>
         <!--当前位置 开始-->
-        <div class="path">
-            当前位置： <a href="https://www.anxjm.com">首页</a> > <a href="/{{$thistypeinforeid->real_path}}/">{{$thistypeinforeid->typename}}</a> > {{$thistypeinfo->typename}}
-        </div>
+        <div class="path">当前位置： <a href="/">首页</a> > <a href="/{{$thistypeinforeid->real_path}}/">{{$thistypeinforeid->typename}}</a> > {{$thistypeinfo->typename}}</div>
         <!--当前位置 结束-->
         <!--项目分类 开始-->
         <div class="cate_sort">
@@ -27,9 +21,9 @@
                 <div class="hd">全部行业：</div>
                 <div class="bd area_wrap">
                     <ul>
-                        <li><a href="https://www.anxjm.com/search" class="">不限</a></li>
+                        <li @if(trim(Request::getrequesturi(),'/') == $thistypeinfo->real_path) class="hover" @endif><a href="/search/" class="">不限</a></li>
                         @foreach($topbrandtypeinfos as $topbrandtypeinfo)
-                            <li><a href="/{{$topbrandtypeinfo->real_path}}/" class="">{{$topbrandtypeinfo->typename}}</a></li>
+                            <li><a href="/{{$topbrandtypeinfo->real_path}}/"  @if(trim(Request::getrequesturi(),'/') == $topbrandtypeinfo->real_path || $topbrandtypeinfo->real_path == $thistypeinforeid->real_path) class="hover" @endif>{{$topbrandtypeinfo->typename}}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -38,9 +32,9 @@
                 <div class="hd">{{$thistypeinforeid->typename}}：</div>
                 <div class="bd area_wrap">
                     <ul>
-                        <li><a href="https://www.anxjm.com/search" class="">不限</a></li>
+                        @if(isset($thistypeinforeid))<li  @if(trim(Request::getrequesturi(),'/') == $thistypeinfo->real_path) class="hover" @endif><a href="/{{$thistypeinforeid->real_path}}/" class="">不限</a></li>@endif
                         @foreach($sontypes as $sontype)
-                        <li><a href="/{{$sontype->real_path}}/" class="">{{$sontype->typename}}</a></li>
+                        <li><a href="/{{$sontype->real_path}}/"  @if(trim(Request::getrequesturi(),'/') == $sontype->real_path) class="hover" @endif >{{$sontype->typename}}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -50,14 +44,9 @@
                 <div class="hd">投资金额：</div>
                 <div class="bd ">
                     <ul>
-                        <li><a href="/search/" class="hover">不限</a></li>
-                        <li><a href="https://www.anxjm.com/search?invest=1">1万元以下</a> </li>
-                        <li><a href="https://www.anxjm.com/search?invest=2">1~~5万元</a> </li>
-                        <li><a href="https://www.anxjm.com/search?invest=3">5~~10万元</a> </li>
-                        <li><a href="https://www.anxjm.com/search?invest=4">10~~20万元</a> </li>
-                        <li><a href="https://www.anxjm.com/search?invest=5">20~~50万元</a> </li>
-                        <li><a href="https://www.anxjm.com/search?invest=6">50~~100万元</a> </li>
-                        <li><a href="https://www.anxjm.com/search?invest=7" class="last">100万元以上</a></li>
+                        @foreach($type_investment_types as $investment_type)
+                            @if(array_key_exists($investment_type->id,$investment_ids))<li><a href="/{{$thistypeinfo->real_path}}/{{$investment_type->url}}/">{{$investment_type->type}}</a> </li>@endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -69,330 +58,33 @@
             <div class="new_left">
                 <div class="white_bg">
                     <div class="item_tit">
-                        <span class="info">共<i>1476</i>个匹配商家</span>
+                        <span class="info">共<i>{{$pagelists->total()}}</i>个匹配商家</span>
                     </div>
                     <div class="bd">
+                        @foreach($pagelists as $pagelist)
                         <div class="item">
                             <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/13421.html" title="愿者上钩烤鱼加盟" target="_blank"><img src="/uploads/picture/51/b7/logo_51b7e7032536.jpg" alt="愿者上钩烤鱼加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/13421.html" target="_blank">愿者上钩烤鱼</a></span>
+                                <a href="/busInfo/{{$pagelist->id}}.html" title="{{$pagelist->brandname}}" target="_blank"><img src="{{$pagelist->litpic}}" alt="{{$pagelist->brandname}}" width="113" height="87"></a>
+                                <span><a href="/busInfo/{{$pagelist->id}}.html" target="_blank">{{$pagelist->brandname}}</a></span>
                             </div>
                             <div class="content">
                                 <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/13421.html" target="_blank" title="愿者上钩烤鱼加盟">愿者上钩烤鱼</a></h2>
+                                    <h2><a href="/busInfo/{{$pagelist->id}}.html" target="_blank" title="{{$pagelist->brandname}}">{{$pagelist->brandname}}</a></h2>
                                 </div>
                                 <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>19930</em></p>
-                                    <p>人　　气：<span>16046</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
-
+                                    <p>项目分类：<a href="/{{$thistypeinforeid->real_path}}/" target="_blank">{{$thistypeinforeid->typename}}</a> &gt; <a href="/{{$thistypeinfo->real_path}}/" target="_blank">{{$thistypeinfo->typename}}</a></p>
+                                    <p>意向加盟：<em>{{$thistypeinfo->click}}</em></p>
+                                    <p>人　　气：<span>{{$thistypeinfo->brandattch}}</span></p>
+                                    <p>投资金额：<span class="price">{{$investment_types[$pagelist->tzid]}}</span></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/12.html" title="美达尔烤肉加盟" target="_blank"><img src="/uploads/picture/3/12_logo_13.gif" alt="美达尔烤肉加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/12.html" target="_blank">美达尔烤肉</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/12.html" target="_blank" title="美达尔烤肉加盟">美达尔烤肉</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>13278</em></p>
-                                    <p>人　　气：<span>10821</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
+                            @endforeach
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/5437.html" title="龙潮炭火烤鱼加盟" target="_blank"><img src="/uploads/picture/1/5437_logo_31.jpg" alt="龙潮炭火烤鱼加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/5437.html" target="_blank">龙潮炭火烤鱼</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/5437.html" target="_blank" title="龙潮炭火烤鱼加盟">龙潮炭火烤鱼</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>11325</em></p>
-                                    <p>人　　气：<span>10137</span></p>
-                                    <p>投资金额：<span class="price">1-5万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/5333.html" title="汉釜宫加盟" target="_blank"><img src="/uploads/picture/5/5333_logo_15.png" alt="汉釜宫加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/5333.html" target="_blank">汉釜宫</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/5333.html" target="_blank" title="汉釜宫加盟">汉釜宫</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>12216</em></p>
-                                    <p>人　　气：<span>9209</span></p>
-                                    <p>投资金额：<span class="price">20-50万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/8583.html" title="大圣烧烤加盟" target="_blank"><img src="/uploads/picture/7b/94/logo_7b94c21c9ca3.jpg" alt="大圣烧烤加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/8583.html" target="_blank">大圣烧烤</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/8583.html" target="_blank" title="大圣烧烤加盟">大圣烧烤</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>9685</em></p>
-                                    <p>人　　气：<span>7017</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/9174.html" title="大凉山火盆烧烤加盟" target="_blank"><img src="/uploads/picture/47/b1/logo_47b16fa759ce.jpg" alt="大凉山火盆烧烤加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/9174.html" target="_blank">大凉山火盆烧烤</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/9174.html" target="_blank" title="大凉山火盆烧烤加盟">大凉山火盆烧烤</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>8244</em></p>
-                                    <p>人　　气：<span>6927</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/8896.html" title="蠔太郎烧烤加盟" target="_blank"><img src="/uploads/picture/5a/67/logo_5a67ed29159f.jpg" alt="蠔太郎烧烤加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/8896.html" target="_blank">蠔太郎烧烤</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/8896.html" target="_blank" title="蠔太郎烧烤加盟">蠔太郎烧烤</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>8406</em></p>
-                                    <p>人　　气：<span>6481</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/8686.html" title="手把签烧烤加盟" target="_blank"><img src="/uploads/picture/85/0e/logo_850e7e699154.jpg" alt="手把签烧烤加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/8686.html" target="_blank">手把签烧烤</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/8686.html" target="_blank" title="手把签烧烤加盟">手把签烧烤</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>8988</em></p>
-                                    <p>人　　气：<span>6387</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/8684.html" title="小猪小牛加盟" target="_blank"><img src="/uploads/picture/97/94/logo_97944294d351.jpg" alt="小猪小牛加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/8684.html" target="_blank">小猪小牛</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/8684.html" target="_blank" title="小猪小牛加盟">小猪小牛</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>8754</em></p>
-                                    <p>人　　气：<span>6200</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/8734.html" title="蚝之味烧烤加盟" target="_blank"><img src="/uploads/picture/a8/37/logo_a8371d44b92e.jpg" alt="蚝之味烧烤加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/8734.html" target="_blank">蚝之味烧烤</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/8734.html" target="_blank" title="蚝之味烧烤加盟">蚝之味烧烤</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>9484</em></p>
-                                    <p>人　　气：<span>6197</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/16473.html" title="鱼恋上蛙烤鱼加盟" target="_blank"><img src="/uploads/picture/b2/b9/logo_b2b95a79a666.png" alt="鱼恋上蛙烤鱼加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/16473.html" target="_blank">鱼恋上蛙烤鱼</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/16473.html" target="_blank" title="鱼恋上蛙烤鱼加盟">鱼恋上蛙烤鱼</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>8759</em></p>
-                                    <p>人　　气：<span>5007</span></p>
-                                    <p>投资金额：<span class="price">1-5万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/8503.html" title="李疯子烤牛蛙加盟" target="_blank"><img src="/uploads/picture/e4/e1/logo_e4e18b9543d7.jpg" alt="李疯子烤牛蛙加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/8503.html" target="_blank">李疯子烤牛蛙</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/8503.html" target="_blank" title="李疯子烤牛蛙加盟">李疯子烤牛蛙</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>11350</em></p>
-                                    <p>人　　气：<span>4792</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/8738.html" title="望鑫源烤牛肉加盟" target="_blank"><img src="/uploads/picture/68/31/logo_6831f0612aa9.jpg" alt="望鑫源烤牛肉加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/8738.html" target="_blank">望鑫源烤牛肉</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/8738.html" target="_blank" title="望鑫源烤牛肉加盟">望鑫源烤牛肉</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>8360</em></p>
-                                    <p>人　　气：<span>4706</span></p>
-                                    <p>投资金额：<span class="price">20-50万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/10888.html" title="韩鱼客烤鱼加盟" target="_blank"><img src="/uploads/picture/d9/74/logo_d974601eae86.jpg" alt="韩鱼客烤鱼加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/10888.html" target="_blank">韩鱼客烤鱼</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/10888.html" target="_blank" title="韩鱼客烤鱼加盟">韩鱼客烤鱼</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>8366</em></p>
-                                    <p>人　　气：<span>4401</span></p>
-                                    <p>投资金额：<span class="price">20-50万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/9181.html" title="博友扇贝王加盟" target="_blank"><img src="/uploads/picture/2e/88/logo_2e8895b3eb70.jpg" alt="博友扇贝王加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/9181.html" target="_blank">博友扇贝王</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/9181.html" target="_blank" title="博友扇贝王加盟">博友扇贝王</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>7384</em></p>
-                                    <p>人　　气：<span>4368</span></p>
-                                    <p>投资金额：<span class="price">1万元以下</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="t_Logo">
-                                <a href="https://www.anxjm.com/busInfo/9489.html" title="香木香羊烤全羊烧烤加盟" target="_blank"><img src="/uploads/picture/5e/0a/logo_5e0a9857e85b.jpg" alt="香木香羊烤全羊烧烤加盟" width="113" height="87"></a>
-                                <span><a href="https://www.anxjm.com/busInfo/9489.html" target="_blank">香木香羊烤全羊烧烤</a></span>
-                            </div>
-                            <div class="content">
-                                <div class="titBox">
-                                    <h2><a href="https://www.anxjm.com/busInfo/9489.html" target="_blank" title="香木香羊烤全羊烧烤加盟">香木香羊烤全羊烧烤</a></h2>
-                                </div>
-                                <div class="info">
-                                    <p>项目分类：<a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a> &gt; <a href="https://www.anxjm.com/5" target="_blank">烧烤</a></p>
-                                    <p>意向加盟：<em>5281</em></p>
-                                    <p>人　　气：<span>3862</span></p>
-                                    <p>投资金额：<span class="price">10-20万元</span></p>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!--分页 开始-->
                     <div class="page">
-                        <ul class="pagination">
-
-                            <li class="disabled"><span>«</span></li>
-
-
-
-
-
-                            <li class="active"><span>1</span></li>
-                            <li><a href="https://www.anxjm.com/5_2">2</a></li>
-                            <li><a href="https://www.anxjm.com/5_3">3</a></li>
-                            <li><a href="https://www.anxjm.com/5_4">4</a></li>
-                            <li><a href="https://www.anxjm.com/5_5">5</a></li>
-                            <li><a href="https://www.anxjm.com/5_6">6</a></li>
-                            <li><a href="https://www.anxjm.com/5_7">7</a></li>
-                            <li><a href="https://www.anxjm.com/5_8">8</a></li>
-
-                            <li class="disabled"><span>...</span></li>
-
-
-
-
-
-                            <li><a href="https://www.anxjm.com/5_92">92</a></li>
-                            <li><a href="https://www.anxjm.com/5_93">93</a></li>
-
-
-                            <li><a href="https://www.anxjm.com/5_2" rel="next">»</a></li>
-                        </ul>
-
+                        {!! str_replace(['cid=&amp;','cid=/'],'',str_replace('page=','',str_replace('?','/',preg_replace('/<a href=[\'\"]?([^\'\" ]+).*?>/','<a href="${1}/">',$pagelists->links())))) !!}
                     </div>
                     <!--分页 结束-->
                 </div>

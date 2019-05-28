@@ -124,7 +124,7 @@ Route::post('/miptopphonecomplate/','Frontend\PhoneController@TopPhoneComplate')
 Route::get('{path}','Frontend\ArticleCategorizationController@listNews')->where('path','[a-zA-Z0-9_]+')->name('newslist');
 Route::get('{path}/{tid}_{zid?}','Frontend\ArticleCategorizationController@projectBrandLists')->where(['path'=>'[a-zA-Z0-9_]+','tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('projectlists');
 Route::get('{path}/{tid}_{zid?}/p{page}','Frontend\ArticleCategorizationController@projectBrandLists')->where(['path'=>'[a-zA-Z0-9_]+','tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('projectlists2');
-Route::get('{path}/p{page}','Frontend\ArticleCategorizationController@listNews')->where(['path'=>'[a-zA-Z0-9_]+','page'=>'[0-9]+'])->name('newspagelist');
+Route::get('{path}/{page}','Frontend\ArticleCategorizationController@listNews')->where(['path'=>'[a-zA-Z0-9_]+','page'=>'[0-9]+'])->name('newspagelist');
 Route::get('{path}/{path2}','Frontend\ArticleCategorizationController@CityBrandLists')->where(['path'=>'[a-zA-Z_0-9]+','path2'=>'[a-zA-Z_]+'])->name('citypagelist');
 Route::get('{path}/{path2}/p{page}','Frontend\ArticleCategorizationController@CityBrandLists')->where(['path'=>'[a-zA-Z_0-9]+','path2'=>'[a-zA-Z_]+'])->name('citypagelist2');
 Route::get('{path}/{path2}/{tid}_{zid?}','Frontend\ArticleCategorizationController@CityInverBrandLists')->where(['path'=>'[a-zA-Z_0-9]+','path2'=>'[a-zA-Z_]+','tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('citypagelist2');

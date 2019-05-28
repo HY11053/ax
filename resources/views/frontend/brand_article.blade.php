@@ -18,7 +18,7 @@
 @stop
 @section('main_content')
     <!--当前位置 开始-->
-    <div class="path">当前位置：<a href="/">首页</a> > <a href="/{{$thisbrandtypecidinfo->real_path}}/">{{$thisbrandtypecidinfo->typename}}</a> > <a href="https://www.anxjm.com/{{$thisbrandtypeinfo->real_path}}/">{{$thisbrandtypeinfo->typename}}</a> > {{$thisarticleinfos->brandname}}</div>
+    <div class="path">当前位置：<a href="/">首页</a> > <a href="/{{$thisbrandtypecidinfo->real_path}}/">{{$thisbrandtypecidinfo->typename}}</a> > <a href="/{{$thisbrandtypeinfo->real_path}}/">{{$thisbrandtypeinfo->typename}}</a> > {{$thisarticleinfos->brandname}}</div>
     <!--当前位置 结束-->
     <!--main_strat-->
     <div class="c_bar_wrap">
@@ -207,41 +207,6 @@
                         @endforeach
                     </ul>
                 </div>
-            </div>
-            <!-- 留言列表 start -->
-            <div class="context_title">
-                <div style="font-weight:bold;font-size: 20px; height: 40px;line-height: 40px;color: #D71318;">百格汉斯烤肉最新留言</div>
-                <div class="c_line">
-                    <div class="cl"></div>
-                </div>
-            </div>
-            <div class="company_contact">
-                <!--用户留言开始-->
-                <div class="msg_list">
-                    <div class="tit">客户留言</div>
-                    <div class="msg_cont" id="js_msg">
-                        <div class="bd">
-                            <ul>
-                                <li><span class="data">05-25 10:18</span><span class="red">唐女士&nbsp;&nbsp;189******97</span>对该项目产生意向：我想加盟，请联系我。</li>
-                                <li><span class="data">05-26 03:05</span><span class="red">王女士&nbsp;&nbsp;134******67</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
-                                <li><span class="data">05-26 07:28</span><span class="red">周女士&nbsp;&nbsp;131******92</span>对该项目产生意向：初步打算加入贵公司，请寄资料。</li>
-                                <li><span class="data">05-26 11:39</span><span class="red">赵女士&nbsp;&nbsp;131******19</span>对该项目产生意向：你好！我想加盟代理你们的品牌，请联系我。</li>
-                                <li><span class="data">05-26 04:31</span><span class="red">孙先生&nbsp;&nbsp;180******94</span>对该项目产生意向：你们的总部在哪里部在哪里？</li>
-                                <li><span class="data">05-26 09:00</span><span class="red">郭先生&nbsp;&nbsp;138******59</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
-                                <li><span class="data">05-27 01:27</span><span class="red">刘先生&nbsp;&nbsp;189******74</span>对该项目产生意向：初步打算加入贵公司，请寄资料。</li>
-                                <li><span class="data">05-27 05:57</span><span class="red">赵女士&nbsp;&nbsp;136******73</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
-                                <li><span class="data">05-27 09:56</span><span class="red">王女士&nbsp;&nbsp;170******87</span>对该项目产生意向：对该项目产生意向：我想知道加盟费用是多少。谢谢</li>
-                                <li><span class="data">05-27 02:17</span><span class="red">易女士&nbsp;&nbsp;156******66</span>对该项目产生意向：请问店面面积需要多大？</li>
-                                <li><span class="data">05-27 07:05</span><span class="red">孙先生&nbsp;&nbsp;170******63</span>对该项目产生意向：你们的总部在哪里部在哪里？</li>
-                                <li><span class="data">05-27 11:40</span><span class="red">唐女士&nbsp;&nbsp;136******92</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
-                                <li><span class="data">05-28 04:05</span><span class="red">周女士&nbsp;&nbsp;189******14</span>对该项目产生意向：初步打算加入贵公司，请寄资料。</li>
-                                <li><span class="data">05-28 08:06</span><span class="red">吴先生&nbsp;&nbsp;152******58</span>对该项目产生意向：请问店面面积需要多大？</li>
-                                <li><span class="data">05-28 12:47</span><span class="red">赵女士&nbsp;&nbsp;138******67</span>对该项目产生意向：做为代理加盟商可以得到哪些支持?</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--用户留言结束-->
             </div>
           @include('frontend.liuyan')
             <!-- 添加留言 end -->
