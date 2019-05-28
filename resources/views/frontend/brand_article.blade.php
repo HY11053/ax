@@ -155,7 +155,9 @@
         <!-- 左侧 start -->
 
         <div class="context_left">
-            {!! $thisarticleinfos->body !!}
+            <div class="body_tit">
+                {!! $content !!}
+            </div>
             <!-- 资质认证 start -->
             <div class="context_title" id="js_join_5">
                 <div style="font-weight:bold;font-size: 20px; height: 40px;line-height: 40px;color: #D71318;">百格汉斯烤肉资质认证</div>
@@ -191,6 +193,21 @@
             </div>
             <div class="c_line2"></div>
             <!-- 相关文章 end -->
+            <div class="tujian_brand">
+                <div class="common_tit">
+                    <h2>{{$thisbrandtypeinfo->typename}}推荐品牌</h2></div>
+                <div class="bd_cont">
+                    <ul>
+                        @foreach($brandarticles as $brandarticle)
+                            <li>
+                                <a href="https://www.anxjm.com/busInfo/{{$brandarticle->id}}.html" target="_blank">
+                                    <div class="img"><img src="{{$brandarticle->litpic}}" width="120" height="90" alt="{{$brandarticle->beandname}}"></div><span>{{$brandarticle->brandname}}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
             <!-- 留言列表 start -->
             <div class="context_title">
                 <div style="font-weight:bold;font-size: 20px; height: 40px;line-height: 40px;color: #D71318;">百格汉斯烤肉最新留言</div>
@@ -229,30 +246,35 @@
           @include('frontend.liuyan')
             <!-- 添加留言 end -->
         </div>
-
-        <!-- 左侧 end -->
-
         <!-- 右侧 end -->
         <div class="context_right">
             <!-- 同类项目 start -->
-            <div class="context_title">
-					<span>
-						<a href="https://www.anxjm.com/ms/" target="_blank">更多&gt;&gt;</a>
-					</span>
-                <h2>{{$thisarticleinfos->brandname}}同类项目</h2>
-                <div class="c_line">
-                    <div class="cl"></div>
+            <div class="rightcon">
+                <div class="context_title">
+                    <h2>{{$thisbrandtypeinfo->typename}}品牌排行榜</h2>
+                </div>
+                <ul class="right_company">
+                    @foreach($paihangbangs as $index=>$paihangbang)
+                        <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a></span> <span class="invest">[{{$investment_types[$paihangbang->tzid]}}]</span> </li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="rightcon bd_commit2">
+                <div class="context_title">
+                    <span><a href="https://www.anxjm.com/ms/" target="_blank">更多&gt;&gt;</a></span>
+                    <h2>{{$thisbrandtypeinfo->typename}}热点资讯</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                        @foreach($latesttypenews as $latesttypenew)
+                            <li><a href="https://www.anxjm.com/news/{{$latesttypenew->id}}.html" target="_blank" title="{{$latesttypenew->title}}">{{$latesttypenew->title}}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
-            <ul class="right_company">
-                @foreach($paihangbangs as $index=>$paihangbang)
-                <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a></span> <span class="invest">[{{$investment_types[$paihangbang->tzid]}}]></span> </li>
-                @endforeach
-            </ul>
-            <p class="clr"></p>
-            <div class="bd_commit ">
-                <div class="common_hd">
-                    <h2 class="hd_tit">最新项目</h2></div>
+            <div class="rightcon bd_commit ">
+                <div class="context_title">
+                    <h2 class="hd_tit">{{$thisbrandtypeinfo->typename}}最新入驻品牌</h2></div>
                 <div class="bd_cont">
                     <ul>
                         @foreach($latestbrands as $latestbrand)
@@ -261,11 +283,33 @@
                     </ul>
                 </div>
             </div>
+            <div class="rightcon bd_commit2">
+                <div class="context_title">
+                    <span><a href="https://www.anxjm.com/ms/" target="_blank">更多&gt;&gt;</a></span>
+                    <h2>最新品牌新闻</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                        @foreach($latestnews as $latestnew)
+                            <li><a href="/news/{{$latestnew->id}}.html" target="_blank" title="{{$latestnew->title}}">{{$latestnew->title}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
 
-            <!-- 最新加盟项目 end -->
-            <div class="right_cywd"> </div>
+            <div class="rightcon bd_commit ">
+                <div class="context_title">
+                    <h2 class="hd_tit">最新入驻品牌</h2></div>
+                <div class="bd_cont">
+                    <ul>
+                        @foreach($newbrands as $newbrand)
+                            <li><a href="/busInfo/{{$newbrand->id}}.html" target="_blank" ><div class="img"><img src="{{$newbrand->litpic}}" width="120" height="90" alt="{{$newbrand->brandname}}"/></div><span>{{$newbrand->brandname}}</span></a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
         </div>
-
         <!-- 右侧 end -->
 
         <p class="clr"></p>

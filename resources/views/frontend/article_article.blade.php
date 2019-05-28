@@ -18,27 +18,27 @@
     <!--top 开始-->
     <div class="nav_top">
         <ul>
-            <li><a href="https://www.anxjm.com/newsPage/1601/">安心网说</a></li>
-            <li><a href="https://www.anxjm.com/newsPage/1602/">加盟费用</a></li>
-            <li><a href="https://www.anxjm.com/newsPage/1603/">安心创业</a></li>
-            <li><a href="https://www.anxjm.com/newsPage/1604/">选址筹备</a></li>
-            <li><a href="https://www.anxjm.com/newsPage/1605/">经营之道</a></li>
-            <li><a href="https://www.anxjm.com/newsPage/1606/">加盟资讯</a></li>
-            <li><a href="https://www.anxjm.com/newsPage/1607/">加盟优势</a></li>
-            <li><a href="https://www.anxjm.com/newsPage/1608/">加盟条件</a></li>
-            <li><a href="https://www.anxjm.com/newsPage/1609/">加盟流程</a></li>
-            <li><a href="https://www.anxjm.com/newsPage/1610/">品牌动态</a></li>
+            <li><a href="/newsPage/1601/">安心网说</a></li>
+            <li><a href="/newsPage/1602/">加盟费用</a></li>
+            <li><a href="/newsPage/1603/">安心创业</a></li>
+            <li><a href="/newsPage/1604/">选址筹备</a></li>
+            <li><a href="/newsPage/1605/">经营之道</a></li>
+            <li><a href="/newsPage/1606/">加盟资讯</a></li>
+            <li><a href="/newsPage/1607/">加盟优势</a></li>
+            <li><a href="/newsPage/1608/">加盟条件</a></li>
+            <li><a href="/newsPage/1609/">加盟流程</a></li>
+            <li><a href="/newsPage/1610/">品牌动态</a></li>
         </ul>
     </div>
     <!--top 结束-->
     <!--广告位 开始-->
     <!--轮播广告结束-->
     <div class="brannd_1200x60">
-        <a href="https://www.anxjm.com/busInfo/5703.html"><img src="/uploads/picture/5c/5f/ad_8f06a3313b6eef62d336c8e901fd.gif" width="1200" height="60" alt="ucc国际洗衣" /></a>
+        <a href="/busInfo/5703.html"><img src="/uploads/picture/5c/5f/ad_8f06a3313b6eef62d336c8e901fd.gif" width="1200" height="60" alt="ucc国际洗衣" /></a>
     </div>
     <!--广告位 结束-->
     <!--当前位置 开始-->
-    <div class="path">当前位置<a href="/">首页</a> > <a href="https://www.anxjm.com/newsPage/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>> {{$thisarticleinfos->title}}</div>
+    <div class="path">当前位置<a href="/">首页</a> > <a href="/newsPage/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>> {{$thisarticleinfos->title}}</div>
     <!--当前位置 结束-->
     <!--文章头部 开始-->
     @if(isset($thisarticlebrandinfos))
@@ -128,7 +128,8 @@
                                 @foreach($brandarticles as $brandarticle)
                                 <li>
                                     <a href="https://www.anxjm.com/busInfo/{{$brandarticle->id}}.html" target="_blank">
-                                        <div class="img"><img src="{{$brandarticle->litpic}}" width="120" height="90" alt="{{$brandarticle->beandname}}"></div><span>{{$brandarticle->brandname}}</span></a>
+                                        <div class="img"><img src="{{$brandarticle->litpic}}" width="120" height="90" alt="{{$brandarticle->beandname}}"></div><span>{{$brandarticle->brandname}}</span>
+                                    </a>
                                 </li>
                                 @endforeach
                             </ul>
@@ -137,55 +138,70 @@
             </div>
         </div>
         <!--左边模块 结束-->
-        <div class="new_right">
-            <div class="right_img">
-                <a href="https://www.anxjm.com/busInfo/5703.html"><img src="/uploads/picture/15/08/ad_116cd3d859c58669c5cb790607aa.jpg" width="300" height="275" alt="ucc干洗加盟"/></a>
+        <!-- 右侧 end -->
+        <div class="context_right">
+            <!-- 同类项目 start -->
+            <div class="rightcon">
+                <div class="context_title">
+                    <span>@if(isset($thisbrandtypeinfo))<a href="/{{$thisbrandtypecidinfo->real_path}}/" target="_blank">更多&gt;&gt;</a>@endif</span>
+                    <h2>@if(isset($thisbrandtypeinfo)){{$thisbrandtypeinfo->typename}}@endif品牌排行榜</h2>
+                </div>
+                <ul class="right_company">
+                    @foreach($paihangbangs as $index=>$paihangbang)
+                        <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a></span> <span class="invest">[{{$investment_types[$paihangbang->tzid]}}]</span> </li>
+                    @endforeach
+                </ul>
             </div>
-            <!--热点资讯 开始-->
-            <div class="bd_commit ">
-                <div class="common_hd">
-                    <h2 class="hd_tit">热点资讯</h2></div>
+            <div class="rightcon bd_commit2">
+                <div class="context_title">
+                    <h2>@if(isset($thisbrandtypeinfo)){{$thisbrandtypeinfo->typename}}品牌@endif热点资讯</h2>
+                </div>
                 <div class="bd">
                     <ul>
                         @foreach($latesttypenews as $latesttypenew)
-                        <li><a href="https://www.anxjm.com/news/{{$latesttypenew->id}}.html" target="_blank" title="{{$latesttypenew->title}}">{{$latesttypenew->title}}</a></li>
+                            <li><a href="https://www.anxjm.com/news/{{$latesttypenew->id}}.html" target="_blank" title="{{$latesttypenew->title}}">{{$latesttypenew->title}}</a></li>
                         @endforeach
                     </ul>
                 </div>
             </div>
-            <!--热点资讯 结束-->
-            <!--最新资讯 开始-->
-            <div class="bd_commit ">
-                <div class="common_hd">
-                    <h2 class="hd_tit">排行榜</h2></div>
-                <div class="bd">
-                    <ul>
-                        <li><a href="https://www.anxjm.com/news/212232.html" target="_blank" title="朴大叔烤肉加盟多少钱?创业投资仅需几万元">朴大叔烤肉加盟多少钱?创业投资仅需几万元</a></li>
-                        <li><a href="https://www.anxjm.com/news/212231.html" target="_blank" title="朴大叔烤肉如何加盟?无需操作经验，轻松便可开店">朴大叔烤肉如何加盟?无需操作经验，轻松便可开店</a></li>
-                        <li><a href="https://www.anxjm.com/news/212230.html" target="_blank" title="好玩伴炭火烧烤加盟多少钱?投资创业只需几万元">好玩伴炭火烧烤加盟多少钱?投资创业只需几万元</a></li>
-                        <li><a href="https://www.anxjm.com/news/212229.html" target="_blank" title="好玩伴炭火烧烤怎么加盟?无需操作经验，轻松加盟">好玩伴炭火烧烤怎么加盟?无需操作经验，轻松加盟</a></li>
-                        <li><a href="https://www.anxjm.com/news/212228.html" target="_blank" title="串遇音乐烧烤串吧加盟条件是什么?条件少，满足就能加盟">串遇音乐烧烤串吧加盟条件是什么?条件少，满足就能加盟</a></li>
-                        <li><a href="https://www.anxjm.com/news/212227.html" target="_blank" title="串遇音乐烧烤串吧如何加盟?流程简单项目好">串遇音乐烧烤串吧如何加盟?流程简单项目好</a></li>
-                        <li><a href="https://www.anxjm.com/news/212226.html" target="_blank" title="库尔班大叔烤肉串加盟条件是什么?条件少，满足就可加盟">库尔班大叔烤肉串加盟条件是什么?条件少，满足就可加盟</a></li>
-                        <li><a href="https://www.anxjm.com/news/212225.html" target="_blank" title="库尔班大叔烤肉串如何加盟?操作简单，开店快">库尔班大叔烤肉串如何加盟?操作简单，开店快</a></li>
-                        <li><a href="https://www.anxjm.com/news/212224.html" target="_blank" title="宫门口烤肉加盟多少钱?几万元便可投资加盟">宫门口烤肉加盟多少钱?几万元便可投资加盟</a></li>
-                        <li><a href="https://www.anxjm.com/news/212223.html" target="_blank" title="宫门口烤肉怎么加盟?无需操作经验，轻松便可开店">宫门口烤肉怎么加盟?无需操作经验，轻松便可开店</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!--最新资讯 结束-->
-            <div class="bd_commit ">
-                <div class="common_hd">
-                    <h2 class="hd_tit">最新项目</h2></div>
+            @if(isset($thisbrandtypeinfo))
+            <div class="rightcon bd_commit ">
+                <div class="context_title">
+                    <h2 class="hd_tit">{{$thisbrandtypeinfo->typename}}最新入驻品牌</h2></div>
                 <div class="bd_cont">
                     <ul>
                         @foreach($latestbrands as $latestbrand)
-                        <li><a href="/busInfo/{{$latestbrand->id}}.html" target="_blank" ><div class="img"><img src="{{$latestbrand->litpic}}" width="120" height="90" alt="{{$latestbrand->brandname}}"/></div><span>{{$latestbrand->brandname}}</span></a></li>
+                            <li><a href="/busInfo/{{$latestbrand->id}}.html" target="_blank" ><div class="img"><img src="{{$latestbrand->litpic}}" width="120" height="90" alt="{{$latestbrand->brandname}}"/></div><span>{{$latestbrand->brandname}}</span></a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            @endif
+            <div class="rightcon bd_commit2">
+                <div class="context_title">
+                    <span><a href="https://www.anxjm.com/ms/" target="_blank">更多&gt;&gt;</a></span>
+                    <h2>最新品牌新闻</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                        @foreach($latestnews as $latestnew)
+                            <li><a href="/news/{{$latestnew->id}}.html" target="_blank" title="{{$latestnew->title}}">{{$latestnew->title}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="rightcon bd_commit ">
+                <div class="context_title">
+                    <h2 class="hd_tit">最新入驻品牌</h2></div>
+                <div class="bd_cont">
+                    <ul>
+                        @foreach($newbrands as $newbrand)
+                            <li><a href="/busInfo/{{$newbrand->id}}.html" target="_blank" ><div class="img"><img src="{{$newbrand->litpic}}" width="120" height="90" alt="{{$newbrand->brandname}}"/></div><span>{{$newbrand->brandname}}</span></a></li>
                         @endforeach
                     </ul>
                 </div>
             </div>
         </div>
+        <!-- 右侧 end -->
     </div>
-
 @stop

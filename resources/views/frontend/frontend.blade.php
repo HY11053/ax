@@ -96,9 +96,10 @@
     </div>
 </div>
 <!--header 开始-->
-
-<div class=" main ">
-    @yield('main_content')
+<div class="main_container">
+    <div class=" main ">
+        @yield('main_content')
+    </div>
 </div>
 <div class="brannd_1200x60">
     <img src="/public/images/temp/brand1200x60_14.jpg" width="1200" height="60" alt="" />
