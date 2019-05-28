@@ -246,62 +246,21 @@
             </div>
             <ul class="right_company">
                 @foreach($paihangbangs as $index=>$paihangbang)
-                <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a></span> <span class="invest">[{{--{{$investment_types[$paihangbang->tzid]}}--}}]</span> </li>
+                <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a></span> <span class="invest">[{{$investment_types[$paihangbang->tzid]}}]></span> </li>
                 @endforeach
             </ul>
             <p class="clr"></p>
-
-            <!-- 同类项目 end -->
-
-            <!-- 同类项目 start -->
-
-            <div class="context_title">
-					<span>
-						<a href="/search?invest=3" target="_blank">更多&gt;&gt;</a>
-					</span>
-                <h2>{{$thisbrandtypeinfo->typename}}热门资讯</h2>
-                <div class="c_line">
-                    <div class="cl"></div>
+            <div class="bd_commit ">
+                <div class="common_hd">
+                    <h2 class="hd_tit">最新项目</h2></div>
+                <div class="bd_cont">
+                    <ul>
+                        @foreach($latestbrands as $latestbrand)
+                            <li><a href="/busInfo/{{$latestbrand->id}}.html" target="_blank" ><div class="img"><img src="{{$latestbrand->litpic}}" width="120" height="90" alt="{{$latestbrand->brandname}}"/></div><span>{{$latestbrand->brandname}}</span></a></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
-            <ul class="right_company">
-                <li> <span class="ico  num ">1</span> <span class="name"><a href="https://www.anxjm.com/busInfo/5.html" target="_blank" title="茶桔便">茶桔便</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico  num ">2</span> <span class="name"><a href="https://www.anxjm.com/busInfo/13.html" target="_blank" title="易道教育">易道教育</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico  num ">3</span> <span class="name"><a href="https://www.anxjm.com/busInfo/15.html" target="_blank" title="洁之圣洗衣">洁之圣洗衣</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">4</span> <span class="name"><a href="https://www.anxjm.com/busInfo/18.html" target="_blank" title="建达IT生活馆">建达IT生活馆</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">5</span> <span class="name"><a href="https://www.anxjm.com/busInfo/19.html" target="_blank" title="玛莉乔思箱包">玛莉乔思箱包</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">6</span> <span class="name"><a href="https://www.anxjm.com/busInfo/33.html" target="_blank" title="七心作文">七心作文</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">7</span> <span class="name"><a href="https://www.anxjm.com/busInfo/37.html" target="_blank" title="贵丽人家纺">贵丽人家纺</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">8</span> <span class="name"><a href="https://www.anxjm.com/busInfo/38.html" target="_blank" title="卓人右脑教育">卓人右脑教育</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">9</span> <span class="name"><a href="https://www.anxjm.com/busInfo/61.html" target="_blank" title="乐好奇汉堡">乐好奇汉堡</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">10</span> <span class="name"><a href="https://www.anxjm.com/busInfo/68.html" target="_blank" title="变态薯薯条">变态薯薯条</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">11</span> <span class="name"><a href="https://www.anxjm.com/busInfo/69.html" target="_blank" title="梦之谷画像">梦之谷画像</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">12</span> <span class="name"><a href="https://www.anxjm.com/busInfo/72.html" target="_blank" title="亮湾湾饰品">亮湾湾饰品</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">13</span> <span class="name"><a href="https://www.anxjm.com/busInfo/79.html" target="_blank" title="赛维干洗店">赛维干洗店</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">14</span> <span class="name"><a href="https://www.anxjm.com/busInfo/88.html" target="_blank" title="ur-lily美包">ur-lily美包</a></span> <span class="invest">[5-10万元]</span> </li>
-                <li> <span class="ico ">15</span> <span class="name"><a href="https://www.anxjm.com/busInfo/96.html" target="_blank" title="依莱斯珠宝">依莱斯珠宝</a></span> <span class="invest">[5-10万元]</span> </li>
-            </ul>
-            <p class="clr"></p>
-
-            <!-- 同类项目 end -->
-
-            <!-- 最新加盟项目 start -->
-
-            <div class="context_title">
-					<span>
-						<a href="/search" target="_blank">更多&gt;&gt;</a>
-					</span>
-                <h2>{{$thisbrandtypeinfo->typename}}最新入驻品牌</h2>
-                <div class="c_line">
-                    <div class="cl"></div>
-                </div>
-            </div>
-            <ul class="right_company">
-                @foreach($latestbrands as $index=>$latestbrand)
-                <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$latestbrand->id}}.html" target="_blank" title="{{$latestbrand->brandname}}">{{$latestbrand->brandname}}</a></span> <span class="invest">[5-10万元]</span> </li>
-                @endforeach
-            </ul>
-            <p class="clr"></p>
 
             <!-- 最新加盟项目 end -->
             <div class="right_cywd"> </div>
