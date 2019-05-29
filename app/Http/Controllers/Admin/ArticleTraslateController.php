@@ -298,12 +298,12 @@ class ArticleTraslateController extends Controller
     public function createInverment()
     {
         InvestmentType::create(['id'=>1,'type'=>'1万元以下','url'=>'0_1','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
-        InvestmentType::create(['id'=>2,'type'=>'1~~5万元','url'=>'1_5','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
-        InvestmentType::create(['id'=>3,'type'=>'5~~10万元','url'=>'5_10','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
-        InvestmentType::create(['id'=>4,'type'=>'10~~20万元','url'=>'10_20','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
-        InvestmentType::create(['id'=>5,'type'=>'20~~50万元','url'=>'20_50','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
-        InvestmentType::create(['id'=>6,'type'=>'50~~100万元','url'=>'50_100','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
-        InvestmentType::create(['id'=>7,'type'=>'100万以上','url'=>'100','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
+        InvestmentType::create(['id'=>2,'type'=>'1-5万元','url'=>'1_5','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
+        InvestmentType::create(['id'=>3,'type'=>'5-10万元','url'=>'5_10','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
+        InvestmentType::create(['id'=>4,'type'=>'10-20万元','url'=>'10_20','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
+        InvestmentType::create(['id'=>5,'type'=>'20-50万元','url'=>'20_50','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
+        InvestmentType::create(['id'=>6,'type'=>'50-100万元','url'=>'50_100','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
+        InvestmentType::create(['id'=>7,'type'=>'100万以上','url'=>'100-200','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
         echo '投资分类生成成功！';
     }
 

@@ -90,62 +90,68 @@
                 </div>
             </div>
             <!--左边模块 结束-->
-            <div class="new_right">
-                <div class="right_img">
-                    <a href="https://www.anxjm.com/busInfo/5703.html"><img src="/uploads/picture/15/08/ad_116cd3d859c58669c5cb790607aa.jpg" width="300" height="275" alt="ucc干洗加盟"></a>
+            <!-- 右侧 end -->
+            <div class="context_right">
+                <!-- 同类项目 start -->
+                <div class="rightcon">
+                    <div class="context_title">
+                        <span><a href="/{{$thistypeinfo->real_path}}/" target="_blank">更多&gt;&gt;</a></span>
+                        <h2>{{$thistypeinfo->typename}}品牌排行榜</h2>
+                    </div>
+                    <ul class="right_company">
+                        @foreach($paihangbangs as $index=>$paihangbang)
+                            <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a></span> <span class="invest">[{{$investment_types[$paihangbang->tzid]}}]</span> </li>
+                        @endforeach
+                    </ul>
                 </div>
-                <!--热点资讯 开始-->
-                <div class="bd_commit ">
-                    <div class="common_hd"><h2 class="hd_tit">热点资讯</h2></div>
+                <div class="rightcon bd_commit2">
+                    <div class="context_title">
+                        <h2>{{$thistypeinfo->typename}}品牌热点资讯</h2>
+                    </div>
                     <div class="bd">
                         <ul>
-                            <li><a href="https://www.anxjm.com/news/14515.html" target="_blank" title="成功的经营之道 用心去感受这99个成功心得">成功的经营之道 用心去感受这99个成功心得</a></li>
-                            <li><a href="https://www.anxjm.com/news/160533" target="_blank" title="小吃店经营技巧(怎么经营一个小吃店及小吃店选址几大禁忌)">小吃店经营技巧(怎么经营一个小吃店及小吃店选址几大禁忌)</a></li>
-                            <li><a href="https://www.anxjm.com/news/160486" target="_blank" title="店铺选址技巧之店铺选址的五个步骤和店铺门口风水十大禁忌">店铺选址技巧之店铺选址的五个步骤和店铺门口风水十大禁忌</a></li>
-                            <li><a href="https://www.anxjm.com/news/14516.html" target="_blank" title="店铺如何选址:多调查、少吃亏(详细的调查要点分析)">店铺如何选址:多调查、少吃亏(详细的调查要点分析)</a></li>
-                            <li><a href="https://www.anxjm.com/news/14534.html" target="_blank" title="4个低投入利润高不起眼的行业-不敢相信有如此高利润">4个低投入利润高不起眼的行业-不敢相信有如此高利润</a></li>
-                            <li><a href="https://www.anxjm.com/news/14536.html" target="_blank" title="15个高利润创业项目案例+分析高利润项目的内因">15个高利润创业项目案例+分析高利润项目的内因</a></li>
-                            <li><a href="https://www.anxjm.com/news/14514.html" target="_blank" title="创业陷阱：投资者一定要学会分清这五类招商陷阱">创业陷阱：投资者一定要学会分清这五类招商陷阱</a></li>
-                            <li><a href="https://www.anxjm.com/news/15694.html" target="_blank" title="小主人小记者加盟费用是多少？只需这些助你成功">小主人小记者加盟费用是多少？只需这些助你成功</a></li>
-                            <li><a href="https://www.anxjm.com/news/15471.html" target="_blank" title="萨洛克披萨加盟条件有哪些？要求高不高？">萨洛克披萨加盟条件有哪些？要求高不高？</a></li>
-                            <li><a href="https://www.anxjm.com/news/17705.html" target="_blank" title="玖姿女装加盟费多少？分两个级别加盟费">玖姿女装加盟费多少？分两个级别加盟费</a></li>
+                            @foreach($latestbrandnews as $latestbrandnew)
+                                <li><a href="/news/{{$latestbrandnew->id}}.html" target="_blank" title="{{$latestbrandnew->title}}">{{$latestbrandnew->title}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
-                <!--热点资讯 结束-->
-                <!--最新资讯 开始-->
-                <div class="bd_commit ">
-                    <div class="common_hd"><h2 class="hd_tit">最新资讯</h2></div>
+                    <div class="rightcon bd_commit ">
+                        <div class="context_title">
+                            <h2 class="hd_tit">{{$thistypeinfo->typename}}最新入驻品牌</h2></div>
+                        <div class="bd_cont">
+                            <ul>
+                                @foreach($latestbrands as $latestbrand)
+                                    <li><a href="/busInfo/{{$latestbrand->id}}.html" target="_blank" ><div class="img"><img src="{{$latestbrand->litpic}}" width="120" height="90" alt="{{$latestbrand->brandname}}"/></div><span>{{$latestbrand->brandname}}</span></a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                <div class="rightcon bd_commit2">
+                    <div class="context_title">
+                        <span><a href="https://www.anxjm.com/ms/" target="_blank">更多&gt;&gt;</a></span>
+                        <h2>最新品牌新闻</h2>
+                    </div>
                     <div class="bd">
                         <ul>
-                            <li><a href="https://www.anxjm.com/news/212280.html" target="_blank" title="尚膳极炙烤肉加盟多少钱?创业投资只需几万元">尚膳极炙烤肉加盟多少钱?创业投资只需几万元</a></li>
-                            <li><a href="https://www.anxjm.com/news/212279.html" target="_blank" title="尚膳极炙烤肉加盟优势有哪些?优势多，发家致富的好项目">尚膳极炙烤肉加盟优势有哪些?优势多，发家致富的好项目</a></li>
-                            <li><a href="https://www.anxjm.com/news/212278.html" target="_blank" title="嘴嘴馋烧烤怎么加盟?流程简单项目好">嘴嘴馋烧烤怎么加盟?流程简单项目好</a></li>
-                            <li><a href="https://www.anxjm.com/news/212277.html" target="_blank" title="嘴嘴馋烧烤加盟优势有哪些?优势多，发展前景可观">嘴嘴馋烧烤加盟优势有哪些?优势多，发展前景可观</a></li>
-                            <li><a href="https://www.anxjm.com/news/212276.html" target="_blank" title="乡村牛仔摇滚烧烤怎么加盟?操作简单，开店快">乡村牛仔摇滚烧烤怎么加盟?操作简单，开店快</a></li>
-                            <li><a href="https://www.anxjm.com/news/212275.html" target="_blank" title="乡村牛仔摇滚烧烤加盟优势有哪些?优势多，前景好">乡村牛仔摇滚烧烤加盟优势有哪些?优势多，前景好</a></li>
-                            <li><a href="https://www.anxjm.com/news/212274.html" target="_blank" title="思婕环球内衣加盟利润怎么样?高端市场，收入空间更大">思婕环球内衣加盟利润怎么样?高端市场，收入空间更大</a></li>
-                            <li><a href="https://www.anxjm.com/news/212273.html" target="_blank" title="思婕环球内衣加盟费是多少钱?创业费用低,创业难度小">思婕环球内衣加盟费是多少钱?创业费用低,创业难度小</a></li>
-                            <li><a href="https://www.anxjm.com/news/212272.html" target="_blank" title="穆星源龟锅烤肉加盟条件是什么?条件少，符合即可加盟">穆星源龟锅烤肉加盟条件是什么?条件少，符合即可加盟</a></li>
-                            <li><a href="https://www.anxjm.com/news/212271.html" target="_blank" title="私の森语内衣加盟多少利润?投资利润高，把握商机赚钱多">私の森语内衣加盟多少利润?投资利润高，把握商机赚钱多</a></li>
+                            @foreach($latestnews as $latestnew)
+                                <li><a href="/news/{{$latestnew->id}}.html" target="_blank" title="{{$latestnew->title}}">{{$latestnew->title}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
-                <!--最新资讯 结束-->
-
-                <div class="bd_commit ">
-                    <div class="common_hd"><h2 class="hd_tit">最新资讯</h2></div>
+                <div class="rightcon bd_commit ">
+                    <div class="context_title">
+                        <h2 class="hd_tit">最新入驻品牌</h2></div>
                     <div class="bd_cont">
                         <ul>
-                            <li><a href="https://www.anxjm.com/busInfo/31988.html" target="_blank"><div class="img"><img src="/uploads/picture/00/56/logo_0056ae7d21f6.jpg" width="120" height="90" alt="尚膳极炙烤肉"></div><span>尚膳极炙烤肉</span></a></li>
-                            <li><a href="https://www.anxjm.com/busInfo/31987.html" target="_blank"><div class="img"><img src="/uploads/picture/8d/99/logo_8d99ae779f1a.jpg" width="120" height="90" alt="嘴嘴馋烧烤"></div><span>嘴嘴馋烧烤</span></a></li>
-                            <li><a href="https://www.anxjm.com/busInfo/31986.html" target="_blank"><div class="img"><img src="/uploads/picture/d8/eb/logo_d8eb361a40da.jpg" width="120" height="90" alt="乡村牛仔摇滚烧烤"></div><span>乡村牛仔摇滚烧烤</span></a></li>
-                            <li><a href="https://www.anxjm.com/busInfo/31985.html" target="_blank"><div class="img"><img src="/uploads/picture/7f/f4/logo_7ff494050952.png" width="120" height="90" alt="思婕环球内衣"></div><span>思婕环球内衣</span></a></li>
-                            <li><a href="https://www.anxjm.com/busInfo/31984.html" target="_blank"><div class="img"><img src="/uploads/picture/f7/0f/logo_f70f62ba9b00.png" width="120" height="90" alt="私の森语内衣"></div><span>私の森语内衣</span></a></li>
-                            <li><a href="https://www.anxjm.com/busInfo/31983.html" target="_blank"><div class="img"><img src="/uploads/picture/f6/68/logo_f6689922034a.jpg" width="120" height="90" alt="穆星源龟锅烤肉"></div><span>穆星源龟锅烤肉</span></a></li>
+                            @foreach($newbrands as $newbrand)
+                                <li><a href="/busInfo/{{$newbrand->id}}.html" target="_blank" ><div class="img"><img src="{{$newbrand->litpic}}" width="120" height="90" alt="{{$newbrand->brandname}}"/></div><span>{{$newbrand->brandname}}</span></a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
+            <!-- 右侧 end -->
         </div>
 @stop

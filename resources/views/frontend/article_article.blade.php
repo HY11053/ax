@@ -31,12 +31,6 @@
         </ul>
     </div>
     <!--top 结束-->
-    <!--广告位 开始-->
-    <!--轮播广告结束-->
-    <div class="brannd_1200x60">
-        <a href="/busInfo/5703.html"><img src="/uploads/picture/5c/5f/ad_8f06a3313b6eef62d336c8e901fd.gif" width="1200" height="60" alt="ucc国际洗衣" /></a>
-    </div>
-    <!--广告位 结束-->
     <!--当前位置 开始-->
     <div class="path">当前位置<a href="/">首页</a> > <a href="/newsPage/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>> {{$thisarticleinfos->title}}</div>
     <!--当前位置 结束-->
