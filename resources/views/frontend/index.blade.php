@@ -118,13 +118,6 @@
                             <li><a href="/busInfo/7254.html"><img src="https://www.anxjm.com/uploads/picture/1a/40/1a40a8aaef377749.JPG" width="116" height="128" alt="一品渝香干锅鸭头加盟"></a></li>
                             <li><a href="/busInfo/15614.html"><img src="https://www.anxjm.com/uploads/picture/64/3e/643e7a7ac0875b5d.jpg" width="116" height="128" alt="一品香卤肉饭加盟"></a></li>
                             <li><a href="/busInfo/4424.html"><img src="https://www.anxjm.com/uploads/picture/3d/8f/3d8f6ba2c6f4953c.jpg" width="116" height="128" alt="一扫光零食"></a></li>
-                            <li><a href=""><img src="" width="116" height="128" alt=""></a></li>
-                            <li><a href=""><img src="https://www.anxjm.com/uploads/picture/39/3d/393db9b993464cd5.jpg" width="116" height="128" alt=""></a></li>
-                            <li><a href=""><img src="https://www.anxjm.com/uploads/picture/50/9c/509c12118f4ad7a1.jpg" width="116" height="128" alt=""></a></li>
-                            <li><a href=""><img src="https://www.anxjm.com/uploads/picture/b4/25/b4252d79c3b42712.jpg" width="116" height="128" alt=""></a></li>
-                            <li><a href=""><img src="https://www.anxjm.com/uploads/picture/39/3d/393db9b993464cd5.jpg" width="116" height="128" alt=""></a></li>
-                            <li><a href=""><img src="https://www.anxjm.com/uploads/picture/e4/9d/e49d84d7a00cae8a.jpg" width="116" height="128" alt=""></a></li>
-                            <li><a href=""><img src="https://www.anxjm.com/uploads/picture/e4/9d/e49d84d7a00cae8a.jpg" width="116" height="128" alt=""></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1449,21 +1442,23 @@
                             <div class="hd">
                                 <div class="tit">
                                     <h3>安心网说</h3>
-                                    <span class="more"><a href="https://www.anxjm.com/newsPage/1601">更多&gt;&gt;</a></span></div>
-                                <dl>
-                                    <dd class="name"><a href="https://www.anxjm.com/news/212369.html" target="_blank">兰黛丽莎内衣加盟多少钱?低投入、低风险</a></dd>
-                                    <dd class="desc">
-                                        兰黛丽莎内衣加盟多少钱?内衣是与肌肤亲密接触的衣物，是在外衣之下与人体关系最密切的衣物，可以增添人...<a href="https://www.anxjm.com/news/212369.html">详情&gt;</a></dd>
-
-                                </dl>
+                                    <span class="more"><a href="https://www.anxjm.com/newsPage/1601/">更多&gt;&gt;</a></span></div>
+                                @foreach($anxwangshuos as $anxwangshuo)
+                                    @if($loop->first)
+                                    <dl>
+                                        <dd class="name"><a href="/news/{{$anxwangshuo->id}}.html" target="_blank">{{$anxwangshuo->title}}</a></dd>
+                                        <dd class="desc">{{$anxwangshuo->description}}...<a href="/news/{{$anxwangshuo->id}}.html">详情&gt;</a></dd>
+                                    </dl>
+                                    @endif
+                                    @endforeach
                             </div>
                             <div class="bd">
                                 <ul>
-                                    <li><a href="https://www.anxjm.com/news/212330.html" target="_blank" title="伊卡路斯内衣加盟利润怎么样?市场备受欢迎，利润滚滚而来">伊卡路斯内衣加盟利润怎么样?市场备受欢迎，利润滚滚而来</a><span>2019-05-29</span></li>
-                                    <li><a href="https://www.anxjm.com/news/212328.html" target="_blank" title="十缘美内衣加盟利润怎么样?利润不断，收益满满">十缘美内衣加盟利润怎么样?利润不断，收益满满</a><span>2019-05-29</span></li>
-                                    <li><a href="https://www.anxjm.com/news/212324.html" target="_blank" title="瑞丽舍内衣加盟利润怎么样?利润大，开店就能致富做老板">瑞丽舍内衣加盟利润怎么样?利润大，开店就能致富做老板</a><span>2019-05-29</span></li>
-                                    <li><a href="https://www.anxjm.com/news/212318.html" target="_blank" title="奴芝内衣加盟利润怎么样?高端市场，收入空间更大">奴芝内衣加盟利润怎么样?高端市场，收入空间更大</a><span>2019-05-29</span></li>
-                                    <li><a href="https://www.anxjm.com/news/212316.html" target="_blank" title="奈蒂亚内衣加盟多少利润?利润回报丰厚，轻松赚钱全家幸福!">奈蒂亚内衣加盟多少利润?利润回报丰厚，轻松赚钱全家幸福!</a><span>2019-05-29</span></li>
+                                    @foreach($anxwangshuos as $anxwangshuo)
+                                        @if(!$loop->first)
+                                             <li><a href="/news/{{$anxwangshuo->id}}.html" target="_blank" title="{{$anxwangshuo->title}}">{{$anxwangshuo->title}}</a><span>{{date('Y-m-d',strtotime($anxwangshuo->created_at))}}</span></li>
+                                        @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -1471,21 +1466,23 @@
                             <div class="hd">
                                 <div class="tit">
                                     <h3>加盟费用</h3>
-                                    <span class="more"><a href="https://www.anxjm.com/newsPage/1602">更多&gt;&gt;</a></span></div>
-                                <dl>
-                                    <dd class="name"><a href="https://www.anxjm.com/news/212380.html" target="_blank">童话雨婴幼儿游泳馆加盟多少钱?小本投资，开启您的创业致富之路</a></dd>
-                                    <dd class="desc">
-                                        童话雨婴幼儿游泳馆加盟多少钱?现在很多人都看准了婴幼儿的市场，想要加盟一个婴幼儿类的项目作为自己创...<a href="https://www.anxjm.com/news/212380.html">详情&gt;</a></dd>
-
-                                </dl>
+                                    <span class="more"><a href="https://www.anxjm.com/newsPage/1602/">更多&gt;&gt;</a></span></div>
+                                    @foreach($feiyongnews as $feiyongnew)
+                                        @if($loop->first)
+                                            <dl>
+                                                <dd class="name"><a href="/news/{{$feiyongnew->id}}.html" target="_blank">{{$feiyongnew->title}}</a></dd>
+                                                <dd class="desc">{{$feiyongnew->description}}...<a href="/news/{{$feiyongnew->id}}.html">详情&gt;</a></dd>
+                                            </dl>
+                                        @endif
+                                    @endforeach
                             </div>
                             <div class="bd">
                                 <ul>
-                                    <li><a href="https://www.anxjm.com/news/212377.html" target="_blank" title="青青宝贝婴儿游泳馆加盟多少钱?微型投资，基本无风险">青青宝贝婴儿游泳馆加盟多少钱?微型投资，基本无风险</a><span>2019-05-30</span></li>
-                                    <li><a href="https://www.anxjm.com/news/212375.html" target="_blank" title="亲贝湾婴儿游泳馆加盟多少钱?加盟费低，项目好，安心创业">亲贝湾婴儿游泳馆加盟多少钱?加盟费低，项目好，安心创业</a><span>2019-05-30</span></li>
-                                    <li><a href="https://www.anxjm.com/news/212373.html" target="_blank" title="尼特名内衣加盟多少钱?投资创业优选好项目">尼特名内衣加盟多少钱?投资创业优选好项目</a><span>2019-05-30</span></li>
-                                    <li><a href="https://www.anxjm.com/news/212372.html" target="_blank" title="金汉亭烤肉加盟多少钱?创业投资只需几万元">金汉亭烤肉加盟多少钱?创业投资只需几万元</a><span>2019-05-30</span></li>
-                                    <li><a href="https://www.anxjm.com/news/212367.html" target="_blank" title="凯罗蔓内衣加盟费用多少钱?无需经验，小店面大后台">凯罗蔓内衣加盟费用多少钱?无需经验，小店面大后台</a><span>2019-05-30</span></li>
+                                    @foreach($feiyongnews as $feiyongnew)
+                                        @if(!$loop->first)
+                                            <li><a href="/news/{{$feiyongnew->id}}.html" target="_blank" title="{{$feiyongnew->title}}">{{$feiyongnew->title}}</a><span>{{date('Y-m-d',strtotime($feiyongnew->created_at))}}</span></li>
+                                        @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -1493,23 +1490,24 @@
                             <div class="hd">
                                 <div class="tit">
                                     <h3>安心创业</h3>
-                                    <span class="more"><a href="https://www.anxjm.com/newsPage/1603">更多&gt;&gt;</a></span></div>
-                                <dl>
-                                    <dd class="name"><a href="https://www.anxjm.com/news/209385.html" target="_blank">阿郎龙虾加盟费用投资总共要多少钱?</a></dd>
-                                    <dd class="desc">
-                                        阿郎龙虾加盟费用
-
-                                        阿郎龙虾加盟店面积至少是20平米，投资加盟费包括加盟费用，履约保证金，品牌使用...<a href="https://www.anxjm.com/news/209385.html">详情&gt;</a></dd>
-
-                                </dl>
+                                    <span class="more"><a href="https://www.anxjm.com/newsPage/1603/">更多&gt;&gt;</a></span>
+                                </div>
+                                @foreach($chuangyenews as $chuangyenew)
+                                    @if($loop->first)
+                                        <dl>
+                                            <dd class="name"><a href="/news/{{$chuangyenew->id}}.html" target="_blank">{{$chuangyenew->title}}</a></dd>
+                                            <dd class="desc">{{$chuangyenew->description}}...<a href="/news/{{$chuangyenew->id}}.html">详情&gt;</a></dd>
+                                        </dl>
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="bd">
                                 <ul>
-                                    <li><a href="https://www.anxjm.com/news/187930.html" target="_blank" title="西门炊牛杂粉加盟,西门炊牛杂粉加盟费收取多少?5万元加盟费">西门炊牛杂粉加盟,西门炊牛杂粉加盟费收取多少?5万元加盟费</a><span>2018-06-05</span></li>
-                                    <li><a href="https://www.anxjm.com/news/187919.html" target="_blank" title="汤姆之家汉堡加盟,加盟无需经验技术,164人已收藏">汤姆之家汉堡加盟,加盟无需经验技术,164人已收藏</a><span>2018-06-05</span></li>
-                                    <li><a href="https://www.anxjm.com/news/187388.html" target="_blank" title="洪濑鸡爪多少加盟费?1.6万元加盟费轻松创业">洪濑鸡爪多少加盟费?1.6万元加盟费轻松创业</a><span>2018-05-31</span></li>
-                                    <li><a href="https://www.anxjm.com/news/187350.html" target="_blank" title="卤囧卤味熟食加盟,11天可开业,546人推荐">卤囧卤味熟食加盟,11天可开业,546人推荐</a><span>2018-05-31</span></li>
-                                    <li><a href="https://www.anxjm.com/news/184444.html" target="_blank" title="杨翔豆皮涮牛肚加盟费多少钱?3.2万元加盟费轻松创业">杨翔豆皮涮牛肚加盟费多少钱?3.2万元加盟费轻松创业</a><span>2018-05-22</span></li>
+                                    @foreach($chuangyenews as $chuangyenew)
+                                        @if(!$loop->first)
+                                            <li><a href="/news/{{$chuangyenew->id}}.html" target="_blank" title="{{$chuangyenew->title}}">{{$chuangyenew->title}}</a><span>{{date('Y-m-d',strtotime($chuangyenew->created_at))}}</span></li>
+                                        @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -1517,21 +1515,24 @@
                             <div class="hd">
                                 <div class="tit">
                                     <h3>选址筹备</h3>
-                                    <span class="more"><a href="https://www.anxjm.com/newsPage/1604">更多&gt;&gt;</a></span></div>
-                                <dl>
-                                    <dd class="name"><a href="https://www.anxjm.com/news/144001.html" target="_blank">小吃加盟店如何选址?小吃店选址经验</a></dd>
-                                    <dd class="desc">
-                                        　　小吃作为一种小本创业项目，很受创业者的欢迎，很多创业者选择自己开小吃加盟店，帮助自己创业赚钱...<a href="https://www.anxjm.com/news/144001.html">详情&gt;</a></dd>
-
-                                </dl>
+                                    <span class="more"><a href="https://www.anxjm.com/newsPage/1604/">更多&gt;&gt;</a></span>
+                                </div>
+                                @foreach($xuanzhinews as $xuanzhinew)
+                                    @if($loop->first)
+                                        <dl>
+                                            <dd class="name"><a href="/news/{{$xuanzhinew->id}}.html" target="_blank">{{$xuanzhinew->title}}</a></dd>
+                                            <dd class="desc">{{$xuanzhinew->description}}...<a href="/news/{{$xuanzhinew->id}}.html">详情&gt;</a></dd>
+                                        </dl>
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="bd">
                                 <ul>
-                                    <li><a href="https://www.anxjm.com/news/143998.html" target="_blank" title="家具加盟 选址最关键">家具加盟 选址最关键</a><span>2017-06-16</span></li>
-                                    <li><a href="https://www.anxjm.com/news/141567.html" target="_blank" title="怎么赚钱快 现实点的八个快速赚钱方法">怎么赚钱快 现实点的八个快速赚钱方法</a><span>2017-06-14</span></li>
-                                    <li><a href="https://www.anxjm.com/news/141529.html" target="_blank" title="西摩兰咖啡 给你慢生活体验">西摩兰咖啡 给你慢生活体验</a><span>2017-06-14</span></li>
-                                    <li><a href="https://www.anxjm.com/news/140542.html" target="_blank" title="现在特色餐饮加盟有哪些品牌最火爆？">现在特色餐饮加盟有哪些品牌最火爆？</a><span>2017-06-13</span></li>
-                                    <li><a href="https://www.anxjm.com/news/139442.html" target="_blank" title="90%的餐厅老板为什么都会犯这5个经营问题？">90%的餐厅老板为什么都会犯这5个经营问题？</a><span>2017-06-12</span></li>
+                                    @foreach($xuanzhinews as $xuanzhinew)
+                                        @if(!$loop->first)
+                                            <li><a href="/news/{{$xuanzhinew->id}}.html" target="_blank" title="{{$xuanzhinew->title}}">{{$xuanzhinew->title}}</a><span>{{date('Y-m-d',strtotime($xuanzhinew->created_at))}}</span></li>
+                                        @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -1541,15 +1542,9 @@
                             <div class="hd"><h3>经营之道</h3></div>
                             <div class="bd">
                                 <ul>
-                                    <li><a href="https://www.anxjm.com/news/117377.html" target="_blank" title="餐饮品牌加盟什么项目好？豆美滋豆乳机人气好项目">餐饮品牌加盟什么项目好？豆美滋豆乳机人气好项目</a></li>
-                                    <li><a href="https://www.anxjm.com/news/14515.html" target="_blank" title="成功的经营之道 用心去感受这99个成功心得">成功的经营之道 用心去感受这99个成功心得</a></li>
-                                    <li><a href="https://www.anxjm.com/news/14494.html" target="_blank" title="分析加盟行业的前景如何？先要了解连锁加盟店的优缺点">分析加盟行业的前景如何？先要了解连锁加盟店的优缺点</a></li>
-                                    <li><a href="https://www.anxjm.com/news/1605796" target="_blank" title="餐饮小吃开店选址不能不学的技巧">餐饮小吃开店选址不能不学的技巧</a></li>
-                                    <li><a href="https://www.anxjm.com/news/1605375" target="_blank" title="如何开好甜品店？玛丽莲甜品来帮你">如何开好甜品店？玛丽莲甜品来帮你</a></li>
-                                    <li><a href="https://www.anxjm.com/news/1605244" target="_blank" title="怎么经营好一家装饰画切误盲目投资">怎么经营好一家装饰画切误盲目投资</a></li>
-                                    <li><a href="https://www.anxjm.com/news/1605243" target="_blank" title="经营技巧分享之咖啡饮品店如何去更好的经营与管理">经营技巧分享之咖啡饮品店如何去更好的经营与管理</a></li>
-                                    <li><a href="https://www.anxjm.com/news/1605173" target="_blank" title="稀奇古怪玩具店怎么样?稀奇古怪玩具店加盟好不好?">稀奇古怪玩具店怎么样?稀奇古怪玩具店加盟好不好?</a></li>
-                                    <li><a href="https://www.anxjm.com/news/1605169" target="_blank" title="经营男装加盟店的19项细节助你事业成功">经营男装加盟店的19项细节助你事业成功</a></li>
+                                    @foreach($jingyingnews as $jingyingnew)
+                                    <li><a href="/news/{{$jingyingnew->id}}.html" target="_blank" title="{{$jingyingnew->title}}">{{$jingyingnew->title}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -1557,15 +1552,9 @@
                             <div class="hd"><h3>加盟资讯</h3></div>
                             <div class="bd">
                                 <ul>
-                                    <li><a href="https://www.anxjm.com/news/210115.html" target="_blank" title="地下铁奶茶加盟优势">地下铁奶茶加盟优势</a></li>
-                                    <li><a href="https://www.anxjm.com/news/208989.html" target="_blank" title="一念居洗衣加盟赚钱吗">一念居洗衣加盟赚钱吗</a></li>
-                                    <li><a href="https://www.anxjm.com/news/207569.html" target="_blank" title="龙头老火锅加盟赚钱吗">龙头老火锅加盟赚钱吗</a></li>
-                                    <li><a href="https://www.anxjm.com/news/207384.html" target="_blank" title="城市牧场鲜奶吧加盟怎么样？有风险吗">城市牧场鲜奶吧加盟怎么样？有风险吗</a></li>
-                                    <li><a href="https://www.anxjm.com/news/207087.html" target="_blank" title="2019（上海)第28届国际创业投资连锁加盟展览会">2019（上海)第28届国际创业投资连锁加盟展览会</a></li>
-                                    <li><a href="https://www.anxjm.com/news/207086.html" target="_blank" title="2019（上海)第二届国际教育机构品牌连锁加盟展览会">2019（上海)第二届国际教育机构品牌连锁加盟展览会</a></li>
-                                    <li><a href="https://www.anxjm.com/news/206726.html" target="_blank" title="力德教育如何加盟?力德教育加盟优势有哪些?">力德教育如何加盟?力德教育加盟优势有哪些?</a></li>
-                                    <li><a href="https://www.anxjm.com/news/199534.html" target="_blank" title="福禄瘦减肥加盟优势有哪些?福禄瘦减肥加盟有哪些优惠政策">福禄瘦减肥加盟优势有哪些?福禄瘦减肥加盟有哪些优惠政策</a></li>
-                                    <li><a href="https://www.anxjm.com/news/198751.html" target="_blank" title="四平小程序代理加盟如何做,地球城小程序加盟,亿万商机等你拿">四平小程序代理加盟如何做,地球城小程序加盟,亿万商机等你拿</a></li>
+                                    @foreach($brandnews as $brandnew)
+                                        <li><a href="/news/{{$brandnew->id}}.html" target="_blank" title="{{$brandnew->title}}">{{$brandnew->title}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -1647,86 +1636,86 @@
                     <dl>
                         <dt><a href="https://www.anxjm.com/ms/" target="_blank">餐饮美食</a></dt>
                         <dd>
-                            <span><a href="https://www.anxjm.com/1" target="_blank">中餐</a></span>
-                            <span><a href="https://www.anxjm.com/2" target="_blank">西餐</a></span>
-                            <span><a href="https://www.anxjm.com/3" target="_blank">快餐</a></span>
-                            <span><a href="https://www.anxjm.com/4" target="_blank">火锅</a></span>
-                            <span><a href="https://www.anxjm.com/5" target="_blank">烧烤</a></span>
-                            <span><a href="https://www.anxjm.com/6" target="_blank">小吃</a></span>
-                            <span><a href="https://www.anxjm.com/7" target="_blank">冰淇凌</a></span>
-                            <span><a href="https://www.anxjm.com/8" target="_blank">休闲食品</a></span>
+                            <span><a href="https://www.anxjm.com/1/" target="_blank">中餐</a></span>
+                            <span><a href="https://www.anxjm.com/2/" target="_blank">西餐</a></span>
+                            <span><a href="https://www.anxjm.com/3/" target="_blank">快餐</a></span>
+                            <span><a href="https://www.anxjm.com/4/" target="_blank">火锅</a></span>
+                            <span><a href="https://www.anxjm.com/5/" target="_blank">烧烤</a></span>
+                            <span><a href="https://www.anxjm.com/6/" target="_blank">小吃</a></span>
+                            <span><a href="https://www.anxjm.com/7/" target="_blank">冰淇凌</a></span>
+                            <span><a href="https://www.anxjm.com/8/" target="_blank">休闲食品</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt><a href="https://www.anxjm.com/jy/" target="_blank">教育网络</a></dt>
                         <dd>
-                            <span><a href="https://www.anxjm.com/22" target="_blank">少儿英语</a></span>
-                            <span><a href="https://www.anxjm.com/23" target="_blank">作文培训</a></span>
-                            <span><a href="https://www.anxjm.com/24" target="_blank">成人外语</a></span>
-                            <span><a href="https://www.anxjm.com/25" target="_blank">幼儿园</a></span>
-                            <span><a href="https://www.anxjm.com/26" target="_blank">潜能培训</a></span>
-                            <span><a href="https://www.anxjm.com/27" target="_blank">IT教育</a></span>
-                            <span><a href="https://www.anxjm.com/28" target="_blank">公务员</a></span>
-                            <span><a href="https://www.anxjm.com/29" target="_blank">认证教育</a></span>
+                            <span><a href="https://www.anxjm.com/22/" target="_blank">少儿英语</a></span>
+                            <span><a href="https://www.anxjm.com/23/" target="_blank">作文培训</a></span>
+                            <span><a href="https://www.anxjm.com/24/" target="_blank">成人外语</a></span>
+                            <span><a href="https://www.anxjm.com/25/" target="_blank">幼儿园</a></span>
+                            <span><a href="https://www.anxjm.com/26/" target="_blank">潜能培训</a></span>
+                            <span><a href="https://www.anxjm.com/27/" target="_blank">IT教育</a></span>
+                            <span><a href="https://www.anxjm.com/28/" target="_blank">公务员</a></span>
+                            <span><a href="https://www.anxjm.com/29/" target="_blank">认证教育</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt><a href="https://www.anxjm.com/ye/" target="_blank">母婴幼儿</a></dt>
                         <dd>
-                            <span><a href="https://www.anxjm.com/31" target="_blank">早教</a></span>
-                            <span><a href="https://www.anxjm.com/32" target="_blank">母婴用品</a></span>
-                            <span><a href="https://www.anxjm.com/33" target="_blank">幼儿教育</a></span>
-                            <span><a href="https://www.anxjm.com/34" target="_blank">儿童玩具</a></span>
-                            <span><a href="https://www.anxjm.com/35" target="_blank">月嫂</a></span>
-                            <span><a href="https://www.anxjm.com/36" target="_blank">产后恢复</a></span>
-                            <span><a href="https://www.anxjm.com/148" target="_blank">幼儿摄影</a></span>
-                            <span><a href="https://www.anxjm.com/149" target="_blank">幼儿理发</a></span>
+                            <span><a href="https://www.anxjm.com/31/" target="_blank">早教</a></span>
+                            <span><a href="https://www.anxjm.com/32/" target="_blank">母婴用品</a></span>
+                            <span><a href="https://www.anxjm.com/33/" target="_blank">幼儿教育</a></span>
+                            <span><a href="https://www.anxjm.com/34/" target="_blank">儿童玩具</a></span>
+                            <span><a href="https://www.anxjm.com/35/" target="_blank">月嫂</a></span>
+                            <span><a href="https://www.anxjm.com/36/" target="_blank">产后恢复</a></span>
+                            <span><a href="https://www.anxjm.com/148/" target="_blank">幼儿摄影</a></span>
+                            <span><a href="https://www.anxjm.com/149/" target="_blank">幼儿理发</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt><a href="https://www.anxjm.com/mr/" target="_blank">美容养生</a></dt>
                         <dd>
-                            <span><a href="https://www.anxjm.com/37" target="_blank">瘦身减肥</a></span>
-                            <span><a href="https://www.anxjm.com/38" target="_blank">化妆品</a></span>
-                            <span><a href="https://www.anxjm.com/39" target="_blank">美容美发</a></span>
-                            <span><a href="https://www.anxjm.com/40" target="_blank">SPA</a></span>
-                            <span><a href="https://www.anxjm.com/41" target="_blank">美甲</a></span>
-                            <span><a href="https://www.anxjm.com/164" target="_blank">护肤品</a></span>
-                            <span><a href="https://www.anxjm.com/165" target="_blank">美容院</a></span>
-                            <span><a href="https://www.anxjm.com/180" target="_blank">养生馆</a></span>
+                            <span><a href="https://www.anxjm.com/37/" target="_blank">瘦身减肥</a></span>
+                            <span><a href="https://www.anxjm.com/38/" target="_blank">化妆品</a></span>
+                            <span><a href="https://www.anxjm.com/39/" target="_blank">美容美发</a></span>
+                            <span><a href="https://www.anxjm.com/40/" target="_blank">SPA</a></span>
+                            <span><a href="https://www.anxjm.com/41/" target="_blank">美甲</a></span>
+                            <span><a href="https://www.anxjm.com/164/" target="_blank">护肤品</a></span>
+                            <span><a href="https://www.anxjm.com/165/" target="_blank">美容院</a></span>
+                            <span><a href="https://www.anxjm.com/180/" target="_blank">养生馆</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt><a href="https://www.anxjm.com/hb/" target="_blank">机械环保</a></dt>
                         <dd>
-                            <span><a href="https://www.anxjm.com/42" target="_blank">节能设备</a></span>
-                            <span><a href="https://www.anxjm.com/43" target="_blank">空气净化</a></span>
-                            <span><a href="https://www.anxjm.com/44" target="_blank">水净化</a></span>
-                            <span><a href="https://www.anxjm.com/177" target="_blank">新能源</a></span>
+                            <span><a href="https://www.anxjm.com/42/" target="_blank">节能设备</a></span>
+                            <span><a href="https://www.anxjm.com/43/" target="_blank">空气净化</a></span>
+                            <span><a href="https://www.anxjm.com/44/" target="_blank">水净化</a></span>
+                            <span><a href="https://www.anxjm.com/177/" target="_blank">新能源</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt><a href="https://www.anxjm.com/gx/" target="_blank">干洗加盟</a></dt>
                         <dd>
-                            <span><a href="https://www.anxjm.com/45" target="_blank">洗衣</a></span>
-                            <span><a href="https://www.anxjm.com/46" target="_blank">干洗设备</a></span>
-                            <span><a href="https://www.anxjm.com/47" target="_blank">皮草养护</a></span>
-                            <span><a href="https://www.anxjm.com/48" target="_blank">鞋美容</a></span>
-                            <span><a href="https://www.anxjm.com/49" target="_blank">奢侈品养护</a></span>
-                            <span><a href="https://www.anxjm.com/171" target="_blank">干洗店</a></span>
+                            <span><a href="https://www.anxjm.com/45/" target="_blank">洗衣</a></span>
+                            <span><a href="https://www.anxjm.com/46/" target="_blank">干洗设备</a></span>
+                            <span><a href="https://www.anxjm.com/47/" target="_blank">皮草养护</a></span>
+                            <span><a href="https://www.anxjm.com/48/" target="_blank">鞋美容</a></span>
+                            <span><a href="https://www.anxjm.com/49/" target="_blank">奢侈品养护</a></span>
+                            <span><a href="https://www.anxjm.com/171/" target="_blank">干洗店</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt><a href="https://www.anxjm.com/qc/" target="_blank">汽车服务</a></dt>
                         <dd>
-                            <span><a href="https://www.anxjm.com/50" target="_blank">汽车维修</a></span>
-                            <span><a href="https://www.anxjm.com/51" target="_blank">汽车美容</a></span>
-                            <span><a href="https://www.anxjm.com/52" target="_blank">汽车用品</a></span>
-                            <span><a href="https://www.anxjm.com/53" target="_blank">汽车饰品</a></span>
-                            <span><a href="https://www.anxjm.com/54" target="_blank">汽车导航</a></span>
-                            <span><a href="https://www.anxjm.com/55" target="_blank">汽车音响</a></span>
-                            <span><a href="https://www.anxjm.com/56" target="_blank">汽车改装</a></span>
-                            <span><a href="https://www.anxjm.com/167" target="_blank">洗车店</a></span>
+                            <span><a href="https://www.anxjm.com/50/" target="_blank">汽车维修</a></span>
+                            <span><a href="https://www.anxjm.com/51/" target="_blank">汽车美容</a></span>
+                            <span><a href="https://www.anxjm.com/52/" target="_blank">汽车用品</a></span>
+                            <span><a href="https://www.anxjm.com/53/" target="_blank">汽车饰品</a></span>
+                            <span><a href="https://www.anxjm.com/54/" target="_blank">汽车导航</a></span>
+                            <span><a href="https://www.anxjm.com/55/" target="_blank">汽车音响</a></span>
+                            <span><a href="https://www.anxjm.com/56/" target="_blank">汽车改装</a></span>
+                            <span><a href="https://www.anxjm.com/167/" target="_blank">洗车店</a></span>
                         </dd>
                     </dl>
                 </div>
@@ -1740,18 +1729,9 @@
                 </div>
                 <div class="bd">
                     <ul>
-                        <li><a href="https://www.anxjm.com">安心加盟网</a></li>
-                        <li><a href="https://www.u88.com/">U88加盟网</a></li>
-                        <li><a href="http://www.u88.cn">U88连锁加盟网</a></li>
-                        <li><a href="http://www.61kids.com.cn/">童装品牌网</a></li>
-                        <li><a href="http://www.9998.tv/">酒水代理</a></li>
-                        <li><a href="http://www.hao315.tv">小本创业</a></li>
-                        <li><a href="http://www.jia400.com/">家居建材招商</a></li>
-                        <li><a href="http://www.tianqi4.com/">天气在线</a></li>
-                        <li><a href="http://hao.huangye88.com/">b2b网站大全</a></li>
-                        <li><a href="http://www.hao224.com">团购导航</a></li>
-                        <li><a href="http://www.globrand.com/">加盟网</a></li>
-                        <li><a href="http://www.zb580.tv/">珠宝加盟</a></li>
+                        @foreach($flinks as $flink)
+                            <li><a href="{{$flink->weburl}}">{{$flink->webname}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

@@ -58,10 +58,6 @@ class ArticleController extends Controller
             $thisbrandtypecidinfo=Cache::remember('thistypeinfos_'.$thisbrandtypeinfo->reid, config('app.cachetime')+rand(60,60*24), function() use($thisbrandtypeinfo){
                 return Arctype::where('id',$thisbrandtypeinfo->reid)->first();
             });
-            //当前文档所属品牌所属地区
-            $thisarticlebradarea=Cache::remember('thisarticlebradarea'.$thisarticlebrandinfos->city_id, config('app.cachetime')+rand(60,60*24), function() use($thisarticlebrandinfos){
-                return Area::where('id',$thisarticlebrandinfos->city_id)->first(['name_cn']);
-            });
             //投资分类获取并缓存
             $investment_types=Cache::remember('investment_types',  config('app.cachetime')+rand(60,60*24), function(){
                 return InvestmentType::pluck('type','id');
@@ -125,7 +121,7 @@ class ArticleController extends Controller
         $latestnews=Cache::remember('latestnews',config('app.cachetime')+rand(60,60*24), function(){
             return Archive::latest()->take(12)->orderBy('id','desc')->get(['id','title','created_at']);
         });
-        return view('frontend.article_article',compact('thisarticleinfos','thisarticlebrandinfos','brandarticles','prev_article','next_article','latestbrandnews','paihangbangs','latesttypenews','latestbrands','thistypeinfo','thisbrandtypeinfo','thisbrandtypecidinfo','investment_types','brand','thisarticlebradarea','newbrands','latestnews'));
+        return view('frontend.article_article',compact('thisarticleinfos','thisarticlebrandinfos','brandarticles','prev_article','next_article','latestbrandnews','paihangbangs','latesttypenews','latestbrands','thistypeinfo','thisbrandtypeinfo','thisbrandtypecidinfo','investment_types','brand','newbrands','latestnews'));
     }
 
     /**品牌文档界面
@@ -146,10 +142,6 @@ class ArticleController extends Controller
         //当前品牌所属父分类，请保持缓存名称和普通文档的所属品牌父分类缓存名称相同
         $thisbrandtypecidinfo=Cache::remember('thistypeinfos_'.$thisbrandtypeinfo->reid,  config('app.cachetime')+rand(60,60*24), function() use($thisbrandtypeinfo){
             return Arctype::where('id',$thisbrandtypeinfo->reid)->first();
-        });
-        //品牌所属地区 请保持缓存名称和普通文档的所属品牌地区缓存名称相同
-        $thisarticlebradarea=Cache::remember('thisarticlebradarea'.$thisarticleinfos->city_id,  config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
-            return Area::where('id',$thisarticleinfos['city_id'])->first(['name_cn']);
         });
         //品牌分类排行榜 请保持缓存名称和普通文档所属品牌分类的排行榜缓存文件名称相同
         $paihangbangs= Cache::remember('phb'.$thisarticleinfos->typeid,   config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
@@ -212,7 +204,7 @@ class ArticleController extends Controller
         });
         $content=$this->ProcessContent($thisarticleinfos->body);
         $navlists=$this->FilterHflagContent($content);
-        return view('frontend.brand_article',compact('thisarticleinfos','thisbrandtypeinfo','thisbrandtypecidinfo','thisarticlebradarea','investment_types','paihangbangs','latestbrandnews','latesttypenews','latestbrands','newbrands','brandtypeids','content','navlists','latestcbrands','brandarticles','latestnews'));
+        return view('frontend.brand_article',compact('thisarticleinfos','thisbrandtypeinfo','thisbrandtypecidinfo','investment_types','paihangbangs','latestbrandnews','latesttypenews','latestbrands','newbrands','brandtypeids','content','navlists','latestcbrands','brandarticles','latestnews'));
     }
     protected function getPrevArticleId($id)
     {

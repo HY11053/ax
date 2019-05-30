@@ -158,26 +158,11 @@
             <div class="body_tit">
                 {!! $content !!}
             </div>
-            <!-- 资质认证 start -->
-            <div class="context_title" id="js_join_5">
-                <div style="font-weight:bold;font-size: 20px; height: 40px;line-height: 40px;color: #D71318;">百格汉斯烤肉资质认证</div>
-                <div class="c_line">
-                    <div class="cl"></div>
-                </div>
-            </div>
-            <div class="company_contact">
-                <div class="company_ok">
-                    <img src="/public/images/renzhen.jpg" />
-                </div>
-            </div>
             <div class="c_line2"></div>
-
-            <!-- 资质认证 end -->
-
+            @include('frontend.liuyan')
             <!-- 相关文章 start -->
-
             <div class="context_title">
-                <div style="font-weight:bold;font-size: 20px; height: 40px;line-height: 40px;color: #D71318;">百格汉斯烤肉相关文章</div>
+                <div style="font-weight:bold;font-size: 20px; height: 40px;line-height: 40px;color: #D71318;">{{$thisarticleinfos->brandname}}相关文章</div>
                 <div class="c_line">
                     <div class="cl"></div>
                 </div>
@@ -208,7 +193,6 @@
                     </ul>
                 </div>
             </div>
-          @include('frontend.liuyan')
             <!-- 添加留言 end -->
         </div>
         <!-- 右侧 end -->
