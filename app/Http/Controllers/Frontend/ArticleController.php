@@ -34,11 +34,11 @@ class ArticleController extends Controller
         });
         //获取文档上一篇并缓存
         $prev_article =Cache::remember('thisarticleinfos_prev'.$id, config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
-            return Archive::latest('created_at')->where('id',$this->getPrevArticleId($thisarticleinfos->id))->pluck('title','id')->toArray();
+            return Archive::latest('created_at')->where('id',$this->getPrevArticleId($thisarticleinfos->id))->first(['id','title']);
         });
         //获取文档下一篇并缓存
         $next_article = Cache::remember('thisarticleinfos_next'.$id, config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
-            return Archive::latest('created_at')->where('id',$this->getNextArticleId($thisarticleinfos->id))->pluck('title','id')->toArray();
+            return Archive::latest('created_at')->where('id',$this->getNextArticleId($thisarticleinfos->id))->first(['id','title']);
         });
         //获取当前文档所属品牌并缓存
         if($thisarticleinfos->brandid && Brandarticle::where('id',$thisarticleinfos->brandid)->orderBy('id','desc')->value('id'))

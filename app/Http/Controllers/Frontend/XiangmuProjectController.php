@@ -38,7 +38,7 @@ class XiangmuProjectController extends Controller
         });
         //获取品牌顶级栏目分类并缓存
         $topbrandtypeinfos=Cache::remember('topbrandtypeinfos', config('app.cachetime')+rand(60,60*24), function (){
-            return Arctype::where('mid',1)->where('reid',0)->take(25)->orderBy('sortrank','desc')->get(['id','typename','real_path']);
+            return Arctype::where('mid',1)->where('id','<>',220)->where('reid',0)->take(25)->orderBy('sortrank','desc')->get(['id','typename','real_path']);
         });
         //获取当前栏目的父栏目 如果为顶级栏目 父栏目为自身 兼容前端输出层判断
         $thistypeinforeid=$thistypeinfo;
@@ -104,7 +104,7 @@ class XiangmuProjectController extends Controller
         });
         //获取品牌顶级栏目分类并缓存
         $topbrandtypeinfos=Cache::remember('topbrandtypeinfos', config('app.cachetime')+rand(60,60*24), function (){
-            return Arctype::where('mid',1)->where('reid',0)->take(25)->orderBy('sortrank','desc')->get(['id','typename','real_path']);
+            return Arctype::where('mid',1)->where('id','<>',220)->where('reid',0)->take(25)->orderBy('sortrank','desc')->get(['id','typename','real_path']);
         });
         $touzi=$tid.'_'.$zid;
         //获取当前栏目的父栏目 如果为顶级栏目 父栏目为自身 兼容前端输出层判断

@@ -18,7 +18,7 @@ body, html { min-height: 101%; }
 .common_tit .r_money{float:right;height: 40px;line-height: 40px; overflow:hidden;}
 .common_tit .r_tit{float:right;height: 40px;line-height: 40px; overflow:hidden;}
 .common_tit .r_tit a{ color:#868686; margin-left:10px;}
-
+.main_index{background: #fff;}
 /*网站头部*/
 .header{ background:#fff;}
 .header .inner { width: 1200px; margin: 0 auto; }
@@ -72,7 +72,7 @@ body, html { min-height: 101%; }
 
 /************************首页************************/
 .box_1{ overflow:hidden; margin:17px 0 10px;} 
-.box_left{ float:left; width:256px; height:416px; border:1px solid #D6D6D6; padding:15px 16px; margin-right:15px;}
+.box_left{ float:left; width:256px; height:416px;  padding:15px 16px; margin-right:15px;}
 .box_left .bd{}
 .box_left .bd h2{font-size:16px;font-weight:bold;margin-left:10px;height: 22px;line-height: 22px;overflow: hidden;}
 .box_left .bd h2 a{color:#D71318; margin:0 10px; text-align:center;}
@@ -219,7 +219,7 @@ body, html { min-height: 101%; }
 
 /*第六部分*/
 .box_5{overflow:hidden; margin:10px 0 10px;}
-.box_bd{ overflow:hidden;border:1px solid #e6e6e6;border-top:0;}
+.box_bd{ overflow:hidden;border-top:0;}
 .item_left{ float:left; width:910px; overflow:hidden;}
 .item_left .item{width: 399px;float:left;overflow:hidden;border-right:1px solid #e2e2e2;padding: 14px 32px 21px 23px;}
 .item_left .item .hd{overflow:hidden;padding-bottom: 14px;}
@@ -305,7 +305,7 @@ body, html { min-height: 101%; }
 .center_list .new_left{width:880px;/* border:1px solid #E2E2E2; */float: left; background: #fff;}
 .center_list  .new_right{ float:right; width:300px; overflow:hidden; background: #fff;}
 
-.list_new{border:1px solid #e2e2e2;overflow:hidden;padding-bottom: 20px;}
+.list_new{overflow:hidden;padding-bottom: 20px;}
 .list_new .bd{ padding:0 30px; overflow:hidden;}
 .list_new .bd li{overflow:hidden;border-bottom:1px dotted #D6D6D6;padding: 20px 0 25px;}
 .list_new .bd li a{background: url(../images/dian.gif) no-repeat 0 13px;padding-left: 10px;height: 32px;line-height: 32px;overflow: hidden;font-size:14px;display:block;}

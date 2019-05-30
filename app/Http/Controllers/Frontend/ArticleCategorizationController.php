@@ -24,13 +24,11 @@ class ArticleCategorizationController extends Controller
     public function ListNewsLists(Request $request,$path,$page=0)
     {
         //判断当前栏目是否存在
-        $typeid=Arctype::where('real_path',preg_replace('/\/[0-9]+/','',$request->path()))->value('id')?:abort(404);
-        dd($typeid);
+        $typeid=Arctype::where('real_path',preg_replace('/\/[0-9]+/','',$path))->value('id')?:abort(404);
         //当前栏目信息缓存
         $thistypeinfo=Cache::remember('thistypeinfos_'.$typeid,  config('app.cachetime')+rand(60,60*24), function() use($typeid){
             return  Arctype::where('id',$typeid)->first();
         });
-        dd($thistypeinfo);
         $cid=$path;
         //投资分类获取并缓存
         $investment_types=Cache::remember('investment_types',  config('app.cachetime')+rand(60,60*24), function(){
@@ -43,27 +41,25 @@ class ArticleCategorizationController extends Controller
         //针对不同栏目类型返回不同类型页面
         //普通文档列表
         $toparticlenavs=Cache::remember('toparticlenavs',  config('app.cachetime')+rand(60,60*24), function(){
-            return  Arctype::whereIn('id',[1,35.83,19,42,46,20])->get(['typename','real_path']);
+            return  Arctype::whereIn('id',[210,211,212,213,214,215,216,217,218,219])->get(['typename','real_path']);
         });
-        $pagelists=Archive::where('typeid',$thistypeinfo->id)->orderBy('id','desc')->distinct()->paginate($perPage = 20, $columns = ['*'], $pageName = 'p', $page);
+        $pagelists=Archive::where('typeid',$thistypeinfo->id)->orderBy('id','desc')->distinct()->paginate($perPage = 40, $columns = ['*'], $pageName = 'p', $page);
         $pagelists= Paginator::transfer(
             $cid,//传入分类id,
             $pagelists//传入原始分页器
         );
         $paihangbangs= Cache::remember('phb',  config('app.cachetime')+rand(60,60*24), function(){
-            return Brandarticle::take('10')->orderBy('click','desc')->get(['id','brandname','litpic','brandnum','tzid']);
+            return Brandarticle::take(10)->orderBy('click','desc')->get(['id','brandname','litpic','brandnum','tzid']);
         });
         //当前栏目子栏目下品牌最新品牌
-        $latestbrands=Cache::remember('latestbrands',  config('app.cachetime')+rand(60,60*24), function() {
-            $latestbrands=Brandarticle::latest()->take(12)->orderBy('id','desc')->get(['id','brandname','tzid','litpic']);
+        $latestbrands=Cache::remember('list_latestbrands',  config('app.cachetime')+rand(60,60*24), function() {
+            $latestbrands=Brandarticle::latest()->take(10)->orderBy('id','desc')->get(['id','brandname','tzid','litpic']);
             return $latestbrands;
         });
-        //当前栏目相关品牌文档
-        $hotbrandnews=Cache::remember('hotbrandnews',  config('app.cachetime')+rand(60,60*24), function() {
-            $latestbrandnews=Archive::take(10)->where('flags','like','c%')->latest()->get(['id','title']);
-            return $latestbrandnews;
+        $latestnews=Cache::remember('list_latestnews',config('app.cachetime')+rand(60,60*24), function(){
+            return Archive::latest()->take(19)->orderBy('id','desc')->get(['id','title','created_at']);
         });
-        return view('frontend.list_article',compact('thistypeinfo','pagelists','paihangbangs','investment_types','latestbrands','hotbrandnews','toparticlenavs'));
+        return view('frontend.list_article',compact('thistypeinfo','pagelists','paihangbangs','investment_types','latestbrands','newbrands','toparticlenavs','latestnews'));
     }
     /**文档列表 通配 包含普通文档 品牌文档及产品文档
      * @param $path
@@ -90,7 +86,7 @@ class ArticleCategorizationController extends Controller
         });
         //获取品牌顶级栏目分类并缓存
         $topbrandtypeinfos=Cache::remember('topbrandtypeinfos', config('app.cachetime')+rand(60,60*24), function (){
-            return Arctype::where('mid',1)->where('id','<>',596)->where('reid',0)->take(25)->orderBy('sortrank','desc')->get(['id','typename','real_path']);
+            return Arctype::where('mid',1)->where('id','<>',220)->where('reid',0)->take(25)->orderBy('sortrank','desc')->get(['id','typename','real_path']);
         });
         if ($thistypeinfo->reid)
         {
@@ -191,7 +187,7 @@ class ArticleCategorizationController extends Controller
         });
         //获取品牌顶级栏目分类并缓存
         $topbrandtypeinfos=Cache::remember('topbrandtypeinfos', config('app.cachetime')+rand(60,60*24), function (){
-            return Arctype::where('mid',1)->where('id','<>',596)->where('reid',0)->take(25)->orderBy('sortrank','desc')->get(['id','typename','real_path']);
+            return Arctype::where('mid',1)->where('id','<>',220)->where('reid',0)->take(25)->orderBy('sortrank','desc')->get(['id','typename','real_path']);
         });
         $touzi=$tid.'_'.$zid;
         if ($thistypeinfo->reid)

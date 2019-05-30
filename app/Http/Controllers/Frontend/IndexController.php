@@ -18,7 +18,11 @@ class IndexController extends Controller
     {
         //最新加盟项目
         $latestbrands=Cache::remember('index_latestbrands', 60, function(){
-            return Brandarticle::latest()->take(24)->orderBy('id','desc')->get(['id','brandname','tzid']);
+            return Brandarticle::latest()->take(14)->orderBy('id','desc')->get(['id','brandname','tzid']);
+        });
+        //最新上榜
+        $latestbrand2s=Cache::remember('index_latestbrand2s', 60, function(){
+            return Brandarticle::latest()->skip(12)->take(12)->orderBy('id','desc')->get(['id','brandname','typeid']);
         });
         //热门商机资讯
         $latestbrandnews=Cache::remember('index_latestbrandnews', 10, function(){
@@ -28,10 +32,7 @@ class IndexController extends Controller
         $paihangbrands=Cache::remember('index_paihang', 60*24, function(){
             return Brandarticle::take(10)->whereIn('typeid',Arctype::where('reid','>',0)->pluck('id'))->orderBy('click','desc')->get(['id','tzid','brandname','litpic']);
         });
-        //最新上榜
-        $latestbrand2s=Cache::remember('index_latestbrand2s', 60, function(){
-            return Brandarticle::latest()->skip(24)->take(12)->orderBy('id','desc')->get(['id','brandname','typeid']);
-        });
+
         //品牌新闻
         $brandnews=Cache::remember('index_brandnews', 10, function(){
             return Archive::where('typeid',46)->latest()->take(14)->orderBy('id','desc')->get(['id','title']);
@@ -62,7 +63,7 @@ class IndexController extends Controller
         });
         //友情链接
         $flinks=Cache::remember('index_flinks', 10, function(){
-            return flink::where('type',1)->get();
+            return flink::orderBy('id','desc')->get();
         });
         return view('frontend.index',compact('latestbrands','latestbrandnews','investment_types','paihangbrands','latestbrand2s','brandnews','chuangyenews','jmfeiyongnews','touzinews','pinpainews','latestbrandbots','flinks'));
     }

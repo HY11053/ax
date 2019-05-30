@@ -70,8 +70,8 @@
                     <!--文章内容 结束-->
                     <!--上一篇 开始-->
                     <div class="shangxiapian">
-                        <p>上一篇：@if(isset($prev_article->id)) <span>上一篇：<a href="{{config('app.url')}}/news/{{$prev_article->id}}.html" title="{{$prev_article->title}}">{{str_limit($prev_article->title,40,'')}}</a></span> @else 没有了 @endif</p>
-                        <p>下一篇：@if(isset($next_article->id))  <span class="right">下一篇：<a href="{{config('app.url')}}/news/{{$next_article->id}}.shtml" title="{{$next_article->title}}">{{str_limit($next_article->title,40,'')}}</a></span> @else 没有了 @endif </p>
+                        <p>上一篇：@if(isset($prev_article->id)) <a href="{{config('app.url')}}/news/{{$prev_article->id}}.html" title="{{$prev_article->title}}">{{str_limit($prev_article->title,40,'')}}</a> @else 没有了 @endif</p>
+                        <p>下一篇：@if(isset($next_article->id))  <a href="{{config('app.url')}}/news/{{$next_article->id}}.html" title="{{$next_article->title}}">{{str_limit($next_article->title,40,'')}}</a> @else 没有了 @endif </p>
                         <div class="fenxiang">
                             <div class="fenxiangdao">分享到：</div>
                             <div class="bdsharebuttonbox bdshare-button-style1-16" data-tag="share_1" data-bd-bind="1497947902715">

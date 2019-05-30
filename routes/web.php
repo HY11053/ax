@@ -112,8 +112,9 @@ Route::get('search','Frontend\XiangmuProjectController@XiangmuLists')->where('pa
 Route::get('search/{page}','Frontend\XiangmuProjectController@XiangmuLists')->where('page','[0-9]+')->name('xiangmulist2');
 Route::get('search/{tid}_{zid}','Frontend\XiangmuProjectController@projectBrandLists')->where(['tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('projectlists');
 Route::get('search/{tid}_{zid?}/p{page}','Frontend\XiangmuProjectController@projectBrandLists')->where(['path'=>'[a-zA-Z0-9]+','tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('projectlists2');
-Route::get('newsPage/{path}','Frontend\ArticleCategorizationController@ListNewsLists')->where('path','[a-zA-Z0-9]+')->name('newslist');
-Route::get('{path}','Frontend\ArticleCategorizationController@listNews')->where('path','[a-zA-Z0-9]+')->name('newslist');
-Route::get('{path}/{page}','Frontend\ArticleCategorizationController@listNews')->where(['path'=>'[a-zA-Z0-9]+','page'=>'[0-9]+'])->name('newspagelist');
-Route::get('{path}/{tid}_{zid?}','Frontend\ArticleCategorizationController@projectBrandLists')->where(['path'=>'[a-zA-Z0-9_]+','tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('projectlists');
-Route::get('{path}/{tid}_{zid?}/p{page}','Frontend\ArticleCategorizationController@projectBrandLists')->where(['path'=>'[a-zA-Z0-9_]+','tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('projectlists2');
+Route::get('newsPage/{realpath}','Frontend\ArticleCategorizationController@ListNewsLists')->where('path','[a-zA-Z0-9]+')->name('newslist');
+Route::get('newsPage/{realpath}/p{page}','Frontend\ArticleCategorizationController@ListNewsLists')->where(['path'=>'[a-zA-Z0-9]+','page'=>'[0-9]+'])->name('newslistpage');
+Route::get('{path}','Frontend\ArticleCategorizationController@ListBrands')->where('path','[a-zA-Z0-9]+')->name('bnewslist');
+Route::get('{path}/{page}','Frontend\ArticleCategorizationController@ListBrands')->where(['path'=>'[a-zA-Z0-9]+','page'=>'[0-9]+'])->name('bnewspagelist');
+Route::get('{path}/{tid}_{zid?}','Frontend\ArticleCategorizationController@projectBrandLists')->where(['path'=>'[a-zA-Z0-9]+','tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('projectlists');
+Route::get('{path}/{tid}_{zid?}/p{page}','Frontend\ArticleCategorizationController@projectBrandLists')->where(['path'=>'[a-zA-Z0-9]+','tid'=>'[0-9]+','zid'=>'[0-9]+'])->name('projectlists2');

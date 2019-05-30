@@ -12,36 +12,30 @@
     <link rel="canonical" href="{{config('app.url')}}{{Request::getrequesturi()}}"/>
 @stop
 @section('main_content')
-    <!--header 开始-->
-    <div class="main">
+        <!--top 开始-->
+        <div class="nav_top">
+            <ul>
+                @foreach($toparticlenavs as $toparticlenav)
+                    <li><a href="/newsPage/{{$toparticlenav->real_path}}/">{{$toparticlenav->typename}}</a></li>
+                @endforeach
+            </ul>
+        </div>
+        <!--top 结束-->
         <!--当前位置 开始-->
-        <div class="path">当前位置：<a href="/">首页</a>&nbsp;{{$thistypeinfo->typename}}</div>
+        <div class="path">当前位置：<a href="/">首页</a> > {{$thistypeinfo->typename}}</div>
         <!--当前位置 结束-->
         <div class="center_list">
             <!--左边模块 开始-->
             <div class="new_left">
-                <!--创业分类 开始 -->
-                <div class="classify_list">
-                    <ul>
-                        <li>
-                            @foreach($toparticlenavs as $toparticlenav)
-                                <a @if(str_contains(Request::getrequesturi(),$toparticlenav->real_path)) class="on" @endif href="/{{$toparticlenav->real_path}}/">{{$toparticlenav->typename}}</a>
-                            @endforeach
-                        </li>
-                    </ul>
-                </div>
-                <!--创业分类 结束-->
-
+                <!--资讯列表 开始-->
                 <div class="list_new">
-                    <div class="common_hd">
-                        <h2>创业问答</h2>
-                    </div>
+                    <div class="common_hd"><h2>安心创业</h2></div>
                     <div class="bd">
                         <ul>
                             @forelse($pagelists as $pagelist) @if($loop->index % 5 == 0)
                                 <li>
                                     @endif
-                                    <a href="/article/{{$pagelist->id}}.html">
+                                    <a href="/news/{{$pagelist->id}}.html">
                                         <span class="info">{{$pagelist->title}}</span>
                                         <span class="time">{{date('Y-m-d',strtotime($pagelist->created_at))}}</span>
                                     </a>
@@ -59,84 +53,46 @@
                     </div>
                     <!--分页 结束-->
                 </div>
-
-
+                <!--资讯列表 结束-->
             </div>
-            <!--左边模块 结束-->
-
-            <!--右边模块 开始-->
-            <div class="new_right">
-
-                <!--加盟排行榜 开始-->
-                <div class="hot_message  hot_fl">
-                    <div class="common_hd fl_tit">
-                        <h2>加盟排行榜</h2>
+            <!-- 右侧 end -->
+            <div class="context_right">
+                <!-- 同类项目 start -->
+                <div class="rightcon">
+                    <div class="context_title">
+                        <span><a href="/{{$thistypeinfo->real_path}}/" target="_blank">更多&gt;&gt;</a></span>
+                        <h2>{{$thistypeinfo->typename}}品牌排行榜</h2>
                     </div>
-                    <div class="boutique_list">
-                        <ul>
-                            @foreach($paihangbangs as $paihangbang)
-                                <li class=" top    @if($loop->first) hover @endif ">
-                                    <i class="num">{{$loop->iteration}}</i>
-                                    <span class="name">
-								<a href="{{config('app.url')}}/xiangmu/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a>
-							</span>
-                                    <div class="cts">
-                                        <div class="img">
-                                            <img src="{{$paihangbang->litpic}}" alt="{{$paihangbang->brandname}}">
-                                        </div>
-                                        <div class="center">
-                                            <p class="info">投资额：
-                                                <em>{{$investment_types[$paihangbang->tzid]}}</em>
-                                            </p>
-                                            <p class="info">门店数：{{$paihangbang->brandnum}}</p>
-                                            <p class="btn">
-                                                <a href="{{config('app.url')}}/xiangmu/{{$paihangbang->id}}.html#msg">立即咨询</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-
+                    <ul class="right_company">
+                        @foreach($paihangbangs as $index=>$paihangbang)
+                            <li> <span class="ico  @if($index<3) num @endif ">{{$index+1}}</span> <span class="name"><a href="/busInfo/{{$paihangbang->id}}.html" target="_blank" title="{{$paihangbang->brandname}}">{{$paihangbang->brandname}}</a></span> <span class="invest">[{{$investment_types[$paihangbang->tzid]}}]</span> </li>
+                        @endforeach
+                    </ul>
                 </div>
-                <!--加盟排行榜 结束-->
-
-                <!--热门文章 开始-->
-                <div class="bd_commit ">
-                    <div class="common_hd">
-                        <h2>热门文章</h2>
+                <div class="rightcon bd_commit2">
+                    <div class="context_title">
+                        <h2>品牌热点资讯</h2>
                     </div>
                     <div class="bd">
                         <ul>
-                            @foreach($hotbrandnews as $hotbrandnew)
-                            <li>
-                                <a href="/article/{{$hotbrandnew->id}}.html" target="_blank" title="{{$hotbrandnew->title}}">{{$hotbrandnew->title}}</a>
-                            </li>
+                            @foreach($latestnews as $latestnew)
+                                <li><a href="/news/{{$latestnew->id}}.html" target="_blank" title="{{$latestnew->title}}">{{$latestnew->title}}</a></li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
-                <!--热门文章 结束-->
-
-                <div class="bd_commit ">
-                    <div class="common_hd">
-                        <h2>最新上榜</h2>
-                    </div>
-                    <div class="bd">
+                <div class="rightcon bd_commit ">
+                    <div class="context_title">
+                        <h2 class="hd_tit">最新入驻品牌</h2></div>
+                    <div class="bd_cont">
                         <ul>
                             @foreach($latestbrands as $latestbrand)
-                            <li>
-                                <a href="/xiangmu/{{$latestbrand->id}}.html">{{$latestbrand->brandname}}</a>
-                            </li>
+                                <li><a href="/busInfo/{{$latestbrand->id}}.html" target="_blank" ><div class="img"><img src="{{$latestbrand->litpic}}" width="120" height="90" alt="{{$latestbrand->brandname}}"/></div><span>{{$latestbrand->brandname}}</span></a></li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
-            <!--右边模块 结束-->
+            <!-- 右侧 end -->
         </div>
-    </div>
-    <!--主体开始-->
-
 @stop
