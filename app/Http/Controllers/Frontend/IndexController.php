@@ -52,6 +52,9 @@ class IndexController extends Controller
         $flinks=Cache::remember('index_flinks', 10, function(){
             return flink::orderBy('id','desc')->get();
         });
+        $investment_types=Cache::remember('investment_types',  config('app.cachetime')+rand(60,60*24), function(){
+            return InvestmentType::pluck('type','id');
+        });
         return view('frontend.index',compact('latestbrands','latestbrand2s','paihangbrands','investment_types','anxwangshuos','chuangyenews','feiyongnews','flinks','xuanzhinews','jingyingnews','brandnews'));
     }
 }

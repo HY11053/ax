@@ -35,7 +35,7 @@
                             @forelse($pagelists as $pagelist) @if($loop->index % 5 == 0)
                                 <li>
                                     @endif
-                                    <a href="/news/{{$pagelist->id}}.html">
+                                    <a href="{{$pagelist->url()}}">
                                         <span class="info">{{$pagelist->title}}</span>
                                         <span class="time">{{date('Y-m-d',strtotime($pagelist->created_at))}}</span>
                                     </a>

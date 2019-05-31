@@ -33,8 +33,6 @@
                 <!-- <a href="/login/" class="t_login">登录</a> -->
                 <a href="https://m.anxjm.com" class="t_phone">
                     <i></i>手机版</a>
-
-
             </div>
         </div>
     </div>        <!--网站导航 结束-->
@@ -47,9 +45,9 @@
         <!--搜索-->
         <div class="logo_search">
             <div class="bd ">
-                <form action="/so/">
-                    <input def="输入你想搜索的关键字" class="search_input" placeholder="输入你想搜索的关键字" name="keyword" type="text">
-                    <input value="1" name="type" type="hidden">
+                <form action="/search/" method="post">
+                    {{csrf_field()}}
+                    <input def="输入你想搜索的关键字" class="search_input" placeholder="输入你想搜索的关键字" name="keywords" type="text">
                     <input class="search_btn" value="搜索" type="submit">
                 </form>
             </div>

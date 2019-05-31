@@ -29,7 +29,8 @@ class CreateArchivesTable extends Migration
             $table->string('write');
             $table->string('editor')->nullable();
             $table->string('litpic')->nullable();
-            $table->string('oldurl')->nullable();
+            $table->string('oldtable')->nullable();
+            $table->string('oldid')->nullable();
             $table->integer('brandcid')->default(0);
             $table->integer('brandtypeid')->default(0);
             $table->smallInteger('dutyadmin');
@@ -48,10 +49,11 @@ class CreateArchivesTable extends Migration
             $table->index('ismake');
             $table->index('editor');
             $table->index('litpic');
-            $table->index('oldurl');
             $table->index('brandtypeid');
             $table->index('editorid');
             $table->index('brandcid');
+            $table->index('oldtable');
+            $table->index('oldid');
             $table->index('write');
             $table->index('dutyadmin');
             $table->index('published_at');

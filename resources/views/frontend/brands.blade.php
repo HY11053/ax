@@ -28,6 +28,7 @@
                     </ul>
                 </div>
             </div>
+            @if($thistypeinforeid->real_path!='search')
             <div class="cate_channel">
                 <div class="hd">{{$thistypeinforeid->typename}}：</div>
                 <div class="bd area_wrap">
@@ -39,7 +40,7 @@
                     </ul>
                 </div>
             </div>
-
+            @endif
             <div class="cate_channel">
                 <div class="hd">投资金额：</div>
                 <div class="bd ">

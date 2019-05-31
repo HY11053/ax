@@ -56,6 +56,7 @@ class ArticleTraslateController extends Controller
         foreach ($sonarctypes as $arctype)
         {
             $insertarctypes=[];
+            $insertarctypes['id']=intval(19)+$arctype->id;
             $insertarctypes['reid']=$arctype->categoryId;
             $insertarctypes['topid']=$arctype->categoryId;
             $insertarctypes['typename']=$arctype->name;
@@ -82,6 +83,7 @@ class ArticleTraslateController extends Controller
         foreach ($arctypes as $arctype)
         {
             $insertarctypes=[];
+            $insertarctypes['id']=210+$arctype->id;
             $insertarctypes['reid']=0;
             $insertarctypes['topid']=0;
             $insertarctypes['typename']=$arctype->name;
@@ -219,8 +221,10 @@ class ArticleTraslateController extends Controller
             {
                 $inserarticle=[];
                 $inserarticle['id']=$article->id;
-                $inserarticle['typeid']=209+$article->newsKindId;
+                $inserarticle['typeid']=210+$article->newsKindId;
                 $inserarticle['brandcid']=$article->categoryId;
+                $inserarticle['oldid']=$article->oldid;
+                $inserarticle['oldtable']=$article->oldtable;
                 $inserarticle['brandtypeid']=19+$article->xcategoryId;
                 $inserarticle['brandid']=$article->companyId;
                 $inserarticle['title']=$article->title;

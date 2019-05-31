@@ -1,72 +1,120 @@
 @extends('mobile.mobile')
-@section('title'){{$project_title}}{{$thistypeinfo->title}}-{{config('app.indexname')}}@stop
+@section('title'){{$cid}}{{$tid}}{{$thistypeinfo->title}}-{{config('app.indexname')}}@stop
 @section('keywords'){{$thistypeinfo->keywords}} @stop
 @section('description'){{trim($thistypeinfo->description)}}@stop
+@section('headlibs')
+    <link href="/mobile/css/list.css" rel="stylesheet" type="text/css"/>
+    <link href="/frontend/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+@stop
 @section('main_content')
-    <div class="path">
-        <a href="/">首页</a>&gt; <a href="/xiangmu/">创业项目</a>&gt; <a href="/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>
+    @include('mobile.header')
+    <!--menu End-->
+    <div class="weizhi">
+        <span><a href="/">首页</a>&nbsp;>&nbsp; <a href="{{str_replace('www.','m.',config('app.url'))}}/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>&nbsp;>&nbsp;列表：</span>
     </div>
-    <!--项目列表 开始-->
-    <div class="item_sort">
-        <div class="hd">
-            <span class="tit"><a href="https://m.u88.com/canyin/">项目推荐</a></span>
-            <ul class="tabs">
-                <li>餐饮加盟<i></i></li>
-                <li>全部<i></i></li>
-                <li>0-1万<i></i></li>
-            </ul>
+    <div class="brand_list" style="padding-top: 10px ;">
+        @foreach($pagelists as $index=>$pagelist)
+            <div class="brand-detail-list-all">
+                <div class="search-list-container  ">
+                    <div class="title flex flex-align-center">
+                  <span class="num-icon">
+                        <span class="top">{{$index+1}}</span>
+                    </span>
+                        <div class="title-text">
+                            <a href="{{str_replace('www.','m.',config('app.url'))}}/xm/{{$pagelist->id}}.shtml" class="a "><span>{{$pagelist->brandname}}</span></a>
+                        </div>
+                        <a href="{{str_replace('www.','m.',config('app.url'))}}/xm/{{$pagelist->id}}.shtml" class="brand-list-item-jump-tmall official"  title="{{$pagelist->brandname}}" data-bde-bind="1"><span class="active">品牌详情</span></a>
+                    </div>
+                    <div class="clear"></div>
+                    <a href="{{str_replace('www.','m.',config('app.url'))}}/xm/{{$pagelist->id}}.shtml">
+                        <dl class="list flex flex-align-center">
+                            <div class="dt flex flex-align-center">
+                                <span>
+                                    <img src="{{$pagelist->litpic}}" alt="{{$pagelist->brandname}}" class="autoWH" style="display: inline; margin: 1px 0px;" width="73" height="31">
+                                </span>
+                            </div>
+                            <dd class="big-data">
+                                <div class="data">
+                                    <div>投资金额：<span>{{$pagelist->brandpay}}</span></div>
+                                    品牌名称：<span>{{$pagelist->brandname}}</span>
+                                </div>
+                                <div class="data">
+                                    <div>加盟人气：<span>{{$pagelist->click}}</span></div>
+                                    所在地区：<span>{{$pagelist->brandaddr}}</span>
+                                </div>
+                            </dd>
+                        </dl>
+                        <div class="spe-msg">
+                            {{$pagelist->description}}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        @endforeach
+            <div class="page">
+                {!! preg_replace("#\/page/[\d]+\/page\/#",'/page/',str_replace('page=','page/',str_replace('?','/',preg_replace('/<a href=[\'\"]?([^\'\" ]+).*?>/','<a href="${1}/">',$pagelists->links())))) !!}
+            </div>
+    </div>
+    @include('mobile.liuyan')
+    <div class="index_item">
+        <div class="common_tit">
+            <span class="tit" href="/paihangbang/{{$thistypeinfo->real_path}}.shtml">{{$thistypeinfo->typename}}十大品牌</span>
         </div>
         <div class="bd">
-            <ul class="sum">
-                <li  @if(trim(Request::getrequesturi(),'/') == 'xiangmu')class="dq" @endif><a href="/xiangmu/">不限</a></li>
-                @foreach($topbrandtypeinfos as $topbrandtypeinfo)
-                    <li @if(trim(Request::getrequesturi(),'/') == $topbrandtypeinfo->real_path || $topbrandtypeinfo->real_path == $thistypeinforeid->real_path) class="dq" @endif>
-                        <a href="/{{$topbrandtypeinfo->real_path}}/">{{$topbrandtypeinfo->typename}}</a>
-                    </li>
-                @endforeach
-            </ul>
-
-            <ul class="sum">
-                <li @if(trim(Request::getrequesturi(),'/') == $thistypeinfo->real_path) class="dq" @endif ><a href="/canyin/">不限</a></li>
-                @foreach($sontypes as $sontype)
-                    <li  @if(preg_replace('#\/[0-9_]+#','',trim(Request::getrequesturi(),'/')) == $sontype->real_path) class="on" @endif><a href="/{{$sontype->real_path}}/">{{$sontype->typename}}</a></li>
-                @endforeach
-            </ul>
-
-            <ul class="sum">
-                <li  class="dq" ><a href="/{{$thistypeinfo->real_path}}/">不限</a></li>
-                @foreach($type_investment_types as $investment_type)
-                    <li @if(str_contains(Request::getrequesturi(),$investment_type->url)) class="on" @endif>@if(array_key_exists($investment_type->id,$investment_ids))<a href="/{{$thistypeinfo->real_path}}/{{$investment_type->url}}/">{{$investment_type->type}}</a></li>@endif
-                @endforeach
-            </ul>
-            <div class="mask"></div>
-        </div>
-    </div>
-    <div class="item_list">
-        <div class="index_item ntb">
-            <div class="bd">
-                <ul>
-                    @foreach($pagelists as $pagelist)
+            <ul>
+                @foreach($paihangbangs as $index=>$paihangbang)
+                    @if($index<3)
                         <li>
-                            <a href="/xiangmu/{{$pagelist->id}}.html">
-                                <div class="img_show"><i>{{$loop->iteration}}</i><img src="{{$pagelist->litpic}}" /></div>
+                            <a href="{{str_replace('www.','m.',config('app.url'))}}/xm/{{$paihangbang->id}}.shtml">
+                                <div class="img_show"><img src="{{$paihangbang->litpic}}"/></div>
                                 <div class="cont">
-                                    <p class="tit">{{$pagelist->brandname}}</p>
-                                    <p class="pt">{{$thistypeinfo->typename}}</p>
-                                    <p class="price">投资金额：<em>{{$investment_types[$pagelist->tzid]}}</em></p>
-                                    <p class="company">公司名称：{{$pagelist->brandgroup}}</p>
+                                    <p class="tit">{{$paihangbang->brandname}}</p>
+                                    <p class="desc">{{str_limit($paihangbang->description,30,'...')}}</p>
+                                    <p class="price">投资金额：<em>￥{{$paihangbang->brandpay}}</em></p>
                                 </div>
-                                <i class="cert">已认证</i>
                             </a>
                         </li>
-                    @endforeach
-                </ul>
-            </div>
+                    @endif
+                @endforeach
+            </ul>
         </div>
+        <div class="list">
+            <ul>
+                @foreach($paihangbangs as $index=>$paihangbang)
 
-        <div class="pages">
-            {!! preg_replace('#(\/p[0-9]+)(\/p[0-9]+)#','${2}',str_replace('?p=','/p',preg_replace('/<a href=[\'\"]?([^\'\" ]+).*?>/','<a href="${1}/">',$pagelists->links()))) !!}
+                    @if($index>2)
+                        <li>
+                            <a href="{{str_replace('www.','m.',config('app.url'))}}/xm/{{$paihangbang->id}}.shtml">
+                                <i>{{$index+1}}</i><span>{{$paihangbang->brandname}}</span><em>已有{{$paihangbang->brandnum}}人申请</em>
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
         </div>
     </div>
-    <!--项目列表 结束-->
+    <!--品牌列表 End-->
+    <div id="item7">
+        <div class="item7box clearfix">
+            <i></i>
+            <div class="title">项目资讯</div>
+            <div class="item7content">
+                @foreach($cnewslists as $cnewslist)
+                    <div class="item7list">
+                        <a href="/news/{{$cnewslist->id}}.shtml">
+                            <div class="left fl">
+                                <div class="lefttitle">{{$cnewslist->title}}</div>
+                                <div class="text">
+                                    <div class="message">编辑：安心加盟网</div>
+                                </div>
+                            </div>
+                            <div class="right fr">
+                                <img  @if($cnewslist->litpic) src="{{$cnewslist->litpic}}" alt="{{$cnewslist->tite}}" @else src="/public/images/noimg.jpg" @endif />
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @stop

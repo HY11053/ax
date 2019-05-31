@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\mobile;
+namespace App\Http\Controllers\Mobile;
 
 use App\AdminModel\Archive;
 use App\AdminModel\Arctype;
@@ -16,34 +16,54 @@ class IndexController extends Controller
 {
     function Index()
     {
-        //最新加盟项目
-        $latestbrands=Cache::remember('m_index_latestbrands', 60, function(){
-            return Brandarticle::latest()->take(8)->orderBy('id','desc')->get(['id','brandname','tzid','litpic']);
+        $cbrands=Cache::remember('mobile_cbrands', 60*24*365, function(){
+            return Brandarticle::where('mid','1')->take(4)->orderBy('click','desc')->get();
         });
-        $hotbrands=Cache::remember('m_index_hotbrands', 60, function(){
-            return Brandarticle::latest()->take(8)->orderBy('click','desc')->get(['id','brandname','tzid','litpic']);
+        $cbrand2s=Cache::remember('mobile_cbrand2s', 60*24*365, function(){
+            return Brandarticle::where('mid','1')->skip(4)->take(4)->orderBy('click','desc')->get();
         });
-        //创业指导
-        $chuangyenews=Cache::remember('index_chuangyenews', 10, function(){
-            return Archive::where('typeid',42)->take(6)->latest()->get(['id','title','description','created_at']);
+        $cbrand3s=Cache::remember('mobile_cbrand3s', 60*24*365, function(){
+            return Brandarticle::where('mid','1')->skip(8)->take(4)->orderBy('click','desc')->get();
         });
-        //加盟费用
-        $jmfeiyongnews=Cache::remember('index_jmfeiyongnews', 10, function(){
-            return Archive::where('typeid',35)->take(6)->latest()->get(['id','title','description','created_at']);
-        });
-        //投资行情
-        $touzinews=Cache::remember('index_touzinews', 10, function(){
-            return Archive::where('typeid',83)->take(6)->latest()->get(['id','title','description','created_at']);
-        });
-        //品牌新闻
-        $pinpainews=Cache::remember('index_pinpainews', 10, function(){
-            return Archive::where('typeid',46)->skip(14)->take(6)->latest()->get(['id','title','description','created_at']);
-        });
-        //投资分类
-        $investment_types=Cache::remember('investment_types', 60*24*365, function(){
-            return InvestmentType::pluck('type','id');
+        $cbrand4s=Cache::remember('mobile_cbrand4s', 60*24*365, function(){
+            return Brandarticle::where('mid','1')->skip(12)->take(4)->orderBy('click','desc')->get();
         });
 
-        return view('mobile.index',compact('latestbrands','hotbrands','investment_types','chuangyenews','jmfeiyongnews','touzinews','pinpainews'));
+        $latestbrands=Cache::remember('mobile_latestbrands', 10, function(){
+            return Brandarticle::where('mid','1')->latest()->take(4)->get();
+        });
+
+        $latestbrand2s=Cache::remember('mobile_latestbrand2s', 10, function(){
+            return Brandarticle::where('mid','1')->latest()->skip(4)->take(4)->get();
+        });
+
+        $latestbrand3s=Cache::remember('mobile_latestbrand3s', 10, function(){
+            return  Brandarticle::where('mid','1')->latest()->skip(8)->take(4)->get();
+        });
+        $latestbrand4s=Cache::remember('mobile_latestbrand4s', 10, function(){
+            return Brandarticle::where('mid','1')->latest()->skip(12)->take(4)->get();
+        });
+
+        $latestbrandnews=Cache::remember('mobile_latestbrandnews', 10, function(){
+            return Archive::where('brandid','<>','')->where('typeid',212)->latest()->take(4)->get();
+        });
+
+        $jmzhinannews=Cache::remember('mobile_jmzhinannews', 10, function(){
+            return Archive::where('brandid','<>','')->where('typeid',211)->latest()->take(4)->get();
+        });
+        $touzinews=Cache::remember('mobile_touzinews', 10, function(){
+            return Archive::where('brandid','<>','')->where('typeid',213)->latest()->take(4)->get();
+        });
+
+        $jingyingnews=Cache::remember('mobile_jingyingnews', 10, function(){
+            return Archive::where('brandid','<>','')->where('typeid',214)->latest()->take(4)->get();
+        });
+
+        $ctbrandnews=Cache::remember('mobile_c
+        
+        tbrandnews', 10, function(){
+            return Archive::where('brandid','<>','')->take(4)->get();
+        });
+        return view('mobile.index',compact('cbrands','cbrand2s','cbrand3s','cbrand4s','latestbrands','latestbrand2s','latestbrand3s','latestbrand4s','latestbrandnews','jmzhinannews','touzinews','jingyingnews','ctbrandnews'));
     }
 }

@@ -47,26 +47,26 @@ class BrandArticleCacheDeleteEventListener
         Cache::remember('phb'.$event->brandarticle->typeid,   config('app.cachetime')+rand(60,60*24), function() use($event){
             return Brandarticle::where('typeid',$event->brandarticle->typeid)->where('id','<>',$event->brandarticle->id)->take('10')->orderBy('click','desc')->get(['id','brandname','litpic','brandnum','tzid']);
         });
+        Cache::forget('brandarticles'.$id);
+        Cache::remember('brandarticles'.$id,config('app.cachetime')+rand(60,60*24), function() use($id,$event){
+            $brandarticlekey=array_search($id,Brandarticle::where('typeid',$event->typeid)->orderBy('id','asc')->pluck('id')->toArray());
+            $brandarticles=Brandarticle::where('typeid',$event->brandarticle->typeid)->skip($brandarticlekey*10)->where('id','<>',$id)->take(12)->get(['id','brandname','created_at','litpic','brandpay']);
+            if (!count($brandarticles))
+            {
+                $brandarticles=Brandarticle::where('typeid',$event->brandarticle->typeid)->skip($brandarticlekey-10)->orderBy('id','asc')->where('id','<>',$id)->take(12)->get(['id','brandname','created_at','litpic','brandpay']);
+            }
+            return $brandarticles;
+        });
         //清除当前缓存栏目所属分类最新入驻品牌缓存数据
         Cache::forget('thisarticleinfos_latestbrands'.$event->brandarticle->typeid);
         //当前栏目所属分类最新入驻品牌
         Cache::remember('thisarticleinfos_latestbrands'.$event->brandarticle->typeid,  config('app.cachetime')+rand(60,60*24), function() use($event){
-            return Brandarticle::where('typeid',$event->brandarticle->typeid)->where('id','<>',$event->brandarticle->id)->latest()->take(5)->orderBy('id','desc')->get(['id','brandname','tzid','litpic']);
-        });
-        //清除推荐品牌缓存
-        Cache::forget('thisarticleinfos_latestcbrands'.$event->brandarticle->typeid);
-        Cache::remember('thisarticleinfos_latestcbrands'.$event->brandarticle->typeid,  config('app.cachetime')+rand(60,60*24), function() use($event){
-            return Brandarticle::where('typeid',$event->brandarticle->typeid)->latest()->take(12)->orderBy('click','desc')->get(['id','brandname','tzid','litpic']);
+            Brandarticle::where('typeid',$event->brandarticle->typeid)->latest()->take(6)->where('id','<>',$event->brandarticle->id)->orderBy('id','desc')->get(['id','brandname','tzid','litpic']);
         });
         Cache::forget('newbrands');
-        //所有行业最新入驻品牌
-        Cache::remember('newbrands',60, function() use ($event){
-            return Brandarticle::latest()->take('12')->orderBy('id','desc')->where('id','<>',$event->brandarticle->id)->get(['id','brandname']);
-        });
-        //投资分类获取并缓存
-        Cache::remember('investment_types',  config('app.cachetime')+rand(60,60*24), function(){
-            return InvestmentType::pluck('type','id');
-        });
-
+        Cache::forget('brandarticles');
+        Cache::forget('phb');
+        Cache::forget('latestbrands');
+        Cache::forget('list_latestbrands');
     }
 }

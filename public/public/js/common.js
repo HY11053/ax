@@ -72,7 +72,43 @@ $(document).scroll(function(){
 
 	
  });
+//留言
+    $(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        $("#sub_btn").click(function(){
+            var phoneno = $("#sub_iphone").val();
+            var name = $("#sub_name").val();
+            var note = $("#content").val();
+            var project_id = $("#project_id").val();
+            var cid = $("#cid").val();
+            var title = $("#fm_title").val();
+            var cla = $("#cla").val();
+            var combrand = $("#combrand").val();
+            var host=window.location.href;
+            if( phoneno  && /^1[3|4|5|8]\d{9}$/.test(phoneno) ){
+                $.ajax({
+                    //提交数据的类型 POST GET
+                    type:"POST",
+                    //提交的网址
+                    url:"/phonecomplate/",
+                    //提交的数据
+                    data:{"phoneno":phoneno,"host":host,"name":name,"note":note,"project_id":project_id,"cid":cid,"title":title,"cla":cla,"combrand":combrand},
+                    //返回数据的格式
+                    datatype: "html",    //"xml", "html", "script", "json", "jsonp", "text"
+                    success:function (response, stutas, xhr) {
+                        alert(response);
+                    }
+                });
+            } else{
+                alert("您输入的手机号码"+phoneno+"不正确，请重新输入")
+            }
+        })
+    });
 
 });
 

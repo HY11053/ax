@@ -3,13 +3,31 @@
     <div class="hd">用户留言<span class="gb_tips">（如果您对该项目感兴趣，请留言立即获得最新加盟资料！）</span></div>
     <div class="bd">
         <div class="bd_mag">
-            <form action="https://i.u88.com/store" target="_blank" method="post">
+            <form class="message_form" onsubmit="return false">
+                {{csrf_field()}}
                 <ul>
+                    @if(isset($thisarticlebrandinfos) && !empty($thisarticlebrandinfos))
+                        <input type="hidden" name="project_id" id="project_id" value="{{$thisarticlebrandinfos->id}}">
+                        <input type="hidden" name="cid" id="cid" value="{{$thisbrandtypecidinfo->id}}">
+                        <input type="hidden" name="title"  id="fm_title" value="{{$thisarticlebrandinfos->brandname}}">
+                        <input type="hidden" name="cla" id="cla" value="{{$thisbrandtypeinfo->typename}}">
+                        <input type="hidden" name="combrand" id="combrand" value="{{$thisarticlebrandinfos->brandname}}">
+                    @elseif(isset($thisarticleinfos) && !empty($thisarticleinfos->brandname))
+                        <input type="hidden" name="project_id"  id="project_id" value="{{$thisarticleinfos->id}}">
+                        <input type="hidden" name="cid" id="cid" value="{{$thisbrandtypecidinfo->id}}">
+                        <input type="hidden" name="title" id="fm_title" value="{{$thisarticleinfos->brandname}}">
+                        <input type="hidden" name="cla" id="cla" value="{{$thisbrandtypeinfo->typename}}">
+                        <input type="hidden" name="combrand" id="combrand" value="{{$thisarticleinfos->brandname}}">
+                    @else
+                        <input type="hidden" name="title" id="fm_title"  value="未知分类">
+                        <input type="hidden" name="cla"  id="cla" value="未知分类">
+                        <input type="hidden" name="combrand"  id="combrand"  value="未知分类">
+                    @endif
                     <li> <span class="txt"><i>*</i>姓名</span>
-                        <input name="username" id="" value="" class="input_bk" placeholder="您的真实姓名" type="text">
+                        <input name="username" id="sub_name" value="" class="input_bk" placeholder="您的真实姓名" type="text">
                     </li>
                     <li><span class="txt"><i>*</i>手机</span>
-                        <input class="input_bk" name="iphone" placeholder="电话是与您联系的重要方式" type="text">
+                        <input class="input_bk" name="iphone" id="sub_iphone" placeholder="电话是与您联系的重要方式" type="text">
                     </li>
                     <li><span class="txt"><i>*</i>金额</span>
                         <select name="jine" class="select_money">
@@ -39,15 +57,9 @@
                         </div>
                     </li>
                     <li> <span class="txt">&nbsp;</span>
-                        <input value="提交-立即获得最新加盟资料" class="btn" type="submit">
+                        <input value="提交-立即获得最新加盟资料" id="sub_btn" class="btn" type="submit">
                     </li>
                 </ul>
-                <input type="hidden" name="realm" value="www.anxjm.com">
-                <input type="hidden" name="job" value="guestbook">
-                <input type="hidden" name="title" value="豆美滋豆乳机">
-                <input type="hidden" name="cla" value="经营之道">
-                <input type="hidden" name="combrand" value="豆美滋豆乳机">
-                <input type="hidden" name="resolution" id="resolution">
             </form>
         </div>
     </div>

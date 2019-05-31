@@ -1078,7 +1078,7 @@
                     <div class="news_brands">
                         <ul>
                             @foreach($latestbrand2s as $latestbrand2)
-                            <li>[{{$latestbrand2->arctype->typename}}]<a href="/busInfo/{{$latestbrand2->id}}.html">{{$latestbrand2->brandname}}</a></li>
+                            <li>[{{$latestbrand2->arctype->typename}}]<a href="/busInfo/{{$latestbrand2->id}}.html">{{str_replace('加盟','',$latestbrand2->brandname)}}加盟</a></li>
                                 @endforeach
                         </ul>
                     </div>
@@ -1407,9 +1407,9 @@
                                 <div class="cts">
                                     <div class="img"><img src="{{$paihangbrand->litpic}}" alt="{{$paihangbrand->brandname}}"></div>
                                     <div class="center">
-                                        <p class="info">投资额：<em>50-100万元</em></p>
+                                        <p class="info">投资额：<em>{{$investment_types[$paihangbrand->tzid]}}</em></p>
                                         <p class="info">门店数：{{$paihangbrand->brandnum}}</p>
-                                        <p class="btn"><a href="https://www.anxjm.com/busInfo/1389.html">立即咨询</a></p>
+                                        <p class="btn"><a href="/busInfo/{{$paihangbrand->id}}.html">立即咨询</a></p>
                                     </div>
                                 </div>
                             </li>

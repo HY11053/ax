@@ -59,6 +59,28 @@ class Archive extends Model
         return $litpic?$litpic:'/mobile/images/nopic.png';
     }
 
+    /**老路径转换
+     * @return string
+     */
+    public function url()
+    {
+        $url = '/';
+        if (is_null($this->oldtable)) {
+            $url = route('article', ['id' => $this->id]);
+        }
+        switch ($this->oldtable) {
+            case 'news':
+                $url = route('article_onews', ['oid' => $this->oldid]).'/';
+                break;
+            case 'cnews':
+                $url = route('article_cnews', ['oid' => $this->oldid]).'/';
+                break;
+            case 'tnews':
+                $url = route('article_tnews', ['oid' => $this->oldid]).'/';
+                break;
+        }
+        return $url;
+    }
     /**Eloquent ORM 栏目关联定义
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -66,7 +66,7 @@ class XiangmuProjectController extends Controller
             return $latestbrands;
         });
         //当前栏目相关品牌文档
-        $latestbrandnews=Cache::remember('typebrandnews'.$thistypeinfo->id,  config('app.cachetime')+rand(60,60*24), function(){
+        $latestbrandnews=Cache::remember('xmtypebrandnews',  config('app.cachetime')+rand(60,60*24), function(){
             $latestbrandnews=Archive::take(10)->latest()->get(['id','title','created_at']);
             return $latestbrandnews;
         });
@@ -132,7 +132,7 @@ class XiangmuProjectController extends Controller
             return $latestbrands;
         });
         //当前栏目相关品牌文档
-        $latestbrandnews=Cache::remember('typebrandnews'.$thistypeinfo->id,  config('app.cachetime')+rand(60,60*24), function() use($thistypeinfo){
+        $latestbrandnews=Cache::remember('xmtypebrandnews',  config('app.cachetime')+rand(60,60*24), function() use($thistypeinfo){
             $latestbrandnews=Archive::whereIn('brandtypeid',Arctype::where('mid',1)->pluck('id'))->take(10)->latest()->get(['id','title','created_at']);
             return $latestbrandnews;
         });

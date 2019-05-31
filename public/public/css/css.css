@@ -13,10 +13,10 @@ img { border: 0 none; }
 body, html { min-height: 101%; }
 .clearfix:after { display: block; font-size: 0; content: "."; clear: both; height: 0; visibility: hidden; }
 .common_tit{border-bottom: 2px solid #D6D6D6;height: 40px;line-height: 40px;overflow:hidden;}
-.common_tit h2{color:#333;font-size: 20px;height: 40px;line-height: 40px;/* width: initial; */font-weight: bold; float:left;}
+.common_tit h2{color:#333;font-size: 20px;height: 40px;line-height: 40px;/* width: initial; */font-weight: bold; float:left; padding-left: 5px;}
 .common_tit .news_tit{ color:#D71318; font-size:18px; font-weight:normal;}
 .common_tit .r_money{float:right;height: 40px;line-height: 40px; overflow:hidden;}
-.common_tit .r_tit{float:right;height: 40px;line-height: 40px; overflow:hidden;}
+.common_tit .r_tit{float:right;height: 40px;line-height: 40px; overflow:hidden; padding-right: 5px;}
 .common_tit .r_tit a{ color:#868686; margin-left:10px;}
 .main_index{background: #fff;}
 /*网站头部*/
@@ -250,7 +250,7 @@ body, html { min-height: 101%; }
 
 /*第七部分*/
 .box_6{overflow:hidden; margin:10px 0 10px;}
-.box_6 h2{color:#333;font-size: 20px;height: 40px;line-height: 40px;/* width: initial; */font-weight: bold; }
+.box_6 h2{color:#333;font-size: 20px;height: 40px;line-height: 40px;/* width: initial; */font-weight: bold; padding-left: 5px; }
 .box_6 .div-content{ margin-top:0px; margin-bottom:0px;}
 .box_6 .index_item_nav{border:1px solid #e6e6e6;padding: 23px 10px 30px;overflow: hidden;/* height: 170px; */}
 .box_6 .index_item_nav dl{float:left;width: 139px;border-right:1px dotted #E6E6E6;padding: 0 0 0 20px;}

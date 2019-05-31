@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mobile;
+namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,33 +10,43 @@ class StatementController extends Controller
     //
     public function about()
     {
-        return view('mobile.about');
+        return view('frontend.about');
     }
     public function contact()
     {
-        return view('mobile.about_contact');
+        return view('frontend.about_contact');
     }
     public function youshi()
     {
-        return view('mobile.about_youshi');
+        return view('frontend.about_youshi');
     }
     public function hezuo()
     {
-        return view('mobile.about_hezuo');
+        return view('frontend.about_hezuo');
     }
     public function disclaimer()
     {
-        return view('mobile.about_disclaimer');
+        return view('frontend.about_disclaimer');
     }
     public function flgw()
     {
-        return view('mobile.about_flgw');
+        return view('frontend.about_flgw');
     }
     public function friendLinks()
     {
-        return view('mobile.about_friendlinks');
-    } public function sitemap()
+        return view('frontend.about_friendlinks');
+    }
+    public function guestbook()
     {
-        return view('mobile.about_sitemap');
+        return view('frontend.guestbook');
+    }
+
+    public function sitemap()
+    {
+        return view('frontend.about_sitemap');
+    }
+    public function shantie()
+    {
+        return view('frontend.shantie');
     }
 }

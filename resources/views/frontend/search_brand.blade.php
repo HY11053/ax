@@ -13,7 +13,7 @@
 @stop
 @section('main_content')
     <!--当前位置 开始-->
-    <div class="path">当前位置： <a href="/">首页</a> > <a href="/{{$thistypeinforeid->real_path}}/">{{$thistypeinforeid->typename}}</a> > {{$thistypeinfo->typename}}</div>
+    <div class="path">当前位置： <a href="/">首页</a> >品牌搜索页面</div>
     <!--当前位置 结束-->
     <!--项目分类 开始-->
     <div class="cate_sort">
@@ -28,18 +28,19 @@
                 </ul>
             </div>
         </div>
-        <div class="cate_channel">
-            <div class="hd">{{$thistypeinforeid->typename}}：</div>
-            <div class="bd area_wrap">
-                <ul>
-                    @if(isset($thistypeinforeid))<li  @if(trim(Request::getrequesturi(),'/') == $thistypeinfo->real_path) class="hover" @endif><a href="/{{$thistypeinforeid->real_path}}/" class="">不限</a></li>@endif
-                    @foreach($sontypes as $sontype)
-                        <li><a href="/{{$sontype->real_path}}/"  @if(trim(Request::getrequesturi(),'/') == $sontype->real_path) class="hover" @endif >{{$sontype->typename}}</a></li>
-                    @endforeach
-                </ul>
+        @if($thistypeinforeid->real_path!='search')
+            <div class="cate_channel">
+                <div class="hd">{{$thistypeinforeid->typename}}：</div>
+                <div class="bd area_wrap">
+                    <ul>
+                        @if(isset($thistypeinforeid))<li  @if(trim(Request::getrequesturi(),'/') == $thistypeinfo->real_path) class="hover" @endif><a href="/{{$thistypeinforeid->real_path}}/" class="">不限</a></li>@endif
+                        @foreach($sontypes as $sontype)
+                            <li><a href="/{{$sontype->real_path}}/"  @if(trim(Request::getrequesturi(),'/') == $sontype->real_path) class="hover" @endif >{{$sontype->typename}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
-        </div>
-
+        @endif
         <div class="cate_channel">
             <div class="hd">投资金额：</div>
             <div class="bd ">
@@ -80,13 +81,7 @@
                             </div>
                         </div>
                     @endforeach
-
                 </div>
-                <!--分页 开始-->
-                <div class="page">
-                    {!! str_replace(['cid=&amp;','cid=/'],'',str_replace('page=','',str_replace('?','/',preg_replace('/<a href=[\'\"]?([^\'\" ]+).*?>/','<a href="${1}/">',$pagelists->links())))) !!}
-                </div>
-                <!--分页 结束-->
             </div>
         </div>
         <!--左边模块 结束-->
