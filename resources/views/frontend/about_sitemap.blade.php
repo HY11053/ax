@@ -1,9 +1,9 @@
 @extends('frontend.frontend')
-@section('title')网站地图-U88加盟网@stop
+@section('title')网站地图-安心加盟网@stop
 @section('main_content')
     <div class="main">
         <div class="btleft">
-            <div class="hd">U88加盟网</div>
+            <div class="hd">安心加盟网</div>
             <div class="bd_about">
                 <div class="about_center li">
                     <ul>

@@ -1,5 +1,5 @@
 @extends('frontend.frontend')
-@section('title')联系我们-U88加盟网@stop
+@section('title')联系我们-安心加盟网@stop
 @section('main_content')
     <link rel="stylesheet" type="text/css" href="/public/css/page.other.css">
     <div class="box shantie_bn">

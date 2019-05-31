@@ -21,12 +21,12 @@
                         <span class="top">{{$index+1}}</span>
                     </span>
                         <div class="title-text">
-                            <a href="{{str_replace('www.','m.',config('app.url'))}}/xm/{{$pagelist->id}}.shtml" class="a "><span>{{$pagelist->brandname}}</span></a>
+                            <a href="{{str_replace('www.','m.',config('app.url'))}}/busInfo/{{$pagelist->id}}.html" class="a "><span>{{$pagelist->brandname}}</span></a>
                         </div>
-                        <a href="{{str_replace('www.','m.',config('app.url'))}}/xm/{{$pagelist->id}}.shtml" class="brand-list-item-jump-tmall official"  title="{{$pagelist->brandname}}" data-bde-bind="1"><span class="active">品牌详情</span></a>
+                        <a href="{{str_replace('www.','m.',config('app.url'))}}/busInfo/{{$pagelist->id}}.html" class="brand-list-item-jump-tmall official"  title="{{$pagelist->brandname}}" data-bde-bind="1"><span class="active">品牌详情</span></a>
                     </div>
                     <div class="clear"></div>
-                    <a href="{{str_replace('www.','m.',config('app.url'))}}/xm/{{$pagelist->id}}.shtml">
+                    <a href="{{str_replace('www.','m.',config('app.url'))}}/busInfo/{{$pagelist->id}}.html">
                         <dl class="list flex flex-align-center">
                             <div class="dt flex flex-align-center">
                                 <span>

@@ -37,7 +37,7 @@
         <div class="d_nav">
             <ul>
                 <li><a href="/" target="_self"><span>首页</span></a></li>
-                <li><a href="/xm/" target="_self"><span>项目大全</span></a></li>
+                <li><a href="/busInfo/" target="_self"><span>项目大全</span></a></li>
                 <li><a href="/guide/" target="_self"><span>加盟指南</span></a></li>
                 <li><a href="/analysis/" target="_self"><span>投资分析</span></a></li>
                 <li><a href="/management/" target="_self"><span>经营管理</span></a></li>
@@ -63,7 +63,7 @@
 <footer>
     <div class="link-box ">
         <a href="http://www.jjedu.com.cn/" class="foot-link">电脑版</a><span class="v-line">|</span>
-        <a href="/xm/" class="foot-link">教育品牌</a><span class="v-line">|</span>
+        <a href="/busInfo/" class="foot-link">教育品牌</a><span class="v-line">|</span>
         <a href="/guide/" class="foot-link">加盟指南</a><span class="v-line">|</span>
         <a href="/analysis/" class="foot-link">投资分析</a><span class="v-line">|</span>
         <a href="/management/" class="foot-link">经营管理</a>

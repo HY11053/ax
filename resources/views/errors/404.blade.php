@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.u88.com/jjjj/">
     <meta http-equiv="Cache-Control" content="no-transform " />
-    <title>U88加盟网</title>
+    <title>安心加盟网</title>
     <link rel="stylesheet" type="text/css" href="/public/css/global.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/css.css" />
     <script type="text/javascript" src="/public/js/jquery.min.js"></script>
@@ -41,7 +41,7 @@
     <div class="logo_box">
         <div class="logo">
             <a href="/" target="_blank">
-                <img src="/public/images/logo.jpg" alt="U88加盟网" />
+                <img src="/public/images/logo.jpg" alt="安心加盟网" />
             </a>
         </div>
 
@@ -588,7 +588,7 @@
                 <li>
                     <div class="ico ico_1"></div>
                     <div class="tit_info">
-                        <p class="t">登录u88加盟网</p>
+                        <p class="t">登录安心加盟网</p>
                         <p class="txt">输入www.u88.com
                             <br>进入网站</p>
                     </div>
@@ -678,7 +678,7 @@
         <img src="/public/images/index07.jpg" alt="信用保障">
     </div>
     <div class="copyright">
-        <p>U88加盟网友情提示：多打电话、多咨询、实地考察，可降低投资风险！</p>
+        <p>安心加盟网友情提示：多打电话、多咨询、实地考察，可降低投资风险！</p>
         <p>Copyright © 2015-2017 www.u88.com Corporation, All Rights Reserved 上海哆瑞咪网络科技有限公司 版权所有</p>
         <p><a href="http://www.miitbeian.gov.cn/">沪ICP备17021897号-2</a></p>
         <p>投资有风险，选择需谨慎！</p>

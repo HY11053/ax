@@ -55,7 +55,7 @@
         <div id="moocBox">
             <ul data-id="m_n_a02" data-type="cmsadpos">
                 @foreach($ctbrandnews as $ctbrandnew)
-                <li><a href="/news/{{$ctbrandnew->id}}.shtml" data-id="{{$ctbrandnew->id}}">{{$ctbrandnew->title}}</a></li>
+                <li><a href="{{$ctbrandnew->url()}}" data-id="{{$ctbrandnew->id}}">{{$ctbrandnew->title}}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -71,7 +71,7 @@
             <ul class="content cy-item ">
                 @foreach($cbrands as $cbrand)
                 <li>
-                    <a href="/xm/{{$cbrand->id}}.shtml" data-id="{{$cbrand->id}}" data-type="cmsad">
+                    <a href="/busInfo/{{$cbrand->id}}.html" data-id="{{$cbrand->id}}" data-type="cmsad">
                         <img src="{{$cbrand->litpic}}">
                         <p class="online-title">{{$cbrand->brandname}}</p>
                         <p class="online-name">{{$cbrand->brandgroup}}</p>
@@ -84,7 +84,7 @@
             <ul class="content cy-item ">
                 @foreach($cbrand2s as $cbrand2)
                     <li>
-                        <a href="/xm/{{$cbrand2->id}}.shtml" data-id="{{$cbrand2->id}}" data-type="cmsad">
+                        <a href="/busInfo/{{$cbrand2->id}}.html" data-id="{{$cbrand2->id}}" data-type="cmsad">
                             <img src="{{$cbrand2->litpic}}">
                             <p class="online-title">{{$cbrand2->brandname}}</p>
                             <p class="online-name">{{$cbrand2->brandgroup}}</p>
@@ -98,7 +98,7 @@
             <ul class="content cy-item ">
                 @foreach($cbrand3s as $cbrand3)
                     <li>
-                        <a href="/xm/{{$cbrand3->id}}.shtml" data-id="{{$cbrand3->id}}" data-type="cmsad">
+                        <a href="/busInfo/{{$cbrand3->id}}.html" data-id="{{$cbrand3->id}}" data-type="cmsad">
                             <img src="{{$cbrand3->litpic}}">
                             <p class="online-title">{{$cbrand3->brandname}}</p>
                             <p class="online-name">{{$cbrand3->brandgroup}}</p>
@@ -112,7 +112,7 @@
             <ul class="content cy-item ">
                 @foreach($cbrand4s as $cbrand4)
                     <li>
-                        <a href="/xm/{{$cbrand4->id}}.shtml" data-id="{{$cbrand4->id}}" data-type="cmsad">
+                        <a href="/busInfo/{{$cbrand4->id}}.html" data-id="{{$cbrand4->id}}" data-type="cmsad">
                             <img src="{{$cbrand4->litpic}}">
                             <p class="online-title">{{$cbrand4->brandname}}</p>
                             <p class="online-name">{{$cbrand4->brandgroup}}</p>
@@ -135,7 +135,7 @@
             <ul class="content cy-item ">
                 @foreach($latestbrands as $latestbrand)
                     <li>
-                        <a href="/xm/{{$latestbrand->id}}.shtml" data-id="{{$latestbrand->id}}" data-type="cmsad">
+                        <a href="/busInfo/{{$latestbrand->id}}.html" data-id="{{$latestbrand->id}}" data-type="cmsad">
                             <img src="{{$latestbrand->litpic}}">
                             <p class="online-title">{{$latestbrand->brandname}}</p>
                             <p class="online-name">{{$latestbrand->brandgroup}}</p>
@@ -148,7 +148,7 @@
             <ul class="content cy-item ">
                 @foreach($latestbrand2s as $latestbrand2)
                     <li>
-                        <a href="/xm/{{$latestbrand2->id}}.shtml" data-id="{{$latestbrand2->id}}" data-type="cmsad">
+                        <a href="/busInfo/{{$latestbrand2->id}}.html" data-id="{{$latestbrand2->id}}" data-type="cmsad">
                             <img src="{{$latestbrand2->litpic}}">
                             <p class="online-title">{{$latestbrand2->brandname}}</p>
                             <p class="online-name">{{$latestbrand2->brandgroup}}</p>
@@ -161,7 +161,7 @@
             <ul class="content cy-item ">
                 @foreach($latestbrand3s as $latestbrand3)
                     <li>
-                        <a href="/xm/{{$latestbrand3->id}}.shtml" data-id="{{$latestbrand3->id}}" data-type="cmsad">
+                        <a href="/busInfo/{{$latestbrand3->id}}.html" data-id="{{$latestbrand3->id}}" data-type="cmsad">
                             <img src="{{$latestbrand3->litpic}}">
                             <p class="online-title">{{$latestbrand3->brandname}}</p>
                             <p class="online-name">{{$latestbrand3->brandgroup}}</p>
@@ -174,7 +174,7 @@
             <ul class="content cy-item ">
                 @foreach($latestbrand4s as $latestbrand4)
                     <li>
-                        <a href="/xm/{{$latestbrand4->id}}.shtml" data-id="{{$latestbrand4->id}}" data-type="cmsad">
+                        <a href="/busInfo/{{$latestbrand4->id}}.html" data-id="{{$latestbrand4->id}}" data-type="cmsad">
                             <img src="{{$latestbrand4->litpic}}">
                             <p class="online-title">{{$latestbrand4->brandname}}</p>
                             <p class="online-name">{{$latestbrand4->brandgroup}}</p>
@@ -200,7 +200,7 @@
                 @foreach($latestbrandnews as $latestbrandnew)
                 <dl class="newslist1">
                     <dt class="dd-two">
-                        <p class="newslist-tit p-two"><a href="/news/{{$latestbrandnew->id}}.shtml">{{$latestbrandnew->title}}</a></p>
+                        <p class="newslist-tit p-two"><a href="{{$latestbrandnew->url()}}">{{$latestbrandnew->title}}</a></p>
                         <p class="newslist-text p1-two">{{$latestbrandnew->descriprion}}</p>
                     </dt>
                     <dd class="dt-two dt-two1 clearfix">
@@ -224,7 +224,7 @@
                 @foreach($jmzhinannews as $jmzhinannew)
                     <dl class="newslist1">
                         <dt class="dd-two">
-                            <p class="newslist-tit p-two"><a href="/news/{{$jmzhinannew->id}}.shtml">{{$jmzhinannew->title}}</a></p>
+                            <p class="newslist-tit p-two"><a href="{{$jmzhinannew->url()}}">{{$jmzhinannew->title}}</a></p>
                             <p class="newslist-text p1-two">{{$jmzhinannew->descriprion}}</p>
                         </dt>
                         <dd class="dt-two dt-two1 clearfix">
@@ -248,7 +248,7 @@
                 @foreach($touzinews as $touzinew)
                     <dl class="newslist1">
                         <dt class="dd-two">
-                            <p class="newslist-tit p-two"><a href="/news/{{$touzinew->id}}.shtml">{{$touzinew->title}}</a></p>
+                            <p class="newslist-tit p-two"><a href="{{$touzinew>url()}}">{{$touzinew->title}}</a></p>
                             <p class="newslist-text p1-two">{{$touzinew->descriprion}}</p>
                         </dt>
                         <dd class="dt-two dt-two1 clearfix">
@@ -272,7 +272,7 @@
                 @foreach($jingyingnews as $jingyingnew)
                     <dl class="newslist1">
                         <dt class="dd-two">
-                            <p class="newslist-tit p-two"><a href="/news/{{$jingyingnew->id}}.shtml">{{$jingyingnew->title}}</a></p>
+                            <p class="newslist-tit p-two"><a href="{{$jingyingnew->url()}}">{{$jingyingnew->title}}</a></p>
                             <p class="newslist-text p1-two">{{$jingyingnew->descriprion}}</p>
                         </dt>
                         <dd class="dt-two dt-two1 clearfix">
@@ -292,9 +292,6 @@
                     </dl>
                 @endforeach
             </div>
-        </div>
-        <div class="lxmore">
-            <a href="/news/">查看更多<i></i></a>
         </div>
     </div>
     <div class="clearfix">

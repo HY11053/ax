@@ -50,10 +50,10 @@ class BrandArticleCacheDeleteEventListener
         Cache::forget('brandarticles'.$id);
         Cache::remember('brandarticles'.$id,config('app.cachetime')+rand(60,60*24), function() use($id,$event){
             $brandarticlekey=array_search($id,Brandarticle::where('typeid',$event->typeid)->orderBy('id','asc')->pluck('id')->toArray());
-            $brandarticles=Brandarticle::where('typeid',$event->brandarticle->typeid)->skip($brandarticlekey*10)->where('id','<>',$id)->take(12)->get(['id','brandname','created_at','litpic','brandpay']);
+            $brandarticles=Brandarticle::where('typeid',$event->brandarticle->typeid)->skip($brandarticlekey*10)->where('id','<>',$id)->take(12)->get(['id','brandname','created_at','litpic','brandpay','tzid']);
             if (!count($brandarticles))
             {
-                $brandarticles=Brandarticle::where('typeid',$event->brandarticle->typeid)->skip($brandarticlekey-10)->orderBy('id','asc')->where('id','<>',$id)->take(12)->get(['id','brandname','created_at','litpic','brandpay']);
+                $brandarticles=Brandarticle::where('typeid',$event->brandarticle->typeid)->skip($brandarticlekey-10)->orderBy('id','asc')->where('id','<>',$id)->take(12)->get(['id','brandname','created_at','litpic','brandpay','tzid']);
             }
             return $brandarticles;
         });

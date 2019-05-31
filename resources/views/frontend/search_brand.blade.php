@@ -1,5 +1,5 @@
 @extends('frontend.frontend')
-@section('title')品牌搜索页面-u88加盟网@stop
+@section('title')品牌搜索页面-安心加盟网@stop
 @section('keywords')品牌搜索页面 @stop
 @section('description')品牌搜索页面@stop
 @section('headlibs')

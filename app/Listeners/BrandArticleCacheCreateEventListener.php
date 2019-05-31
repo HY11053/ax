@@ -58,10 +58,10 @@ class BrandArticleCacheCreateEventListener
             Cache::forget('brandarticles'.$thisarticleinfos->id);
             Cache::remember('brandarticles'.$thisarticleinfos->id,config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
                 $brandarticlekey=array_search($thisarticleinfos->id,Brandarticle::where('typeid',$thisarticleinfos->typeid)->orderBy('id','asc')->pluck('id')->toArray());
-                $brandarticles=Brandarticle::where('typeid',$thisarticleinfos->typeid)->skip($brandarticlekey*10)->take(12)->get(['id','brandname','created_at','litpic','brandpay']);
+                $brandarticles=Brandarticle::where('typeid',$thisarticleinfos->typeid)->skip($brandarticlekey*10)->take(12)->get(['id','brandname','created_at','litpic','brandpay','tzid']);
                 if (!count($brandarticles))
                 {
-                    $brandarticles=Brandarticle::where('typeid',$thisarticleinfos->typeid)->skip($brandarticlekey-10)->orderBy('id','asc')->take(12)->get(['id','brandname','created_at','litpic','brandpay']);
+                    $brandarticles=Brandarticle::where('typeid',$thisarticleinfos->typeid)->skip($brandarticlekey-10)->orderBy('id','asc')->take(12)->get(['id','brandname','created_at','litpic','brandpay','tzid']);
                 }
                 return $brandarticles;
             });

@@ -51,9 +51,9 @@
                 </div>
             </div>
         @endforeach
-            <div class="page">
-                {!! preg_replace("#\/page/[\d]+\/page\/#",'/page/',str_replace('page=','page/',str_replace('?','/',preg_replace('/<a href=[\'\"]?([^\'\" ]+).*?>/','<a href="${1}/">',$pagelists->links())))) !!}
-            </div>
+        <div class="page">
+            {!! preg_replace("#\/page/[\d]+\/page\/#",'/page/',str_replace('page=','page/',str_replace('?','/',preg_replace('/<a href=[\'\"]?([^\'\" ]+).*?>/','<a href="${1}/">',$pagelists->links())))) !!}
+        </div>
     </div>
     @include('mobile.liuyan')
     <div class="index_item">

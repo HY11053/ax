@@ -1,19 +1,14 @@
 @extends('mobile.mobile')
 @section('title'){{$thisarticleinfos->title}}-{{config('app.indexname')}}@stop
 @section('keywords'){{$thisarticleinfos->keywords}}@stop
-@section('description'){{trim(str_replace('官网','',$thisarticleinfos->description))}}@stop
+@section('description'){{$thisarticleinfos->description}}@stop
 @section('headlibs')
     <link href="/mobile/css/article.css" rel="stylesheet" type="text/css"/>
     <link href="/mobile/css/brand.css" rel="stylesheet" type="text/css"/>
-    <link href="/frontend/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/mobile/css/swiper.min.css" rel="stylesheet" type="text/css"/>
 @stop
 @section('main_content')
-<div class="weizhi">
-	<span><a href="/">首页</a>&nbsp;>&nbsp;
-            <a href="{{str_replace('www.','m.',config('app.url'))}}/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>&nbsp;>&nbsp;
-            正文：
-    </span>
-</div>
+<div class="weizhi"><span><a href="/">首页</a>&nbsp;> <a href="{{str_replace('www.','m.',config('app.url'))}}/newsPage/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>&nbsp;>&nbsp;正文： </span> </div>
 <div class="list_middle">
     <div class="a_content_brand">
         <div class="a_content">
@@ -26,13 +21,13 @@
             <div id="item1">
                 <div class="item1box">
                     <div class="item1boxleft fl">
-                        <div class="title"><a href="/xm/{{$thisarticlebrandinfos->id}}.shtml">{{str_replace('加盟','',$thisarticlebrandinfos->brandname)}}加盟</a></div>
+                        <div class="title"><a href="/busInfo/{{$thisarticlebrandinfos->id}}.html">{{str_replace('加盟','',$thisarticlebrandinfos->brandname)}}加盟</a></div>
                         <div class="text">{{$thisarticlebrandinfos->brandgroup}}</div>
                         <div class="time"><span>{{date('Y-m-d',strtotime($thisarticlebrandinfos->created_at))}}</span></div>
                     </div>
                     <div class="item1boxmiddle fl">
-                        <div class="top" style="font-weight: bold;">{{$thisarticlebrandinfos->brandpay}}</div>
-                        <a href="/xm/{{$thisarticlebrandinfos->id}}.shtml#item5"><div class="bottom"></div></a>
+                        <div class="top" style="font-weight: bold;">{{$investment_types[$thisarticlebrandinfos->tzid]}}</div>
+                        <a href="/busInfo/{{$thisarticlebrandinfos->id}}.html#item5"><div class="bottom"></div></a>
                     </div>
                     <div class="item1boxright fr clearfix">
                         <a href="#item5"><img class="js_popup" src="/mobile/images/liuyan.png" alt="在线留言"></a>
@@ -53,7 +48,7 @@
             <div id="item3">
                 <div class="item3box">
                     <ul class="title clearfix">
-                        <li class="tl">品牌地址：<span>{{$thisarticlebrandinfos->country}}</span></li>
+                        <li class="tl">品牌地址：<span>{{$thisarticlebrandinfos->brandaddr}}</span></li>
                         <li class="tc">门店数目：<span>{{$thisarticlebrandinfos->brandnum}}</span></li>
                         <li class="tr">{{$thisarticlebrandinfos->click}}人关注</li>
                     </ul>
@@ -86,35 +81,7 @@
         </div>
     @endif
      <div class="a_content">
-         @php
-             $content=$thisarticleinfos->body;
-             $content=$content=str_replace(PHP_EOL,'',$content);
-             $content=str_replace(['<p >','<strong >','<br >','<br />'],['<p>','<strong>','<br>','<br/>'],$content);
-             $content=str_replace(
-                   [
-                   '<p><strong><br/></strong></p>',
-                   '<p><strong><br></strong></p>',
-                   '<p><br></p>',
-                   '<p><br/></p>',
-                   '　　'
-                   ],'',$content
-                   );
-             $pattens=array(
-                 "#<p>[\s| |　]?<strong>[\s| |　]?</strong></p>#",
-                 "#<p>[\s| |　]?<strong>[\s| |　]+</strong></p>#",
-                 "#<p>[\s| |　]+<strong>[\s| |　]+</strong></p>#",
-                 "#<p><strong><br/></strong></p>#",
-                 "#<p><strong><br></strong></p>#",
-                 "#<p><br></p>#",
-                 "#<p><br/></p>#",
-                 "#<p>[\s| |　]?</p>#",
-                 "#<p>[\s| |　]+</p>#",
-                 "#&nbsp;#"
-             );
-             $content=preg_replace($pattens,'',$content);
-              $content=preg_replace(["/style=.+?['|\"]/i","/height=.+?['|\"]/i","/width=.+?['|\"]/i","/font-size=.+?['|\"]/i","/microsoft=.+?['|\"]/i",'/yahei";=""/'],'',$content);
-          echo $content;
-         @endphp
+         {!! $content !!}
     </div>
     @include('mobile.liuyan')
     @if(isset($latestbrandnews))
@@ -126,7 +93,7 @@
                 @foreach($latestbrandnews as $index=>$latestbrandnew)
                     @if($index<5)
                         <div class="item7list">
-                            <a href="/news/{{$latestbrandnew->id}}.shtml">
+                            <a href="{{$latestbrandnew->url()}}">
                                 <div class="left fl">
                                     <div class="lefttitle">{{$latestbrandnew->title}}</div>
                                     <div class="text">
@@ -150,20 +117,20 @@
             <i></i>
             <div class="title">猜你喜欢</div>
             <div class="item8content">
-                @foreach($paihangbangs as $index=>$paihangbang)
+                @foreach($brandarticles as $index=>$brandarticle)
                     @if($index<4)
                         <div class="item8list @if(($index+1)%2==0) fl @else fr @endif">
-                            <a href="/xm/{{$paihangbang->id}}.shtml">
-                                <img src="{{$paihangbang->litpic}}" alt="{{$paihangbang->brandname}}">
+                            <a href="/busInfo/{{$brandarticle->id}}.html">
+                                <img src="{{$brandarticle->litpic}}" alt="{{$brandarticle->brandname}}">
                                 <div class="item8listcontent">
-                                    <div class="listtitle">{{$paihangbang->brandname}}</div>
+                                    <div class="listtitle">{{$brandarticle->brandname}}</div>
                                     <div class="listtext">
-                                        <p>{{$paihangbang->brandgroup}}</p>
+                                        <p>{{$brandarticle->brandgroup}}</p>
                                     </div>
-                                    <div class="textleft fl">￥{{$paihangbang->brandpay}}
+                                    <div class="textleft fl">￥{{$investment_types[$brandarticle->tzid]}}
                                     </div>
                                     <div class="textright fr">
-                                        {{date('Y-m-d',strtotime($paihangbang->created_at))}}
+                                        {{date('Y-m-d',strtotime($brandarticle->created_at))}}
                                     </div>
                                 </div>
                             </a>

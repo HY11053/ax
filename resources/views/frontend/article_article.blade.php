@@ -65,7 +65,7 @@
                     <!--标题 结束-->
                     <!--文章内容 开始-->
                     <div class="body_tit clearfix">
-                        　{!! $thisarticleinfos->body !!}
+                        　{!! $content !!}
                     </div>
                     <!--文章内容 结束-->
                     <!--上一篇 开始-->
