@@ -636,6 +636,8 @@ body, html { min-height: 101%; }
 .c_basic {width:531px;float: left;margin-left: 15px;margin-right:15px;margin-top: 20px;position:relative;}
 .c_info {overflow: hidden;margin-top:9px; }
 .c_info li { overflow:hidden; zoom:1; padding-bottom:4px;}
+.c_info li.fline{float: left; width:220px; line-height: 28px;}
+.clear{clear: both;}
 .c_info .ls{border-bottom: 1px dotted #ddd;padding-bottom: 8px;margin-bottom: 6px;}
 .c_info li a {text-decoration: none;color: #D71318;}
 .c_info li p { width: 225px; float: left; }
@@ -758,10 +760,10 @@ table td{ text-align:center; font-size:12px; color:#333; border:1px solid #D6D6D
 
 
 /*轮播图*/
-.smallslider{position:relative;margin:0;overflow:hidden;width:300px;height:225px;float: left;padding: 20px 0;}
+.smallslider{position:relative;margin:0;overflow:hidden;width:300px;height:330px;float: left;padding: 20px 0;}
 .smallslider .bd{ position:relative; height:100%; z-index:0;   }
 .smallslider .bd li{ zoom:1; vertical-align:middle; position:relative;}
-.smallslider .bd img{ width:300px; height:225px; display:block;  }
+.smallslider .bd img{ width:300px; height:330px; display:block;  }
 .smallslider .hd{height:20px;overflow:hidden;position:absolute;right:0px;bottom: 24px;z-index:1;}
 .smallslider .hd ul{ overflow:hidden; zoom:1; float:left;  }
 .smallslider .hd ul li{float:left;margin-right:5px;width:20px;height:20px;line-height: 20px;text-align:center;background:#FFFFFF;cursor:pointer;}

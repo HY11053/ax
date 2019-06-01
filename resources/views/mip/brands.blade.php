@@ -2,10 +2,6 @@
 @section('title'){{$thistypeinfo->title}}-{{config('app.indexname')}}@stop
 @section('keywords'){{$thistypeinfo->keywords}} @stop
 @section('description'){{trim($thistypeinfo->description)}}@stop
-@section('headlibs')
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/mobile/css/miplist.css" rel="stylesheet" type="text/css"/>
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/frontend/css/swiper.min.css" rel="stylesheet" type="text/css"/>
-@stop
 @section('main_content')
     @include('mip.header')
     <!--menu End-->

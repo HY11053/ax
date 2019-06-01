@@ -26,7 +26,6 @@
                 <a href="/search/">找项目</a>
                 <a href="/paihang/">排行榜</a>
                 <a href="/newsPage/1601/">资讯</a>
-                <a href="/zt/">专题</a>
             </div>
             <div class="top_r">
                 <!-- <a href="/register/" class="t_login">注册</a> -->
@@ -55,7 +54,7 @@
                 <ul>
                     <li>热门搜索：</li>
                     <li><a href="https://www.anxjm.com/busInfo/10960.html" title="奶茶店加盟" target="_blank">奶茶店加盟</a></li>
-                    <li><a href="https://www.anxjm.com/5" title="烧烤店加盟" target="_blank">烧烤店加盟</a></li>
+                    <li><a href="https://www.anxjm.com/5/" title="烧烤店加盟" target="_blank">烧烤店加盟</a></li>
                 </ul>
             </div>
         </div>
@@ -104,17 +103,16 @@
 </div>
 <!--底部 开始-->
 <!--底部 start-->
-
 <div class="footer">
     <div class="footer_nav">
-        <a href="https://www.anxjm.com/news/1601209" target="_blank">关于我们</a> |
-        <a href="https://www.anxjm.com/news/1601210" target="_blank">公司简介</a> |
-        <a href="https://www.anxjm.com/news/69463.html" target="_blank">投诉/删除</a> |
-        <a href="https://www.anxjm.com/news/1601212" target="_blank">客户合作</a> |
-        <a href="https://www.anxjm.com/news/1601213" target="_blank">服务内容</a> |
-        <a href="https://www.anxjm.com/news/1601214" target="_blank">法律声明</a> |
-        <a href="https://www.anxjm.com/sitemap" target="_blank">网站地图</a> |
-        <a href="https://www.anxjm.com/news/1601215" target="_blank">联系我们</a>
+        <a href="/news/1601209/" target="_blank">关于我们</a> |
+        <a href="/news/1601210/" target="_blank">公司简介</a> |
+        <a href="/news/69463.html" target="_blank">投诉/删除</a> |
+        <a href="/news/1601212/" target="_blank">客户合作</a> |
+        <a href="/news/1601213/" target="_blank">服务内容</a> |
+        <a href="/news/1601214/" target="_blank">法律声明</a> |
+        <a href="/sitemap/" target="_blank">网站地图</a> |
+        <a href="/news/1601215/" target="_blank">联系我们</a>
     </div>
     <div class="copyright">
         <p>广告刊登：400-885-8878 防骗咨询电话：400-885-8878 安心加盟网 友情提示：决定投资之前，请与我们的投资客服联系!</p>
@@ -148,7 +146,6 @@
         s.parentNode.insertBefore(hm, s);
     })();
 </script>
-
 @yield('footlibs')
 </body>
 </html>

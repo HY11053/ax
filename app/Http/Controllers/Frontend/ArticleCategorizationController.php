@@ -41,7 +41,7 @@ class ArticleCategorizationController extends Controller
         //针对不同栏目类型返回不同类型页面
         //普通文档列表
         $toparticlenavs=Cache::remember('toparticlenavs',  config('app.cachetime')+rand(60,60*24), function(){
-            return  Arctype::whereIn('id',[210,211,212,213,214,215,216,217,218,219])->get(['typename','real_path']);
+            return  Arctype::whereIn('id',[211,212,213,214,215,216,217,218,219,220])->get(['typename','real_path']);
         });
         $pagelists=Archive::where('typeid',$thistypeinfo->id)->orderBy('id','desc')->distinct()->paginate($perPage = 40, $columns = ['*'], $pageName = 'p', $page);
         $pagelists= Paginator::transfer(

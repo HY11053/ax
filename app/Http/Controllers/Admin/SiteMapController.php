@@ -25,8 +25,8 @@ class SiteMapController extends Controller
         ini_set("memory_limit","-1");
         $index=1;
         $appurl=config('app.url');
-        $typedirs=Arctype::orderBy('id','desc')->where('is_write',1)->pluck('real_path');
-        $newsurllinks=Archive::orderBy('id','desc')->get(['created_at','id']);
+        $typedirs=Arctype::orderBy('id','desc')->where('is_write',1)->where('mid',1)->pluck('real_path');
+        $newsurllinks=Archive::orderBy('id','desc')->get(['created_at','id','oldid','oldtable']);
         $brandlinks=Brandarticle::orderBy('id','desc')->get(['created_at','id']);
         $mainsitemap="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
         $urlset='<urlset>';
@@ -48,7 +48,7 @@ class SiteMapController extends Controller
         {
           $urlsets.="
 <url>
-    <loc>$appurl/article/{$newsurllinks[$i]->id}.html</loc>
+    <loc>".$newsurllinks[$i]->url()."</loc>
     <lastmod>".date('Y-m-d',strtotime($newsurllinks[$i]->created_at))."</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -76,7 +76,7 @@ class SiteMapController extends Controller
         {
             $urlsets.="
 <url>
-    <loc>$appurl/xiangmu/{$brandlinks[$i]->id}.html</loc>
+    <loc>$appurl/busInfo/{$brandlinks[$i]->id}.html</loc>
     <lastmod>".date('Y-m-d',strtotime($brandlinks[$i]->created_at))."</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -150,8 +150,8 @@ class SiteMapController extends Controller
         ini_set("memory_limit","-1");
         $index=1;
         $appurl=str_replace('www.','m.',config('app.url'));
-        $typedirs=Arctype::pluck('real_path');
-        $newsurllinks=Archive::where('ismake',1)->orderBy('id','desc')->get(['created_at','id']);
+        $typedirs=Arctype::orderBy('id','desc')->where('is_write',1)->where('mid',1)->pluck('real_path');
+        $newsurllinks=Archive::where('ismake',1)->orderBy('id','desc')->get(['created_at','id','oldid','oldtable']);
         $brandlinks=Brandarticle::where('ismake',1)->orderBy('id','desc')->get(['created_at','id']);
         $mainsitemap="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
         $urlset='<urlset>';
@@ -173,13 +173,13 @@ class SiteMapController extends Controller
         {
             $urlsets.="
 <url>
-    <loc>$appurl/article/{$newsurllinks[$i]->id}.html</loc>
+    <loc>".str_replace('www.','m.',$newsurllinks[$i]->url())."</loc>
     <lastmod>".date('Y-m-d',strtotime($newsurllinks[$i]->created_at))."</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
 </url>
             ";
-            if ($i!=0 && $i%2000==0)
+            if ($i!=0 && $i%5000==0)
             {
                 $contents=$mainsitemap.$urlset.$urlsets.$urlset2;
                 Storage::disk('public')->append('mobilemapnews'.$index.'.xml', $contents);

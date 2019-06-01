@@ -1,11 +1,19 @@
 @extends('mip.mip')
 @section('title'){{$thisarticleinfos->title}}-{{config('app.indexname')}}@stop
 @section('keywords'){{$thisarticleinfos->keywords}}@stop
-@section('description'){{trim(str_replace('官网','',$thisarticleinfos->description))}}@stop
+@section('description'){{$thisarticleinfos->description}}@stop
 @section('headlibs')
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/mobile/css/miparticle.css" rel="stylesheet" type="text/css"/>
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/mobile/css/mip_brand.css" rel="stylesheet" type="text/css"/>
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/frontend/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+    <script type="application/ld+json">
+        {
+            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+            "@id": "{{str_replace('www.','mip.',config('app.url'))}}{{Request::getrequesturi()}}",
+			"appid": "1634320825234209",
+            "title": "{{$thisarticleinfos->title}}",
+            "images": [{!! $jsonpics !!}],
+			"description": "{{str_replace('	','',$thisarticleinfos->description)}}",
+            "pubDate": "{{str_replace(' ','T',$thisarticleinfos->created_at)}}"
+        }
+    </script>
 @stop
 @section('main_content')
     <div class="weizhi">

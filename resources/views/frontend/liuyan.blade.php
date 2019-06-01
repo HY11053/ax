@@ -1,5 +1,5 @@
 <!--我要留言 开始-->
-<div class="gbook">
+<div class="gbook" id="msg">
     <div class="hd">用户留言<span class="gb_tips">（如果您对该项目感兴趣，请留言立即获得最新加盟资料！）</span></div>
     <div class="bd">
         <div class="bd_mag">

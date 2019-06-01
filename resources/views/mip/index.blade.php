@@ -2,22 +2,48 @@
 @section('title'){{ config('app.webname', '安心加盟网') }}@stop
 @section('keywords'){{ config('app.keywords', '安心加盟网') }}@stop
 @section('description'){{ config('app.description', '安心加盟网') }}@stop
-@section('headlibs')
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/mobile/css/mip_index.css" rel="stylesheet" type="text/css"/>
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/frontend/css/swiper.min.css" rel="stylesheet" type="text/css"/>
-@stop
 @section('main_content')
 @include('mip.header')
     <div class="smalllist clearfix">
-        <div class="smalllist clearfix">
-            <div class="small-box"><a href="/busInfo/"> <mip-img src="/mobile/images/zhaoshang.png"></mip-img><span>教育品牌</span></a></div>
-            <div class="small-box"><a href="/zaojiao/" class="rightbox"><mip-img src="/mobile/images/zhinan.png"></mip-img><span>早教加盟</span></a></div>
-            <div class="small-box"><a href="/youeryuan/"><mip-img src="/mobile/images/touzi.png"></mip-img><span>幼儿园加盟</span></a></div>
-            <div class="small-box rightbox"><a href="/shaoer/" class="rightbox"><mip-img src="/mobile/images/jingying.png"></mip-img><span>少儿英语加盟</span></a></div>
-            <div class="small-box rightbox"><a href="/wudao/" class="rightbox"><mip-img src="/mobile/images/xinwen.png"></mip-img><span>舞蹈培训</span></a></div>
-            <div class="small-box rightbox"><a href="/xuedifudao/" class="rightbox"><mip-img src="/mobile/images/paihang.png"></mip-img><span>学习辅导</span></a></div>
-            <div class="small-box rightbox"><a href="/yishujiaoyu/" class="rightbox"><mip-img src="/mobile/images/canyin.png"></mip-img><span>艺术教育</span></a></div>
-            <div class="small-box rightbox"><a href="/zuowen/" class="rightbox"><mip-img src="/mobile/images/huoguo.png"></mip-img><span>作文培训</span></a>
+        <div class="small-box">
+            <a href="/ms/">
+                <mip-img src="/mobile/images/canyin.png"></mip-img><span>餐饮美食</span>
+            </a>
+        </div>
+        <div class="small-box">
+            <a href="/jy/" class="rightbox">
+                <mip-img src="/mobile/images/jiaoyu.png"></mip-img><span>教育培训</span>
+            </a>
+        </div>
+        <div class="small-box">
+            <a href="/ye/">
+                <mip-img src="/mobile/images/muying.png"></mip-img><span>母婴幼儿</span>
+            </a>
+        </div>
+        <div class="small-box rightbox">
+            <a href="/jj/" class="rightbox">
+                <mip-img src="/mobile/images/jiaju.png"></mip-img><span>家居用品</span>
+            </a>
+        </div>
+        <div class="small-box rightbox">
+            <a href="/sp/" class="rightbox">
+                <mip-img src="/mobile/images/shipin.png"></mip-img><span>礼品饰品</span>
+            </a>
+        </div>
+        <div class="small-box rightbox">
+            <a href="/jc/" class="rightbox">
+                <mip-img src="/mobile/images/jiancai.png"></mip-img><span>建材装饰</span>
+            </a>
+        </div>
+        <div class="small-box rightbox">
+            <a href="/hb/" class="rightbox">
+                <mip-img src="/mobile/images/jixie.png"></mip-img><span>机械环保</span>
+            </a>
+        </div>
+        <div class="small-box rightbox">
+            <a href="/mr/" class="rightbox">
+                <mip-img src="/mobile/images/meirong.png"></mip-img><span>美容养生</span>
+            </a>
         </div>
     </div>
     <div class="recommend clearfix">
@@ -25,7 +51,7 @@
         <div id="moocBox">
             <ul data-id="m_n_a02" data-type="cmsadpos">
                 @foreach($ctbrandnews as $ctbrandnew)
-                <li><a href="/news/{{$ctbrandnew->id}}.html" data-id="{{$ctbrandnew->id}}">{{$ctbrandnew->title}}</a></li>
+                <li><a href="{{$ctbrandnew->url()}}" data-id="{{$ctbrandnew->id}}">{{$ctbrandnew->title}}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -159,10 +185,10 @@
     <div class="news clearfix">
         <mip-vd-tabs>
             <section>
-                <li class="on">品牌新闻<i></i></li>
-                <li>加盟指南<i></i></li>
-                <li>投资分析<i></i></li>
-                <li>经营管理<i></i></li>
+                <li class="on">加盟费用<i></i></li>
+                <li>安心网说<i></i></li>
+                <li>安心创业<i></i></li>
+                <li>选址筹备<i></i></li>
             </section>
             <div class="news-content">
                 @foreach($latestbrandnews as $latestbrandnew)

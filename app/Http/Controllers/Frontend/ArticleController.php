@@ -236,6 +236,47 @@ class ArticleController extends Controller
         return Archive::where('id', '>', $id)->orderBy('id','asc')->value('id');
     }
 
+    public function VipArticle($id)
+    {
+        //当前品牌文档信息，请保持缓存名称和普通文档的所属品牌缓存名称相同
+        $thisarticleinfos = Cache::remember('thisbrandarticleinfos_'.$id, config('app.cachetime')+rand(60,60*24), function() use($id){
+            return Brandarticle::findOrFail($id);
+        });
+        if (empty($thisarticleinfos->contentindex) || !$thisarticleinfos->index_status)
+        {
+            abort(404);
+        }
+        //当前品牌所属分类，请保持缓存名称和普通文档的所属品牌分类缓存名称相同
+        $thisbrandtypeinfo=Cache::remember('thistypeinfos_'.$thisarticleinfos->typeid,  config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
+            return  Arctype::where('id',$thisarticleinfos->typeid)->first();
+        });
+        //当前品牌所属父分类，请保持缓存名称和普通文档的所属品牌父分类缓存名称相同
+        $thisbrandtypecidinfo=Cache::remember('thistypeinfos_'.$thisbrandtypeinfo->reid,  config('app.cachetime')+rand(60,60*24), function() use($thisbrandtypeinfo){
+            return Arctype::where('id',$thisbrandtypeinfo->reid)->first();
+        });
+        //品牌分类排行榜 请保持缓存名称和普通文档所属品牌分类的排行榜缓存文件名称相同
+        $paihangbangs= Cache::remember('phb'.$thisarticleinfos->typeid,   config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
+            return Brandarticle::where('typeid',$thisarticleinfos->typeid)->take('10')->orderBy('click','desc')->get(['id','brandname','litpic','brandnum','tzid']);
+        });
+        //获取当前文档相关品牌文档，不足将用当前文档所属品牌分类下品牌文档补足 保持缓存名称和普通文档相关品牌文档缓存名称相同
+        $latestbrandnews=Cache::remember('thisarticleinfos_brandidnews'.$thisarticleinfos->id,   config('app.cachetime')+rand(60,60*24), function() use($thisarticleinfos){
+            $brandnews=Archive::where('brandid',$thisarticleinfos->id)->take(10)->latest()->get(['id','title','created_at','litpic']);
+            if ($brandnews->count()<10)
+            {
+                $completionnews=Archive::where('brandtypeid',$thisarticleinfos->typeid)->whereNotIn('id',Archive::where('brandid',$thisarticleinfos->id)->pluck('id'))->take(10-($brandnews->count()))->latest()->get(['id','title','created_at','litpic']);
+            }else{
+                $completionnews=collect([]);
+            }
+            $latestbrandnews=collect([$brandnews,$completionnews])->collapse();
+            return $latestbrandnews;
+        });
+        $investment_types=Cache::remember('investment_types',  config('app.cachetime')+rand(60,60*24), function(){
+            return InvestmentType::pluck('type','id');
+        });
+        return view('frontend.vip_article',compact('thisarticleinfos','thisbrandtypeinfo','thisbrandtypecidinfo','investment_types','latestbrandnews'));
+
+    }
+
     /**内容处理
      * @param $contents
      * @return mixed|null|string|string[]
@@ -251,16 +292,19 @@ class ArticleController extends Controller
                 '<p><strong><br></strong></p>',
                 '<p><br></p>',
                 '<p><br/></p>',
+                '  ',
                 '　　'
             ],'',$content
         );
         $content=str_replace(["\r","\t",'<span >　　</span>','&nbsp;','　','bgcolor="#FFFFFF"'],'',$content);
         $content=str_replace(["<br  /><br  />"],'<br/>',$content);
+        $content=str_replace(["<br><br>"],'<br/>',$content);
         $content=str_replace(["<br/><br/>"],'<br/>',$content);
         $content=str_replace(["<br/> <br/>"],'<br/>',$content);
         $content=str_replace(["<br />　　<br />"],'<br/>',$content);
         $content=str_replace(["<br/>　　<br/>"],'<br/>',$content);
         $content=str_replace(["<br /><br />"],'<br/>',$content);
+        $content=str_replace(["<div><br/></div>"],'',$content);
         $pattens=array(
             "#<p>[\s| |　]?<strong>[\s| |　]?</strong></p>#",
             "#<p>[\s| |　]?<strong>[\s| |　]+</strong></p>#",

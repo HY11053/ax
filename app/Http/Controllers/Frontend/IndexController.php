@@ -30,23 +30,23 @@ class IndexController extends Controller
         });
         //品牌新闻
         $anxwangshuos=Cache::remember('index_anxwangshuos', 10, function(){
-            return Archive::where('typeid',210)->latest()->take(6)->orderBy('id','desc')->get(['id','title','description','created_at','litpic']);
+            return Archive::where('typeid',211)->latest()->take(6)->orderBy('id','desc')->get(['id','title','description','created_at','litpic']);
         });
         //创业指导
         $feiyongnews=Cache::remember('index_feiyongnews', 10, function(){
-            return Archive::where('typeid',211)->take(6)->latest()->get(['id','title','description','created_at','litpic']);
-        });
-        $chuangyenews=Cache::remember('index_chuangyenews', 10, function(){
             return Archive::where('typeid',212)->take(6)->latest()->get(['id','title','description','created_at','litpic']);
         });
-        $xuanzhinews=Cache::remember('index_xuanzhinews', 10, function(){
+        $chuangyenews=Cache::remember('index_chuangyenews', 10, function(){
             return Archive::where('typeid',213)->take(6)->latest()->get(['id','title','description','created_at','litpic']);
         });
+        $xuanzhinews=Cache::remember('index_xuanzhinews', 10, function(){
+            return Archive::where('typeid',214)->take(6)->latest()->get(['id','title','description','created_at','litpic']);
+        });
         $jingyingnews=Cache::remember('index_jingyingnews', 10, function(){
-            return Archive::where('typeid',214)->take(9)->latest()->get(['id','title','description','created_at','litpic']);
+            return Archive::where('typeid',215)->take(9)->latest()->get(['id','title','description','created_at','litpic']);
         });
         $brandnews=Cache::remember('index_brandnews', 10, function(){
-            return Archive::where('typeid',215)->take(9)->latest()->get(['id','title','description','created_at','litpic']);
+            return Archive::where('typeid',216)->take(9)->latest()->get(['id','title','description','created_at','litpic']);
         });
         //友情链接
         $flinks=Cache::remember('index_flinks', 10, function(){

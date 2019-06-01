@@ -28,7 +28,7 @@ class PhoneController extends Controller
             Phonemanage::create($request->all());
             $url="https://i.u88.com/store";
             $post_data = array(
-                "realm" => 'www.u88.com',
+                "realm" => 'www.anxjm.com',
                 "job" => 'guestbook',
                 "resolution" => 'resolution',
                 "title" => $request['title'],
@@ -41,7 +41,6 @@ class PhoneController extends Controller
                 "real_useraddr" => $request->ip(),
                 "real_httpurl" => $request['host']
             );
-            //dd($post_data);
             $header=[
                 "Accept-Language: zh-CN,zh;q=0.9",
                 "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
@@ -78,7 +77,7 @@ class PhoneController extends Controller
             Phonemanage::create($request->all());
             $url="https://i.u88.com/store";
             $post_data = array(
-                "realm" => 'www.u88.com',
+                "realm" => 'www.anxjm.com',
                 "job" => 'guestbook',
                 "resolution" => 'resolution',
                 "title" => $request['title'],
@@ -133,7 +132,7 @@ class PhoneController extends Controller
             Phonemanage::create($request->all());
             $url="https://i.u88.com/store";
             $post_data = array(
-                "realm" => 'www.u88.com',
+                "realm" => 'www.anxjm.com',
                 "job" => 'guestbook',
                 "resolution" => 'resolution',
                 "title" => $request['title2'],
@@ -149,14 +148,13 @@ class PhoneController extends Controller
                 "Accept-Language: zh-CN,zh;q=0.9",
                 "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
             ];
-            //dd($post_data);
             $response = $this->curl_https($url, $post_data,$header);
             if ($response==200)
             {
                 $phoneid=Phonemanage::latest()->value('id');
                 Phonemanage::where('id',$phoneid)->update(["status"=>1]);
                 $info= '<script> alert("提交成功，我们将尽快与您联系");
-                        window.location="'.str_replace(['?ref=buttom','?ref=tanchuang'],'',$request['host']).'";
+                        window.location="'.str_replace(['?ref=buttom','?ref=tanchuang'],'',$request['host2']).'";
                         </script>';
             }else{
                 $info='未知错误';
@@ -165,7 +163,7 @@ class PhoneController extends Controller
             echo $info;
         }else{
             $info= '<script> alert("电话已存在，请直接点击咨询");
-                        window.location="'.str_replace(['?ref=buttom','?ref=tanchuang'],'',$request['host']).'";
+                        window.location="'.str_replace(['?ref=buttom','?ref=tanchuang'],'',$request['host2']).'";
                         </script>';
             echo $info;
         }

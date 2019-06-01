@@ -22,33 +22,15 @@
     <!--当前位置 结束-->
     <!--main_strat-->
     <div class="c_bar_wrap">
-        <div class="c_bar">
+        <div class="c_bar" id="c_bar">
             <ul>
-                <li class="cur">项目总览</li>
-                <li class="js_join_1">
-                    <a href="javaScript:void(0)">加盟费用</a>
-                </li>
-                <li class="js_join_2">
-                    <a href="javaScript:void(0)">加盟条件</a>
-                </li>
-                <li class="js_join_3">
-                    <a href="javaScript:void(0)">加盟优势</a>
-                </li>
-                <li class="js_join_4">
-                    <a href="javaScript:void(0)">加盟流程</a>
-                </li>
-                <li class="js_join_6">
-                    <a href="javaScript:void(0)">索要资料</a>
-                </li>
-                <li class="js_join_6">
-                    <a href="javaScript:void(0)">立即咨询</a>
-                </li>
-                <li class="js_join_5">
-                    <a href="javaScript:void(0)">资质认证</a>
-                </li>
-                <li class="js_join_6">
-                    <a class="red" href="javaScript:void(0)">申请加盟</a>
-                </li>
+                @foreach($navlists as $index=>$navlist)
+                    @if(!$loop->last)
+                        <li class="js_join"><a href="javaScript:void(0)" rel="nofollow">{{$navlist}}</a></li>
+                    @else
+                        <li  class="noactive"><a href="#msg" rel="nofollow">在线留言</a></li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </div>
@@ -65,7 +47,7 @@
             <div class="bd">
                 <ul>
                     @foreach(explode(',',trim($thisarticleinfos->imagepics,',')) as $imagepic)
-                     <li><img src="{{$imagepic}}" title="{{$thisarticleinfos->brandname}}" alt="{{$thisarticleinfos->brandname}}"></li>
+                     <li><img src="https://www.anxjm.com{{$imagepic}}" title="{{$thisarticleinfos->brandname}}" alt="{{$thisarticleinfos->brandname}}"></li>
                     @endforeach
                 </ul>
             </div>
@@ -83,24 +65,50 @@
                     <li>
                         <b>投资金额：</b>
                         <a href="/search?invest=3" target="_blank">
-                            <span class="money">{{$thisarticleinfos->brandpay}}</span>
+                            <span class="money">{{$investment_types[$thisarticleinfos->tzid]}}</span>
                         </a>
                     </li>
                     <li class="ls">
                         <b>所属行业：</b>
                         <span class="fl"><a href="/{{$thisbrandtypecidinfo->real_path}}/" target="_blank">{{$thisbrandtypecidinfo->typename}}</a> &gt;<a href="/{{$thisbrandtypeinfo->real_path}}/" target="_blank">{{$thisbrandtypeinfo->typename}}</a></span>
                     </li>
-                    <li>
+                    <li  class="fline">
                         <b>企业名称：</b>
                         <span>{{$thisarticleinfos->brandgroup}}</span>
                     </li>
-                    <li>
-                        <b>官方网址：</b>
-                        <span>
-								<a href="javaScript:void(0)" class="js_join_6">[索取加盟官方网址]</a>
-							</span>
+                    <li class="fline">
+                        <b>更新时间：</b>
+                        <span>{{$thisarticleinfos->created_at}}</span>
                     </li>
-                    <li>
+                    <li  class="fline">
+                        <b>门店总数：</b>
+                        <span>{{$thisarticleinfos->brandnum}}</span>
+                    </li>
+                    <li  class="fline">
+                        <b>意向加盟：</b>
+                        <span>{{$thisarticleinfos->brandgroup}}</span>
+                    </li>
+                    <li  class="fline">
+                        <b>申请加盟：</b>
+                        <span>{{$thisarticleinfos->brandattch}}</span>
+                    </li>
+                    <li  class="fline">
+                        <b>加盟人群：</b>
+                        <span>{{$thisarticleinfos->brandperson}}</span>
+                    </li>
+                    <li  class="fline">
+                        <b>所在地区：</b>
+                        <span>{{$thisarticleinfos->brandcountry}}</span>
+                    </li>
+                    <li class="fline">
+                        <b>经营模式：</b>
+                        <span>{{$thisarticleinfos->brandmoshi}}</span>
+                    </li>
+                    <li class="fline">
+                        <b>发展模式：</b>
+                        <span>{{$thisarticleinfos->branddevelop}}</span>
+                    </li>
+                    <li class="clear">
                         <b>总部地址：</b>
                         <strong>{{$thisarticleinfos->brandaddr}}</strong>
                     </li>
@@ -268,30 +276,10 @@
 @stop
 @section('footlibs')
     <script>
-        window.onscroll = function(){
-            var oDiv = document.getElementById('filexed');
-            var scrollTop =document.documentElement.scrollTop||document.body.scrollTop;//浏览器兼容
-            startmove(parseInt((document.documentElement.clientHeight - oDiv.offsetHeight )/4)+ scrollTop)                // document.documentElement.clientHeight 页面可视区高度
-        }
-        var timer = null;
-        function startmove(iTarget){
-            var oDiv = document.getElementById('filexed');
-            clearInterval(timer);
-            timer = setInterval(function(){
-                var speed = (iTarget-oDiv.offsetTop)/4;
-                speed = speed>0?Math.ceil(speed):Math.floor(speed);
-                if(oDiv.offsetTop == iTarget){
-                    clearInterval(timer);
-                }
-                else{
-                    oDiv.style.top = oDiv.offsetTop +speed+'px';
-                }
-            },30)
-        }
-        $("#filexed li.active").each(function(i){
+        $("#c_bar ul li.js_join").each(function(i){
             $(this).click(
                 function () {
-                    var sTop=$(".join_cont").find("h2:eq("+i+")").offset().top-45;
+                    var sTop=$(".context_left").find("h2:eq("+i+")").offset().top-45;
                     $('html,body').animate({scrollTop:sTop+"px"},500);
                 }
             );

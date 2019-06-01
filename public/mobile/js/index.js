@@ -74,29 +74,59 @@ $(function(){
         }
     });
     $("#tj_btn").click(function(){
-        var phoneno = $("#phonenum").val();
-        var name = $("#guestname").val();
-        var note = $("#note").val();
+        var phoneno = $("#msg_phone").val();
+        var name = $("#msg_name").val();
+        var note = $("#msg_cont").val();
+        var project_id = $("#project_id").val();
+        var cid = $("#cid").val();
+        var title = $("#fm_title").val();
+        var cla = $("#cla").val();
+        var combrand = $("#combrand").val();
         var host=window.location.href;
-        if(!name)
-        {
-            alert('请输入你们的姓名方便我们与您联系')
-        }else{
-            if( phoneno  && /^1[3|4|5|8]\d{9}$/.test(phoneno ) ){
-                $.ajax({
-                    type:"POST",
-                    url:"/phonecomplate/",
-                    //dataType: 'JSON',
-                    data:{"phoneno":phoneno,"host":host,"name":name,"note":note},
-                    datatype: "html",    //"xml", "html", "script", "json", "jsonp", "text".
-                    success:function (response, stutas, xhr) {
-                        alert(response);
-                        $("#tj_btn").attr("disabled","disabled");
-                    }
-                });
-            } else{
-                alert("您输入的手机号码"+result+"不正确，请重新输入")
-            }
+        if( phoneno  && /^1[3|4|5|8]\d{9}$/.test(phoneno) ){
+            $.ajax({
+                //提交数据的类型 POST GET
+                type:"POST",
+                //提交的网址
+                url:"/phonecomplate/",
+                //提交的数据
+                data:{"phoneno":phoneno,"host":host,"name":name,"note":note,"project_id":project_id,"cid":cid,"title":title,"cla":cla,"combrand":combrand},
+                //返回数据的格式
+                datatype: "html",    //"xml", "html", "script", "json", "jsonp", "text"
+                success:function (response, stutas, xhr) {
+                    alert(response);
+                }
+            });
+        } else{
+            alert("您输入的手机号码"+phoneno+"不正确，请重新输入")
+        }
+    });
+//弹窗
+    $("#msg_sub").click(function(){
+        var phoneno = $("#msg_phone").val();
+        var name = $("#msg_name").val();
+        var project_id = $("#msg_project_id").val();
+        var cid = $("#msg_cid").val();
+        var title = $("#msg_fm_title").val();
+        var cla = $("#msg_cla").val();
+        var combrand = $("#msg_combrand").val();
+        var host=window.location.href+'?referer=tc';
+        if( phoneno  && /^1[3|4|5|8]\d{9}$/.test(phoneno) ){
+            $.ajax({
+                //提交数据的类型 POST GET
+                type:"POST",
+                //提交的网址
+                url:"/phonecomplate/",
+                //提交的数据
+                data:{"phoneno":phoneno,"host":host,"name":name,"project_id":project_id,"cid":cid,"title":title,"cla":cla,"combrand":combrand},
+                //返回数据的格式
+                datatype: "html",    //"xml", "html", "script", "json", "jsonp", "text"
+                success:function (response, stutas, xhr) {
+                    alert(response);
+                }
+            });
+        } else{
+            alert("您输入的手机号码"+phoneno+"不正确，请重新输入")
         }
     });
     //弹窗留言
@@ -107,33 +137,7 @@ $(function(){
         $(".popup_mask").stop();
         $(".popup_mask").fadeOut(600).delay(15000).fadeIn(function(){openSwt();})
     });
-    $("#msg_sub").click(function(){
-        var phoneno = $("#msg_phone").val();
-        var name = $("#msg_name").val();
-        var note = $("#msg_cont").val();
-        var host=window.location.href;
-        if(!name)
-        {
-            alert('请输入你们的姓名方便我们与您联系')
-        }else{
-            if( phoneno  && /^1[3|4|5|8]\d{9}$/.test(phoneno ) ){
-                $.ajax({
-                    type:"POST",
-                    url:"/phonecomplate",
-                    data:{"phoneno":phoneno,"host":host,"name":name,"note":note},
-                    datatype: "html",    //"xml", "html", "script", "json", "jsonp", "text".
-                    success:function (response, stutas, xhr) {
-                        alert(response);
-                        $("#msg_sub").attr("disabled","disabled");
-                    }
-                });
-            } else{
-                alert("您输入的手机号码"+phoneno+"不正确，请重新输入")
-            }
-        }
-    });
 });
-
 function openSwt() {
     $(".popup_mask").css('visibility','visible').fadeIn(600);
 }

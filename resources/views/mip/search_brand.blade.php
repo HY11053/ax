@@ -2,10 +2,6 @@
 @section('title')品牌搜索页-安心加盟网@stop
 @section('keywords')品牌搜索页 @stop
 @section('description')品牌搜索页@stop
-@section('headlibs')
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/mobile/css/miplist.css" rel="stylesheet" type="text/css"/>
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/frontend/css/swiper.min.css" rel="stylesheet" type="text/css"/>
-@stop
 @section('main_content')
     <!--nav Start-->
     <div class="zhaodao">共找到<span class="red">{{$pagelists->count()}}</span>个相关项目</div>
@@ -35,7 +31,7 @@
                                 </div>
                                 <dd class="big-data">
                                     <div class="data">
-                                        <div>投资金额：<span>{{$paihangbang[$pagelist->tzid]}}</span></div>
+                                        <div>投资金额：<span>{{$pagelist[$pagelist->tzid]}}</span></div>
                                         品牌名称：<span>{{$pagelist->brandname}}</span>
                                     </div>
                                     <div class="data">

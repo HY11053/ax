@@ -112,7 +112,41 @@ class ArticleController extends Controller
             return InvestmentType::pluck('type','id');
         });
         $content=$this->ProcessContent($thisarticleinfos->body);
-        return view('mip.article_article',compact('thisarticleinfos','thisarticlebrandinfos','brandarticles','prev_article','next_article','latestbrandnews','latestbrands','thistypeinfo','thisbrandtypeinfo','thisbrandtypecidinfo','investment_types','content'));
+//熊掌号图片信息提取
+        $jsonpics='';
+        $paths=[];
+        preg_match_all('/(\s+src\s?\=)\s?[\'|"]([^\'|"]*)/is',$thisarticleinfos->body,$paths);
+        if (!empty($paths))
+        {
+            if (isset($paths[2]))
+            {
+                $imgpaths=collect($paths[2]);
+            }
+        }
+        if (isset($imgpaths) && $imgpaths->count())
+        {
+            foreach ($imgpaths->slice(0,3) as $match)
+            {
+                if (!empty($match))
+                {
+                    if(!str_contains($match,'http'))
+                    {
+                        $jsonpics.='"https://mip.anxjm.com'.$match.'",';
+                    }else{
+                        $jsonpics.='"'.$match.'"'.',';
+                    }
+                }else{
+                    if(!str_contains($thisarticleinfos->litpic,'http'))
+                    {
+                        $jsonpics.='"https://mip.anxjm.com'.$thisarticleinfos->litpic.'"';
+                    }else{
+                        $jsonpics.='"'.$thisarticleinfos->litpic.'"';
+                    }
+                }
+            }
+        }
+        $jsonpics=rtrim($jsonpics,',');
+        return view('mip.article_article',compact('thisarticleinfos','thisarticlebrandinfos','brandarticles','prev_article','next_article','latestbrandnews','latestbrands','thistypeinfo','thisbrandtypeinfo','thisbrandtypecidinfo','investment_types','content','jsonpics'));
     }
 
     /**品牌文档界面
@@ -160,7 +194,63 @@ class ArticleController extends Controller
             return InvestmentType::pluck('type','id');
         });
         $content=$this->ProcessContent($thisarticleinfos->body);
-        return view('mip.brand_article',compact('thisarticleinfos','thisbrandtypeinfo','thisbrandtypecidinfo','investment_types','paihangbangs','latestbrandnews','latesttypenews','latestbrands','newbrands','brandtypeids','content','navlists','latestcbrands','brandarticles','latestnews'));
+        $jsonpics='';
+        $paths=[];
+        preg_match_all('/(\s+src\s?\=)\s?[\'|"]([^\'|"]*)/is',$thisarticleinfos->body,$paths);
+        if (!empty($paths))
+        {
+            if (isset($paths[2]))
+            {
+                $imgpaths=collect($paths[2]);
+            }
+        }
+        if (isset($imgpaths) && $imgpaths->count())
+        {
+            foreach ($imgpaths->slice(0,3) as $match)
+            {
+                if (!empty($match))
+                {
+                    if(!str_contains($match,'http'))
+                    {
+                        $jsonpics.='"https://mip.anxjm.com'.$match.'",';
+                    }else{
+                        $jsonpics.='"'.$match.'"'.',';
+                    }
+                }else{
+                    if(!str_contains($thisarticleinfos->litpic,'http'))
+                    {
+                        $jsonpics.='"https://mip.anxjm.com'.$thisarticleinfos->litpic.'"';
+                    }else{
+                        $jsonpics.='"'.$thisarticleinfos->litpic.'"';
+                    }
+                }
+            }
+        }else{
+            $imgpaths=$thisarticleinfos->imagepics;
+            if (!empty($imgpaths))
+            {
+                foreach (array_slice(array_filter(explode(",",$imgpaths)),0,3) as $match) {
+                    if (!empty($match))
+                    {
+                        if(!str_contains($match,'http'))
+                        {
+                            $jsonpics.='"https://mip.anxjm.com'.$match.'",';
+                        }else{
+                            $jsonpics.='"'.$match.'"'.',';
+                        }
+                    }else{
+                        if(!str_contains($thisarticleinfos->litpic,'http'))
+                        {
+                            $jsonpics.='"https://mip.anxjm.com'.$thisarticleinfos->litpic.'"';
+                        }else{
+                            $jsonpics.='"'.$thisarticleinfos->litpic.'"';
+                        }
+                    }
+                }
+            }
+        }
+        $jsonpics=rtrim($jsonpics,',');
+        return view('mip.brand_article',compact('thisarticleinfos','thisbrandtypeinfo','thisbrandtypecidinfo','investment_types','paihangbangs','latestbrandnews','latesttypenews','latestbrands','newbrands','brandtypeids','content','navlists','latestcbrands','brandarticles','latestnews','jsonpics'));
     }
     protected function getPrevArticleId($id)
     {
@@ -177,7 +267,15 @@ class ArticleController extends Controller
      */
     private function ProcessContent($contents)
     {
-        $content=preg_replace(["/style=.+?['|\"]/i","/width=.+?['|\"]/i","/height=.+?['|\"]/i"],'',$contents);
+        $content=str_replace('<img','<mip-img',preg_replace(["/style=.+?['|\"]/i","/width=.+?['|\"]/i","/height=.+?['|\"]/i"],'',$contents));
+        preg_match_all("/<mip-img.*?[>]/",$content,$matches);
+        if (!empty($matches))
+        {
+            foreach ($matches as $match)
+            {
+                $content=str_replace($match,str_replace(['/>','>'],['>','></mip-img>'],$match),$content);
+            }
+        }
         $content=str_replace(PHP_EOL,'',$content);
         $content=str_replace(['<p >','<strong >','<br >','<br />','<h2 >'],['<p>','<strong>','<br>','<br/>','<h2>'],$content);
         $content=str_replace(
@@ -186,16 +284,19 @@ class ArticleController extends Controller
                 '<p><strong><br></strong></p>',
                 '<p><br></p>',
                 '<p><br/></p>',
+                '  ',
                 '　　'
             ],'',$content
         );
         $content=str_replace(["\r","\t",'<span >　　</span>','&nbsp;','　','bgcolor="#FFFFFF"'],'',$content);
         $content=str_replace(["<br  /><br  />"],'<br/>',$content);
+        $content=str_replace(["<br><br>"],'<br/>',$content);
         $content=str_replace(["<br/><br/>"],'<br/>',$content);
         $content=str_replace(["<br/> <br/>"],'<br/>',$content);
         $content=str_replace(["<br />　　<br />"],'<br/>',$content);
         $content=str_replace(["<br/>　　<br/>"],'<br/>',$content);
         $content=str_replace(["<br /><br />"],'<br/>',$content);
+        $content=str_replace(["<div><br/></div>"],'',$content);
         $pattens=array(
             "#<p>[\s| |　]?<strong>[\s| |　]?</strong></p>#",
             "#<p>[\s| |　]?<strong>[\s| |　]+</strong></p>#",

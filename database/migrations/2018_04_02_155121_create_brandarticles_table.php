@@ -27,7 +27,9 @@ class CreateBrandarticlesTable extends Migration
             $table->string('litpic')->nullable();
             $table->smallInteger('dutyadmin');
             $table->text('body')->nullable();
+            $table->text('contentindex')->nullable();
             $table->integer('tzid')->nullable();
+            $table->integer('index_status')->nullable();
             $table->string('brandname')->nullable();//品牌名称
             $table->string('brandorigin')->nullable();//成立时间
             $table->string('brandmoshi')->nullable();//加盟模式
@@ -80,6 +82,7 @@ class CreateBrandarticlesTable extends Migration
             $table->index('brandduty');
             $table->index('acreage');
             $table->index('genre');
+            $table->index('index_status');
             $table->index('brandchat');
             $table->index('inner_uri');
             $table->index('comment_num');

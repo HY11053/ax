@@ -186,16 +186,19 @@ class ArticleController extends Controller
                 '<p><strong><br></strong></p>',
                 '<p><br></p>',
                 '<p><br/></p>',
+                '  ',
                 '　　'
             ],'',$content
         );
         $content=str_replace(["\r","\t",'<span >　　</span>','&nbsp;','　','bgcolor="#FFFFFF"'],'',$content);
         $content=str_replace(["<br  /><br  />"],'<br/>',$content);
+        $content=str_replace(["<br><br>"],'<br/>',$content);
         $content=str_replace(["<br/><br/>"],'<br/>',$content);
         $content=str_replace(["<br/> <br/>"],'<br/>',$content);
         $content=str_replace(["<br />　　<br />"],'<br/>',$content);
         $content=str_replace(["<br/>　　<br/>"],'<br/>',$content);
         $content=str_replace(["<br /><br />"],'<br/>',$content);
+        $content=str_replace(["<div><br/></div>"],'',$content);
         $pattens=array(
             "#<p>[\s| |　]?<strong>[\s| |　]?</strong></p>#",
             "#<p>[\s| |　]?<strong>[\s| |　]+</strong></p>#",

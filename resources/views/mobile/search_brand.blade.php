@@ -4,7 +4,7 @@
 @section('description')品牌搜索页@stop
 @section('headlibs')
     <link href="/mobile/css/list.css" rel="stylesheet" type="text/css"/>
-    <link href="/frontend/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/mobile/css/swiper.min.css" rel="stylesheet" type="text/css"/>
 @stop
 @section('main_content')
     <!--nav Start-->

@@ -147,6 +147,8 @@ class ArticleTraslateController extends Controller
                 $inserarticle['updated_at']=$article->updated_at;
                 $inserarticle['brandname']=$article->brandName;
                 $inserarticle['brandpsp']=$article->slogan;
+                $inserarticle['contentindex']=$article->contentindex;
+                $inserarticle['index_status']=$article->index_status;
                 $inserarticle['imagepics']='';
                 if (count(DB::connection('anxjm')->table('company_photo')->where('companyId',$article->id)->pluck('pictureName')))
                 {

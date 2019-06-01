@@ -136,9 +136,9 @@ return [
     'indexname'=>'安心加盟网',
     'keywords'=>'安心加盟网，招商加盟网，加盟网',
     'description'=>'安心加盟网站审核真实性连锁加盟好项目加盟网站,提供好的加盟项目加盟店,最新加盟项目,创业加盟项目加盟店,免费项目加盟网站承诺加盟店加盟真实项目加盟网站',
-    'api'=>'',
-    'mip_api'=>'',
-    'mip_history'=>'',
+    //'api'=>'http://data.zz.baidu.com/urls?site=https://www.anxjm.com&token=In4byPCfBukFdaF7',
+    //'mip_api'=>'http://data.zz.baidu.com/urls?appid=1634320825234209&token=XvJlSTeDxYiqQYfX&type=realtime',
+    //'mip_history'=>'http://data.zz.baidu.com/urls?appid=1634320825234209&token=XvJlSTeDxYiqQYfX&type=batch',
     'cachetime'=>30*24*60,
     /*
 

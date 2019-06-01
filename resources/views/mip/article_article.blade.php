@@ -3,9 +3,17 @@
 @section('keywords'){{$thisarticleinfos->keywords}}@stop
 @section('description'){{$thisarticleinfos->description}}@stop
 @section('headlibs')
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/mobile/css/miparticle.css" rel="stylesheet" type="text/css"/>
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/mobile/css/mip_brand.css" rel="stylesheet" type="text/css"/>
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/frontend/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+    <script type="application/ld+json">
+        {
+            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+            "@id": "{{str_replace('www.','mip.',config('app.url'))}}{{Request::getrequesturi()}}",
+			"appid": "1634320825234209",
+            "title": "{{$thisarticleinfos->title}}",
+            "images": [{!! $jsonpics !!}],
+			"description": "{{str_replace('	','',$thisarticleinfos->description)}}",
+            "pubDate": "{{str_replace(' ','T',$thisarticleinfos->created_at)}}"
+        }
+    </script>
 @stop
 @section('main_content')
     <div class="weizhi"><span><a href="/">首页</a>&nbsp;> <a href="{{str_replace('www.','mip.',config('app.url'))}}/newsPage/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>&nbsp;>&nbsp;正文： </span> </div>
@@ -90,7 +98,7 @@
             @foreach($latestbrandnews as $index=>$latestbrandnew)
                     @if($index<5)
                     <div class="item7list">
-                        <a href="{{$latestbrandnew->url()}}.">
+                        <a href="{{$latestbrandnew->url()}}">
                             <div class="left fl">
                                 <div class="lefttitle">{{$latestbrandnew->title}}</div>
                                 <div class="text">

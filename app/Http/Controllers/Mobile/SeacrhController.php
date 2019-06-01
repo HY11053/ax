@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Mobile;
 use App\AdminModel\Archive;
 use App\AdminModel\Arctype;
 use App\AdminModel\Brandarticle;
@@ -62,6 +62,6 @@ class SeacrhController extends Controller
         $latestnews=Cache::remember('latestnews',config('app.cachetime')+rand(60,60*24), function(){
             return Archive::latest()->take(12)->orderBy('id','desc')->get(['id','title','created_at']);
         });
-        return view('frontend.search_brand',compact('thistypeinfo','topbrandtypeinfos','sontypes','pagelists','paihangbangs','investment_types','latestbrands','latestbrandnews','provinces','province_ids','thistypeinforeid','investment_ids','type_investment_types','newbrands','touzipath','project_title','latestnews'));
+        return view('mobile.search_brand',compact('thistypeinfo','topbrandtypeinfos','sontypes','pagelists','paihangbangs','investment_types','latestbrands','latestbrandnews','provinces','province_ids','thistypeinforeid','investment_ids','type_investment_types','newbrands','touzipath','project_title','latestnews'));
 }
 }

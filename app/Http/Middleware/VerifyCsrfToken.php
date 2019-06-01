@@ -13,10 +13,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/',
-        'blist/*',
-        'ilist/*',
-        'nlist/*',
         'news/*',
+        'search/*',
         'mipbtphonecomplate/*',
         'miptopphonecomplate/*',
         'paihangbang/*',

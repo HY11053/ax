@@ -14,7 +14,7 @@
     <meta name="description" content="@yield('description')"/>
     <link rel="canonical" href="{{str_replace('http://www.','http://m.',config('app.url'))}}{{Request::getrequesturi()}}" >
     <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
-    <link href="{{str_replace('www.','mip.',config('app.url'))}}/mobile/css/mipcommon.css" rel="stylesheet" type="text/css"/>
+    @include('mip.style')
     @yield('headlibs')
 </head>
 <body>
@@ -24,10 +24,9 @@
             <a href="/"><mip-img src="/mobile/images/nav-logo2.png" alt="安心加盟网"></mip-img></a>
         </div>
         <div class="searchCon fl">
-            <mip-form url="{{str_replace('www.','mip.',config('app.url'))}}/sprodlist/all/" target="_self" method="post">
-                {{csrf_field()}}
+            <mip-form url="{{str_replace('www.','mip.',config('app.url'))}}/search/" target="_self" method="post">
             <div class="ipt-box"></div>
-            <input class="ipt-placeholder" placeholder="输入您想找的项目" />
+            <input class="ipt-placeholder" name="keywords" placeholder="输入您想找的项目" />
             <button type="submit" class="search_btn"></button>
             </mip-form>
         </div>
@@ -39,23 +38,23 @@
                 <div class="mip-accordion-content d_nav">
                     <ul>
                         <li><a href="/" target="_self"><span>首页</span></a></li>
-                        <li><a href="/busInfo/" target="_self"><span>项目大全</span></a></li>
-                        <li><a href="/guide/" target="_self"><span>加盟指南</span></a></li>
-                        <li><a href="/analysis/" target="_self"><span>投资分析</span></a></li>
-                        <li><a href="/management/" target="_self"><span>经营管理</span></a></li>
-                        <li><a href="/news/" target="_self"><span>品牌新闻</span></a></li>
-                        <li><a href="/paihangbang/" target="_self"><span>品牌排行榜</span></a></li>
+                        <li><a href="/search/" target="_self"><span>项目大全</span></a></li>
+                        <li><a href="/ms/" target="_self"><span>美食</span></a></li>
+                        <li><a href="/fz/" target="_self"><span>服装</span></a></li>
+                        <li><a href="/sj/" target="_self"><span>内衣</span></a></li>
+                        <li><a href="/jf/" target="_self"><span>家纺</span></a></li>
+                        <li><a href="/jj/" target="_self"><span>家居</span></a></li>
                         <li>热门行业</li>
-                        <li><a href="/zaojiao/" target="_self"><span>早教加盟</span></a></li>
-                        <li><a href="/shaoer/" target="_self"><span>少儿英语加盟</span></a></li>
-                        <li><a href="/youeryuan/" target="_self"><span>幼儿园加盟</span></a></li>
-                        <li><a href="/qianneng/" target="_self"><span>潜能教育</span></a></li>
-                        <li><a href="/xuedifudao/" target="_self"><span>学习辅导</span></a></li>
-                        <li><a href="/wudao/" target="_self"><span>舞蹈培训</span></a></li>
-                        <li><a href="/yishujiaoyu/" target="_self"><span>艺术教育</span></a></li>
-                        <li><a href="/shaoerbiancheng/" target="_self"><span>少儿编程</span></a></li>
-                        <li><a href="/taiquandao/" target="_self"><span>跆拳道加盟</span></a></li>
-                        <li><a href="/zuowen/" target="_self"><span>作文培训</span></a></li>
+                        <li><a href="/jc/" target="_self"><span>建材</span></a></li>
+                        <li><a href="/zb/" target="_self"><span>珠宝</span></a></li>
+                        <li><a href="/jy/" target="_self"><span>教育</span></a></li>
+                        <li><a href="/mr/" target="_self"><span>美容</span></a></li>
+                        <li><a href="/sp/" target="_self"><span>饰品</span></a></li>
+                        <li><a href="/gx/" target="_self"><span>干洗</span></a></li>
+                        <li><a href="/ye/" target="_self"><span>幼儿</span></a></li>
+                        <li><a href="/fw/" target="_self"><span>服务</span></a></li>
+                        <li><a href="/qc/" target="_self"><span>汽车</span></a></li>
+                        <li><a href="/ls/" target="_self"><span>零售</span></a></li>
                         </li>
                     </ul>
                 </div>
@@ -101,13 +100,30 @@
                     <mip-img src="/mobile/images/kai.png" class="money" ></mip-img>
                     <span class="popup_close" on="tap:my-lightbox.toggle" ></span>
                     <p class="top1"><span id="brand_name_UNM">立即获取</span><span><font id="fengex">|</font></span><span>加盟方案</span></p>
-                    <mip-form method="post" target="_self" url="https://capi.gitzs.com/jjedu/api/phone/mipcomplate2/">
-                        <input type="text" name="phoneno2" validatetarget="phoneno2" validatetype="must"  validatereg="^1[3|4|5|8]\d{9}$" maxlength="11"   id="msg_phone2" placeholder="请输入手机号码">
-                        <input type="text" id="msg_name2" name="name2"  validatetarget="name2"  validatetype="must"   placeholder="请输入您的称呼" >
+                    <mip-form class="modalbox" method="post" target="_self" url="{{str_replace('www.','mip.',config('app.url'))}}/miptopphonecomplate/">
+                        <input type="text" name="iphone2" validatetarget="iphone2" validatetype="must"  validatereg="^1[3|4|5|8]\d{9}$" maxlength="11"   id="msg_phone2" placeholder="请输入手机号码">
+                        <input type="text" id="msg_name2" name="username2"  validatetarget="username2"  validatetype="must"   placeholder="请输入您的称呼" >
                         <input name="host2" value="{{str_replace('www.','mip.',config('app.url'))}}{{Request::getrequesturi()}}" type="hidden">
+                        @if(isset($thisarticlebrandinfos) && !empty($thisarticlebrandinfos))
+                            <input type="hidden" name="project_id2" id="project_id2" value="{{$thisarticlebrandinfos->id}}">
+                            <input type="hidden" name="cid2" id="cid2" value="{{$thisbrandtypecidinfo->id}}">
+                            <input type="hidden" name="title2"  id="fm_title2" value="{{$thisarticlebrandinfos->brandname}}">
+                            <input type="hidden" name="cla2" id="cla2" value="{{$thisbrandtypeinfo->typename}}">
+                            <input type="hidden" name="combrand2" id="combrand2" value="{{$thisarticlebrandinfos->brandname}}">
+                        @elseif(isset($thisarticleinfos) && !empty($thisarticleinfos->brandname))
+                            <input type="hidden" name="project_id2"  id="project_id2" value="{{$thisarticleinfos->id}}">
+                            <input type="hidden" name="cid2" id="cid2" value="{{$thisbrandtypecidinfo->id}}">
+                            <input type="hidden" name="title2" id="fm_title2" value="{{$thisarticleinfos->brandname}}">
+                            <input type="hidden" name="cla2" id="cla2" value="{{$thisbrandtypeinfo->typename}}">
+                            <input type="hidden" name="combrand2" id="combrand2" value="{{$thisarticleinfos->brandname}}">
+                        @else
+                            <input type="hidden" name="title2" id="fm_title2"  value="未知分类">
+                            <input type="hidden" name="cla2"  id="cla2" value="未知分类">
+                            <input type="hidden" name="combrand2"  id="combrand2"  value="未知分类">
+                        @endif
                         <button type="submit" id="msg_sub2" class="sure">立即咨询</button>
-                        <div target="name2">姓名不能为空</div>
-                        <div target="phoneno2">电话不能为空且真实有效</div>
+                        <div target="username2">姓名不能为空</div>
+                        <div target="iphone2">电话不能为空且真实有效</div>
                     </mip-form>
                 </div>
             </div>
