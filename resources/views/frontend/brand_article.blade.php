@@ -86,27 +86,23 @@
                     </li>
                     <li  class="fline">
                         <b>意向加盟：</b>
-                        <span>{{$thisarticleinfos->brandgroup}}</span>
+                        <span>{{$thisarticleinfos->brandattch}}</span>
                     </li>
                     <li  class="fline">
                         <b>申请加盟：</b>
                         <span>{{$thisarticleinfos->brandattch}}</span>
                     </li>
                     <li  class="fline">
+                        <b>项目咨询：</b>
+                        <span>{{$thisarticleinfos->brandchat}}</span>
+                    </li>
+                    <li class="clear">
                         <b>加盟人群：</b>
-                        <span>{{$thisarticleinfos->brandperson}}</span>
+                        <span>@if(!empty($thisarticleinfos->brandperson)){{$thisarticleinfos->brandperson}} @else {{$thisbrandtypecidinfo->typename}}及{{$thisbrandtypeinfo->typename}}类创业加盟意向人群@endif </span>
                     </li>
-                    <li  class="fline">
-                        <b>所在地区：</b>
-                        <span>{{$thisarticleinfos->brandcountry}}</span>
-                    </li>
-                    <li class="fline">
-                        <b>经营模式：</b>
-                        <span>{{$thisarticleinfos->brandmoshi}}</span>
-                    </li>
-                    <li class="fline">
-                        <b>发展模式：</b>
-                        <span>{{$thisarticleinfos->branddevelop}}</span>
+                    <li class="clear">
+                        <b>经营范围：</b>
+                        <span>@if(!empty($thisarticleinfos->brandmap)) {{$thisarticleinfos->brandmap}}@else {{$thisbrandtypeinfo->typename}}类{{$thisbrandtypecidinfo->typename}}项目经营开展 @endif</span>
                     </li>
                     <li class="clear">
                         <b>总部地址：</b>

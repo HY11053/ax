@@ -173,32 +173,32 @@ class ArticleTraslateController extends Controller
                 {
                     $inserarticle['body'] ='';
                     if (!empty($articles2->intro_title)){
-                        $inserarticle['body'] .='<h2>'.$articles2->intro_title.'</h2>'.$articles2->intro;
+                        $inserarticle['body'] .='<h2>'.$articles2->intro_title.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->intro);
                     }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->intro)))) >5 || stripos($articles2->intro,'img')){
-                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟品牌介绍'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->intro);
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟品牌介绍'.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->intro);
                     }
                     if (!empty($articles2->joinCost_title))
                     {
-                        $inserarticle['body'] .= '<h2>'.$articles2->joinCost_title.'</h2>'.$articles2->joinCost;
+                        $inserarticle['body'] .= '<h2>'.$articles2->joinCost_title.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->joinCost);
                     }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->joinCost)))) >5  || stripos($articles2->joinCost,'img')){
-                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟费用'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->joinCost);
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟费用'.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->joinCost);
                     }
                     if (!empty($articles2->joinCondition_title))
                     {
-                        $inserarticle['body'] .= '<h2>'.$articles2->joinCondition_title.'</h2>'.$articles2->joinCondition;
+                        $inserarticle['body'] .= '<h2>'.$articles2->joinCondition_title.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->joinCondition);
                     }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->joinCondition)))) >5  || stripos($articles2->joinCondition,'img')){
-                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟条件'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->joinCondition);
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟条件'.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->joinCondition);
                     }
                     if (!empty($articles2->joinAdvantage_title))
                     {
-                        $inserarticle['body'] .= '<h2>'.$articles2->joinAdvantage_title.'</h2>'.$articles2->joinAdvantage;
+                        $inserarticle['body'] .= '<h2>'.$articles2->joinAdvantage_title.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->joinAdvantage);
                     }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->joinAdvantage)))) >5   || stripos($articles2->joinAdvantage,'img')){
-                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟优势'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->joinAdvantage);
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟优势'.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->joinAdvantage);
                     }
                     if (!empty($articles2->joinProcess_title)){
-                        $inserarticle['body'] .= '<h2>'.$articles2->joinProcess_title.'</h2>'.$articles2->joinProcess;
+                        $inserarticle['body'] .= '<h2>'.$articles2->joinProcess_title.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->joinProcess);
                     }elseif(mb_strlen(str_replace(['&nbsp;',' ','　',PHP_EOL,"\t","\r"],'',strip_tags(htmlspecialchars_decode($articles2->joinProcess)))) >5  || stripos($articles2->joinProcess,'img')){
-                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟流程'.'</h2>'.str_replace(['<h2>','</h2>'],['<strong>','</strong>'],$articles2->joinProcess);
+                        $inserarticle['body'] .='<h2>'.str_replace('加盟','',$article->brandName).'加盟流程'.'</h2>'.str_replace(['<h2','</h2'],['<p','</p'],$articles2->joinProcess);
                     }
 
                 }

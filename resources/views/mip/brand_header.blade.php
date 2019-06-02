@@ -7,7 +7,7 @@
         </div>
         <div class="item1boxmiddle fl">
             <div class="top">{{$investment_types[$thisarticleinfos->tzid]}}</div>
-            <li class="tl">所属行业：<span>{{$thisarticleinfos->arctype->typename}}</span></li>
+            <li class="tl">所属行业：<span>{{$thisbrandtypeinfo->typename}}</span></li>
             <li class="tl">经营范围：<span>{{$thisarticleinfos->brandmap}}</span></li>
             <li class="tl">店铺面积：<span>㎡</span></li>
         </div>

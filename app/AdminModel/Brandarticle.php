@@ -28,6 +28,26 @@ class Brandarticle extends Model
     {
         return $litpic?$litpic:'/mobile/images/nopic.png';
     }
+    public function getBrandnumAttribute($brandnum)
+    {
+        return $brandnum?$brandnum:rand(1000,5000);
+    }
+    public function getBrandattchAttribute($brandattch)
+    {
+        return $brandattch?$brandattch:rand(5000,10000);
+    }
+    public function getBrandapplyAttribute($brandapply)
+    {
+        return $brandapply?$brandapply:rand(3000,5000);
+    }
+    public function getBrandchatAttribute($brandchat)
+    {
+        return $brandchat?$brandchat:rand(1000,3000);
+    }
+    public function getBrandpayAttribute($brandpay)
+    {
+        return $brandpay?$brandpay:InvestmentType::where('id',$this->attributes['tzid'])->value('type');
+    }
 
     public function getBrandareaAttribute($brandarea)
     {

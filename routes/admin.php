@@ -191,6 +191,7 @@ Route::group(['prefix' => 'admin'],function ()
     Route::get('articletranslate/getbrandarticles','ArticleTraslateController@getBrandArticles');
     Route::get('articletranslate/getarticles','ArticleTraslateController@getArticles');
     Route::get('articletranslate/getflinks','ArticleTraslateController@getFlinks');
+    Route::get('articletranslate/createInverment','ArticleTraslateController@createInverment');
     Route::get('articletranslate/getmsarctype','ArticleTraslateController@getMsarctype');
     Route::get('articletranslate/getmsarticles','ArticleTraslateController@getMsarticles');
     Route::get('articletranslate/getmsflinks','ArticleTraslateController@getMsflinks');
@@ -200,7 +201,7 @@ Route::group(['prefix' => 'admin'],function ()
 
     Route::get('articletranslate/getareas','ArticleTraslateController@getAreas');
 
-    Route::get('articletranslate/createInverment','ArticleTraslateController@createInverment');
+
     Route::get('articletranslate/processarctype','ArticleTraslateController@processArctypes');
     Route::get('articletranslate/processbdname','ArticleTraslateController@processBdname');
     Route::get('articletranslate/getlitpic','ArticleTraslateController@getLitpic');
