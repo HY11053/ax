@@ -29,7 +29,8 @@ Route::get('/getarticlebrandnews/', 'ArticleSourcesController@getArticleBrandNew
 Route::get('/articlephbrands/', 'ArticleSourcesController@articlePhBrands');
 Route::get('/getbrandarticlenews/', 'ArticleSourcesController@getBrandArticlenews');
 Route::get('/getbrandarticlebrands/', 'ArticleSourcesController@getBrandArticleBrands');
-
+Route::get('getarticleinfo', 'ArticleSourcesController@getArticleInfo');
+Route::get('getbrandarticleinfo', 'ArticleSourcesController@getBrandarticleInfo');
 Route::get('/brandarticles', 'ArticleSourcesController@FetchBrandArticles');
 Route::get('/getarticle', 'ArticleSourcesController@getArticle');
 Route::get('/getbrandarticle', 'ArticleSourcesController@getBrandarticle');

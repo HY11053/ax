@@ -189,7 +189,7 @@ class ArticleSourcesController extends Controller
     public function getBrandNews(Request $request)
     {
         $brandnews=Cache::remember('applet-brandnews', 10, function() use($request){
-            $articles=Archive::where('typeid',46)->take(5)->latest()->get(['id','title','created_at','brandid'])->toArray();
+            $articles=Archive::where('typeid',212)->take(5)->latest()->get(['id','title','created_at','brandid'])->toArray();
             if (!empty($articles))
             {
                 foreach ($articles as $key=>$article){
@@ -211,7 +211,7 @@ class ArticleSourcesController extends Controller
     public function getJmNews(Request $request)
     {
         $brandnews=Cache::remember('applet-jmnews', 10, function() use($request){
-            $articles=Archive::where('typeid',42)->take(5)->latest()->get(['id','title','created_at','brandid'])->toArray();
+            $articles=Archive::where('typeid',211)->take(5)->latest()->get(['id','title','created_at','brandid'])->toArray();
             if (!empty($articles))
             {
                 foreach ($articles as $key=>$article){
@@ -233,7 +233,7 @@ class ArticleSourcesController extends Controller
     public function gettouziNews(Request $request)
     {
         $brandnews=Cache::remember('applet-tznews', 10, function() use($request){
-            $articles=Archive::where('typeid',83)->take(5)->latest()->get(['id','title','created_at','brandid'])->toArray();
+            $articles=Archive::where('typeid',213)->take(5)->latest()->get(['id','title','created_at','brandid'])->toArray();
             if (!empty($articles))
             {
                 foreach ($articles as $key=>$article){
@@ -255,7 +255,7 @@ class ArticleSourcesController extends Controller
     public function getfeiyongNews(Request $request)
     {
         $brandnews=Cache::remember('applet-fynews', 10, function() use($request){
-            $articles=Archive::where('typeid',35)->take(5)->latest()->get(['id','title','created_at','brandid'])->toArray();
+            $articles=Archive::where('typeid',214)->take(5)->latest()->get(['id','title','created_at','brandid'])->toArray();
             if (!empty($articles))
             {
                 foreach ($articles as $key=>$article){
@@ -269,6 +269,30 @@ class ArticleSourcesController extends Controller
         });
         return $brandnews;
     }
+
+
+    public function getArticleInfo(Request $request)
+    {
+        $thisarticleinfos=Cache::remember('thisarticleinfos_'.$request->id, config('app.cachetime')+rand(60,60*24), function() use($request){
+            return Archive::findOrFail($request->id);
+        });
+        if (!empty($thisarticleinfos))
+        {
+            $articleinfo=[];
+            $articleinfo['title']=$thisarticleinfos->title;
+            $articleinfo['keywords']=$thisarticleinfos->keywords;
+            $articleinfo['description']=$thisarticleinfos->description;
+            $articleinfo['created_at']=$thisarticleinfos->created_at;
+            if (!empty($thisarticleinfos->litpic) && !str_contains($thisarticleinfos->litpic,'://'))
+            {
+                $articleinfo['litpic']=config('app.url').$thisarticleinfos->litpic;
+            }else{
+                $articleinfo['litpic']=$thisarticleinfos->litpic;
+            }
+            return !empty($articleinfo)?json_encode($articleinfo):'';
+        }
+    }
+
     /**获取单篇普通文档
      * @param Request $request
      * @return mixed
@@ -302,6 +326,32 @@ class ArticleSourcesController extends Controller
             }
         }
         return !empty($article)?json_encode($article):'';
+    }
+
+    /**获取品牌文档seo信息
+     * @param Request $request
+     * @return string
+     */
+    public function getBrandarticleInfo(Request $request)
+    {
+        $thisarticleinfos = Cache::remember('thisbrandarticleinfos_'.$request->id, config('app.cachetime')+rand(60,60*24), function() use($request){
+            return Brandarticle::findOrFail($request->id);
+        });
+        if (!empty($thisarticleinfos))
+        {
+            $articleinfo=[];
+            $articleinfo['title']=$thisarticleinfos->title;
+            $articleinfo['keywords']=$thisarticleinfos->keywords;
+            $articleinfo['description']=$thisarticleinfos->description;
+            $articleinfo['created_at']=$thisarticleinfos->created_at;
+            if (!empty($thisarticleinfos->litpic) && !str_contains($thisarticleinfos->litpic,'://'))
+            {
+                $articleinfo['litpic']=config('app.url').$thisarticleinfos->litpic;
+            }else{
+                $articleinfo['litpic']=$thisarticleinfos->litpic;
+            }
+            return !empty($articleinfo)?json_encode($articleinfo):'';
+        }
     }
 
     /**获取单篇品牌文档

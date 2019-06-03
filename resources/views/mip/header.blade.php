@@ -1,8 +1,9 @@
 <div class="lunbo">
     <div class="swiper-container">
             <mip-carousel autoplay  defer="5000" layout="responsive" width="730"  height="304">
-                <a href="/busInfo/204.html"  target="_blank"  class="swiper-slide" > <mip-img src="/mobile/images/9be32109eec0417d8e474437ed7fb0ea.jpg" alt="UBTV小主播"></mip-img></a>
-                <a href="/busInfo/26.html" target="_blank"  class="swiper-slide"> <mip-img src="/mobile/images/aebed277ee964c94bfeaa080c0e0c64a.jpg" alt="芝麻街英语"></mip-img></a>
+                <a href="/busInfo/5703.html"  target="_blank"  class="swiper-slide" > <mip-img src="/mobile/images/ucc.jpg" alt="UCC国际洗衣"></mip-img></a>
+                <a href="/busInfo/20582.html" target="_blank"  class="swiper-slide"> <mip-img src="/mobile/images/juneng.jpg" alt="聚能教育加盟"></mip-img></a>
+                <a href="/busInfo/7396.html" target="_blank"  class="swiper-slide"> <mip-img src="/mobile/images/liangpin.jpg" alt="良品铺子加盟"></mip-img></a>
             </mip-carousel>
     </div>
 </div>

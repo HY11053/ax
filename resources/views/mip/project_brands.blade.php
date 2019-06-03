@@ -6,7 +6,7 @@
     @include('mip.header')
     <!--menu End-->
     <div class="weizhi">
-        <span><a href="/">首页</a>&nbsp;>&nbsp; <a href="{{str_replace('www.','mip.',config('app.url'))}}/index.php/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>&nbsp;>&nbsp;列表：</span>
+        <span><a href="/">首页</a>&nbsp;>&nbsp;@if($thistypeinforeid->real_path !=$thistypeinfo->real_path ) <a href="/{{$thistypeinforeid->real_path}}/">{{$thistypeinforeid->typename}}</a> >@endif <a href="{{str_replace('www.','mip.',config('app.url'))}}/{{$thistypeinfo->real_path}}/">{{$thistypeinfo->typename}}</a>&nbsp;>&nbsp;列表：</span>
     </div>
     <div class="brand_list" style="padding-top: 10px ;">
         @foreach($pagelists as $index=>$pagelist)

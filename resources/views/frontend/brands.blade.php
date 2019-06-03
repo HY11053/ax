@@ -13,7 +13,7 @@
 @stop
 @section('main_content')
         <!--当前位置 开始-->
-        <div class="path">当前位置： <a href="/">首页</a> > <a href="/{{$thistypeinforeid->real_path}}/">{{$thistypeinforeid->typename}}</a> > {{$thistypeinfo->typename}}</div>
+        <div class="path">当前位置： <a href="/">首页</a> >@if($thistypeinforeid->real_path !=$thistypeinfo->real_path ) <a href="/{{$thistypeinforeid->real_path}}/">{{$thistypeinforeid->typename}}</a> >@endif {{$thistypeinfo->typename}}</div>
         <!--当前位置 结束-->
         <!--项目分类 开始-->
         <div class="cate_sort">
